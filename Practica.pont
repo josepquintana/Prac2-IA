@@ -1,0 +1,177 @@
+; Fri Nov 30 01:05:50 CET 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot indicadoParaEnfermedad
+		(type INSTANCE)
+;+		(allowed-classes Enfermedad)
+		(create-accessor read-write))
+	(single-slot edad
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nombreEjercicio
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot enfermedades
+		(type INSTANCE)
+;+		(allowed-classes Enfermedad)
+		(create-accessor read-write))
+	(single-slot nombreEnfermedad
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot KB_386440_Class11
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nivel
+		(type SYMBOL)
+		(allowed-values inicial mejora mantenimiento)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nivelSesion
+		(type SYMBOL)
+		(allowed-values inicial mejora mantenimiento)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot equipo
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nombreSesion
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nombrePersona
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot contraIndicadoParaEnfermedad
+		(type INSTANCE)
+;+		(allowed-classes Enfermedad)
+		(create-accessor read-write))
+	(single-slot duracion
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot intensidad
+		(type SYMBOL)
+		(allowed-values baja media alta)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duracionSesion
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot ejercicios
+		(type INSTANCE)
+;+		(allowed-classes Ejercicio)
+		(create-accessor read-write)))
+
+(defclass SesionEjercicios
+	(is-a USER)
+	(role concrete)
+	(single-slot duracionSesion
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nombreSesion
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nivelSesion
+		(type SYMBOL)
+		(allowed-values inicial mejora mantenimiento)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot ejercicios
+		(type INSTANCE)
+;+		(allowed-classes Ejercicio)
+		(create-accessor read-write)))
+
+(defclass Ejercicio
+	(is-a USER)
+	(role concrete)
+	(multislot indicadoParaEnfermedad
+		(type INSTANCE)
+;+		(allowed-classes Enfermedad)
+		(create-accessor read-write))
+	(single-slot nivel
+		(type SYMBOL)
+		(allowed-values inicial mejora mantenimiento)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot duracion
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot contraIndicadoParaEnfermedad
+		(type INSTANCE)
+;+		(allowed-classes Enfermedad)
+		(create-accessor read-write))
+	(single-slot intensidad
+		(type SYMBOL)
+		(allowed-values baja media alta)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nombreEjercicio
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Aerobico
+	(is-a Ejercicio)
+	(role concrete))
+
+(defclass Deporte
+	(is-a Ejercicio)
+	(role concrete)
+	(single-slot equipo
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Calentamiento
+	(is-a Ejercicio)
+	(role concrete))
+
+(defclass EspecificoParteCuerpo
+	(is-a Ejercicio)
+	(role concrete))
+
+(defclass Enfermedad
+	(is-a USER)
+	(role concrete)
+	(single-slot nombreEnfermedad
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Persona
+	(is-a USER)
+	(role concrete)
+	(single-slot edad
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nombrePersona
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot enfermedades
+		(type INSTANCE)
+;+		(allowed-classes Enfermedad)
+		(create-accessor read-write)))
