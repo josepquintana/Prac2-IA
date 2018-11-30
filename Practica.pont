@@ -1,4 +1,4 @@
-; Fri Nov 30 14:10:19 CET 2018
+; Fri Nov 30 15:07:17 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,12 +6,90 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
-
-(defclass SesionEjercicios
-	(is-a USER)
-	(role concrete))
+	(role abstract)
+	(single-slot levelWorkout
+		(type SYMBOL)
+		(allowed-values basic normal advanced)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot level
+		(type SYMBOL)
+		(allowed-values basic normal advanced)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nameWorkout
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot durationWorkout
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot intensity
+		(type SYMBOL)
+		(allowed-values low medium high)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duration
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
 
 (defclass Exercise
 	(is-a USER)
+	(role abstract)
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duration
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot intensity
+		(type SYMBOL)
+		(allowed-values low medium high)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot level
+		(type SYMBOL)
+		(allowed-values basic normal advanced)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass AerobicExercise
+	(is-a Exercise)
 	(role concrete))
+
+(defclass AnaerobicExercise
+	(is-a Exercise)
+	(role concrete))
+
+(defclass Flexibility
+	(is-a Exercise)
+	(role concrete))
+
+(defclass WorkoutSesion
+	(is-a USER)
+	(role concrete)
+	(single-slot levelWorkout
+		(type SYMBOL)
+		(allowed-values basic normal advanced)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot durationWorkout
+;+		(comment "[min]")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nameWorkout
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))

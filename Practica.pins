@@ -1,4 +1,116 @@
-; Fri Nov 30 14:10:19 CET 2018
+; Fri Nov 30 15:07:17 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([KB_952331_Class13] of  AerobicExercise
+
+	(duration 20)
+	(intensity medium)
+	(level basic)
+	(name "Running"))
+
+([KB_952331_Class14] of  AerobicExercise
+
+	(duration 20)
+	(intensity low)
+	(level basic)
+	(name "Cycling"))
+
+([KB_952331_Class15] of  AerobicExercise
+
+	(duration 20)
+	(intensity low)
+	(level basic)
+	(name "Walking"))
+
+([KB_952331_Class16] of  AerobicExercise
+
+	(duration 30)
+	(intensity medium)
+	(level normal)
+	(name "Tennis"))
+
+([KB_952331_Class17] of  AerobicExercise
+
+	(duration 30)
+	(intensity medium)
+	(level normal)
+	(name "Rowing"))
+
+([KB_952331_Class18] of  AerobicExercise
+
+	(duration 30)
+	(intensity high)
+	(level normal)
+	(name "Soccer"))
+
+([KB_952331_Class19] of  AnaerobicExercise
+
+	(duration 10)
+	(intensity high)
+	(level normal)
+	(name "PushUps"))
+
+([KB_952331_Class20] of  AnaerobicExercise
+
+	(duration 10)
+	(intensity medium)
+	(level basic)
+	(name "BicepCurls"))
+
+([KB_952331_Class21] of  AnaerobicExercise
+
+	(duration 10)
+	(intensity medium)
+	(level basic)
+	(name "BenchPress"))
+
+([KB_952331_Class22] of  AnaerobicExercise
+
+	(duration 5)
+	(intensity high)
+	(level advanced)
+	(name "Sprinting"))
+
+([KB_952331_Class23] of  AnaerobicExercise
+
+	(duration 10)
+	(intensity medium)
+	(level normal)
+	(name "Squats"))
+
+([KB_952331_Class24] of  Flexibility
+
+	(duration 2)
+	(intensity low)
+	(level basic)
+	(name "QuadricepsStretching"))
+
+([KB_952331_Class25] of  Flexibility
+
+	(duration 2)
+	(intensity low)
+	(level basic)
+	(name "AdductorStretching"))
+
+([KB_952331_Class26] of  Flexibility
+
+	(duration 2)
+	(intensity low)
+	(level basic)
+	(name "TricepsStretching"))
+
+([KB_952331_Class27] of  Flexibility
+
+	(duration 2)
+	(intensity low)
+	(level basic)
+	(name "ChestStretching"))
+
+([KB_952331_Class28] of  Flexibility
+
+	(duration 2)
+	(intensity low)
+	(level basic)
+	(name "BackStretching"))
