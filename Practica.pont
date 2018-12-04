@@ -1,4 +1,4 @@
-; Fri Nov 30 15:41:29 CET 2018
+; Tue Dec 04 19:53:12 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,89 +7,191 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot levelWorkout
-		(type SYMBOL)
-		(allowed-values basic normal advanced)
+	(single-slot inte
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot name_
+	(multislot recomendado
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot indicado)
+		(create-accessor read-write))
+	(multislot no_recomendado
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot contra_indicado)
+		(create-accessor read-write))
+	(single-slot objetivo
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot level
+	(multislot orientado_a
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot material
 		(type SYMBOL)
-		(allowed-values basic normal advanced)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot nameWorkout
-		(type STRING)
+	(single-slot intensidad_recomendada
+		(type SYMBOL)
+		(allowed-values baja media alta)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot durationWorkout
+	(single-slot equipo
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot duracion
 ;+		(comment "[min]")
 		(type INTEGER)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot intensity
-		(type SYMBOL)
-		(allowed-values low medium high)
+	(multislot contra_indicado
+		(type INSTANCE)
+;+		(allowed-classes Dolencia)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot no_recomendado)
+		(create-accessor read-write))
+	(multislot indicado
+		(type INSTANCE)
+;+		(allowed-classes Dolencia)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot recomendado)
+		(create-accessor read-write))
+	(single-slot actividad
+		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot duration
-;+		(comment "[min]")
-		(type INTEGER)
+	(multislot parte_cuerpo
+		(type SYMBOL)
+		(allowed-values pierna brazo espalda cadera torso)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot dolencia
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot rehabilitacion
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot intensidad
+		(type SYMBOL)
+		(allowed-values baja media alta)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Exercise
-	(is-a USER)
-	(role abstract)
-	(single-slot name_
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot duration
-;+		(comment "[min]")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot intensity
-		(type SYMBOL)
-		(allowed-values low medium high)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot level
-		(type SYMBOL)
-		(allowed-values basic normal advanced)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass AerobicExercise
-	(is-a Exercise)
-	(role concrete))
-
-(defclass AnaerobicExercise
-	(is-a Exercise)
-	(role concrete))
-
-(defclass Flexibility
-	(is-a Exercise)
-	(role concrete))
-
-(defclass WorkoutSesion
+(defclass Actividad
 	(is-a USER)
 	(role concrete)
-	(single-slot levelWorkout
-		(type SYMBOL)
-		(allowed-values basic normal advanced)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot durationWorkout
+	(single-slot duracion
 ;+		(comment "[min]")
 		(type INTEGER)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot nameWorkout
+	(single-slot actividad
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot parte_cuerpo
+		(type SYMBOL)
+		(allowed-values pierna brazo espalda cadera torso)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot orientado_a
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Calentamiento
+	(is-a Actividad)
+	(role concrete))
+
+(defclass Ejercicio
+	(is-a Actividad)
+	(role concrete)
+	(single-slot material
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Deporte
+	(is-a Actividad)
+	(role concrete)
+	(single-slot equipo
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Objetivo
+	(is-a USER)
+	(role concrete)
+	(single-slot intensidad
+		(type SYMBOL)
+		(allowed-values baja media alta)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot objetivo
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot contra_indicado
+		(type INSTANCE)
+;+		(allowed-classes Dolencia)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot indicado
+		(type INSTANCE)
+;+		(allowed-classes Dolencia)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Dolencia
+	(is-a USER)
+	(role concrete)
+	(single-slot dolencia
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
+
+(defclass Enfermedad
+	(is-a Dolencia)
+	(role concrete)
+	(multislot recomendado
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot no_recomendado
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Lesion
+	(is-a Dolencia)
+	(role concrete)
+	(multislot parte_cuerpo
+		(type SYMBOL)
+		(allowed-values pierna brazo espalda cadera torso)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot rehabilitacion
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Incapacidad
+	(is-a Dolencia)
+	(role concrete))

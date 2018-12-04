@@ -114,12 +114,12 @@
 )
 
 ; Proccess the data read from the user
-
-(defrule PROCESS_DATA::ini_scores
- (declare (salience 99))
-  =>
-  (bind $?exercises (find-all-instances ((?inst Exercise)) TRUE))
-	(progn$ (?ex-i ?exercises)
-		(make-instance (gensym) of Exercises (exercise ?ex-i)(assessment 0))
-	)
-)
+; 
+; (defrule PROCESS_DATA::ini_scores
+;  (declare (salience 99))
+;   =>
+;   (bind $?exercises (find-all-instances ((?inst Exercise)) TRUE))
+; 	(progn$ (?ex-i ?exercises)
+; 		(make-instance (gensym) of Exercises (exercise ?ex-i)(assessment 0))
+; 	)
+; )

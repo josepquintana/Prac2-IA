@@ -1,116 +1,244 @@
-; Fri Nov 30 15:41:29 CET 2018
+; Tue Dec 04 19:53:12 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-([KB_952331_Class13] of  AerobicExercise
+([Practica_Class17] of  Enfermedad
 
-	(duration 20)
-	(intensity medium)
-	(level basic)
-	(name "Running"))
+	(dolencia "Cardiovascular")
+	(no_recomendado [Practica_Class28])
+	(recomendado [Practica_Class23]))
 
-([KB_952331_Class14] of  AerobicExercise
+([Practica_Class18] of  Objetivo
 
-	(duration 20)
-	(intensity low)
-	(level basic)
-	(name "Cycling"))
+	(indicado [Practica_Class50])
+	(intensidad baja)
+	(objetivo "Fuerza"))
 
-([KB_952331_Class15] of  AerobicExercise
+([Practica_Class20] of  Objetivo
 
-	(duration 20)
-	(intensity low)
-	(level basic)
-	(name "Walking"))
+	(indicado
+		[Practica_Class41]
+		[Practica_Class42]
+		[Practica_Class50])
+	(intensidad baja)
+	(objetivo "Flexibilidad"))
 
-([KB_952331_Class16] of  AerobicExercise
+([Practica_Class21] of  Objetivo
 
-	(duration 30)
-	(intensity medium)
-	(level normal)
-	(name "Tennis"))
+	(indicado
+		[Practica_Class41]
+		[Practica_Class42])
+	(intensidad baja)
+	(objetivo "Resistencia"))
 
-([KB_952331_Class17] of  AerobicExercise
+([Practica_Class22] of  Objetivo
 
-	(duration 30)
-	(intensity medium)
-	(level normal)
-	(name "Rowing"))
+	(intensidad baja)
+	(objetivo "Equilibrio"))
 
-([KB_952331_Class18] of  AerobicExercise
+([Practica_Class23] of  Objetivo
 
-	(duration 30)
-	(intensity high)
-	(level normal)
-	(name "Soccer"))
+	(indicado
+		[Practica_Class17]
+		[Practica_Class41]
+		[Practica_Class42]
+		[Practica_Class50])
+	(intensidad baja)
+	(objetivo "Cardio"))
 
-([KB_952331_Class19] of  AnaerobicExercise
+([Practica_Class27] of  Objetivo
 
-	(duration 10)
-	(intensity high)
-	(level normal)
-	(name "PushUps"))
+	(contra_indicado [Practica_Class41])
+	(intensidad media)
+	(objetivo "Cardio"))
 
-([KB_952331_Class20] of  AnaerobicExercise
+([Practica_Class28] of  Objetivo
 
-	(duration 10)
-	(intensity medium)
-	(level basic)
-	(name "BicepCurls"))
+	(contra_indicado
+		[Practica_Class17]
+		[Practica_Class41]
+		[Practica_Class42])
+	(indicado [Practica_Class41])
+	(intensidad alta)
+	(objetivo "Cardio"))
 
-([KB_952331_Class21] of  AnaerobicExercise
+([Practica_Class29] of  Objetivo
 
-	(duration 10)
-	(intensity medium)
-	(level basic)
-	(name "BenchPress"))
+	(intensidad media)
+	(objetivo "Equilibrio"))
 
-([KB_952331_Class22] of  AnaerobicExercise
+([Practica_Class30] of  Objetivo
 
-	(duration 5)
-	(intensity high)
-	(level advanced)
-	(name "Sprinting"))
+	(contra_indicado [Practica_Class42])
+	(intensidad alta)
+	(objetivo "Equilibrio"))
 
-([KB_952331_Class23] of  AnaerobicExercise
+([Practica_Class31] of  Objetivo
 
-	(duration 10)
-	(intensity medium)
-	(level normal)
-	(name "Squats"))
+	(contra_indicado [Practica_Class41])
+	(intensidad media)
+	(objetivo "Flexibilidad"))
 
-([KB_952331_Class24] of  Flexibility
+([Practica_Class32] of  Objetivo
 
-	(duration 2)
-	(intensity low)
-	(level basic)
-	(name "QuadricepsStretching"))
+	(contra_indicado
+		[Practica_Class41]
+		[Practica_Class50])
+	(intensidad alta)
+	(objetivo "Flexibilidad"))
 
-([KB_952331_Class25] of  Flexibility
+([Practica_Class33] of  Objetivo
 
-	(duration 2)
-	(intensity low)
-	(level basic)
-	(name "AdductorStretching"))
+	(contra_indicado [Practica_Class42])
+	(indicado [Practica_Class41])
+	(intensidad media)
+	(objetivo "Fuerza"))
 
-([KB_952331_Class26] of  Flexibility
+([Practica_Class34] of  Objetivo
 
-	(duration 2)
-	(intensity low)
-	(level basic)
-	(name "TricepsStretching"))
+	(contra_indicado
+		[Practica_Class42]
+		[Practica_Class50])
+	(intensidad alta)
+	(objetivo "Fuerza"))
 
-([KB_952331_Class27] of  Flexibility
+([Practica_Class35] of  Objetivo
 
-	(duration 2)
-	(intensity low)
-	(level basic)
-	(name "ChestStretching"))
+	(intensidad media)
+	(objetivo "Resistencia"))
 
-([KB_952331_Class28] of  Flexibility
+([Practica_Class36] of  Objetivo
 
-	(duration 2)
-	(intensity low)
-	(level basic)
-	(name "BackStretching"))
+	(intensidad alta)
+	(objetivo "Resistencia"))
+
+([Practica_Class37] of  Objetivo
+
+	(intensidad media)
+	(objetivo "Salud Mental"))
+
+([Practica_Class41] of  Enfermedad
+
+	(dolencia "Obesidad")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class27]
+		[Practica_Class32]
+		[Practica_Class31])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class21]
+		[Practica_Class28]
+		[Practica_Class33]))
+
+([Practica_Class42] of  Enfermedad
+
+	(dolencia "Osteoporosis")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class30]
+		[Practica_Class34]
+		[Practica_Class33])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class21]))
+
+([Practica_Class43] of  Lesion
+
+	(dolencia "Rotura")
+	(parte_cuerpo brazo))
+
+([Practica_Class44] of  Lesion
+
+	(dolencia "Rotura")
+	(parte_cuerpo pierna))
+
+([Practica_Class45] of  Lesion
+
+	(dolencia "Rotura")
+	(parte_cuerpo cadera))
+
+([Practica_Class46] of  Lesion
+
+	(dolencia "Esguince")
+	(parte_cuerpo pierna)
+	(rehabilitacion TRUE))
+
+([Practica_Class47] of  Incapacidad
+
+	(dolencia "Paraplegia"))
+
+([Practica_Class50] of  Enfermedad
+
+	(dolencia "Artrosis")
+	(no_recomendado
+		[Practica_Class32]
+		[Practica_Class34])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class18]))
+
+([Practica_Class53] of  Deporte
+
+	(actividad "Baloncesto")
+	(duracion 60)
+	(equipo TRUE)
+	(orientado_a
+		[Practica_Class28]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class36])
+	(parte_cuerpo brazo pierna espalda cadera))
+
+([Practica_Class54] of  Calentamiento
+
+	(actividad "EstiramientoBrazos")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_cuerpo brazo))
+
+([Practica_Class55] of  Calentamiento
+
+	(actividad "EstiramientosPiernas")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_cuerpo pierna))
+
+([Practica_Class56] of  Ejercicio
+
+	(actividad "Flexiones")
+	(duracion 10)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class33]
+		[Practica_Class36])
+	(parte_cuerpo brazo torso))
+
+([Practica_Class57] of  Ejercicio
+
+	(actividad "PressDeBanca")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class34])
+	(parte_cuerpo torso brazo))
+
+([Practica_Class58] of  Ejercicio
+
+	(actividad "PressDeBanca")
+	(duracion 15)
+	(material FALSE)
+	(orientado_a [Practica_Class36])
+	(parte_cuerpo torso))
+
+([Practica_Class59] of  Objetivo
+)
