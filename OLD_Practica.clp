@@ -4,17 +4,24 @@
 (defmodule PROCESS_DATA (import MAIN ?ALL)(export ?ALL))
 (defmodule PRINT_WORKOUT (import MAIN ?ALL)(export ?ALL))
 
-(defclass MAIN::Person
-  (is-a USER) (role concrete)
-   (slot grupo_edad (type STRING)) ; OLD, VERY_OLD, SUPER_OLD, ULTRA_OLD
-   (multislot dolencias (type INSTACE)(default 0)(create-accessor read-write))
-   (slot estado_fisico (type STRING)) ; BASICO, MEJORA, MANTENIMIENTO
+(deftemplate MAIN::Person
+  ; input person characteristics
+  (slot ageGroup (type STRING)) ; OLD, VERY_OLD, SUPER_OLD, ULTRA_OLD
+  (slot cardiovascular (type STRING)(default "n"))
+  (slot respiratory (type STRING)(default "n"))
+  (slot diabetes (type STRING)(default "n"))
+  (slot obesity (type STRING)(default "n"))
+  (slot osteoporosis (type STRING)(default "n"))
+  (slot colesterol (type STRING)(default "n"))
+  (slot muscular (type STRING)(default "n"))
+  (slot fall (type STRING)(default "n"))
+  (slot reduced_mobility(type STRING)(default "n"))
 )
 
-(defclass MAIN::Actividades
+(defclass MAIN::Exercises
   (is-a USER) (role concrete)
-   (slot actividad (type INSTANCE)(create-accessor read-write))
-   (slot puntuacion (type INTEGER)(default 0)(create-accessor read-write))
+   (slot exercise (type INSTANCE)(create-accessor read-write))
+   (slot assessment (type INTEGER)(default 0)(create-accessor read-write))
 )
 
 (defrule MAIN::init "initial rule"
@@ -56,12 +63,6 @@
 	)
     (printout t crlf)
 	(return ?answer)
-)
-
-(deffunction ASK_QUESTIONS::ask_question_yes_no(?question $?allowed-values)
- ; "Escribe una pregunta y lee uno de los valores posibles (yes no)"
- (bind ?answer (ask_question_allowed_values "?question" si no ))
- (return ?answer)
 )
 
 (deffunction ASK_QUESTIONS::ask_question_integer (?question)

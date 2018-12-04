@@ -1,4 +1,4 @@
-; Tue Dec 04 19:53:12 CET 2018
+; Tue Dec 04 20:08:42 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,16 +20,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Practica_ProjectKB_Class10207]
-		[Practica_ProjectKB_Class10208]
-		[Practica_ProjectKB_Class10209]
-		[Practica_ProjectKB_Class10210]
-		[Practica_ProjectKB_Class10211]
-		[Practica_ProjectKB_Class10212]
-		[Practica_ProjectKB_Class10213]
-		[Practica_ProjectKB_Class10214]
-		[Practica_ProjectKB_Class10215]
-		[Practica_ProjectKB_Class10216]))
+		[Practica_ProjectKB_Class10367]
+		[Practica_ProjectKB_Class10368]
+		[Practica_ProjectKB_Class10369]
+		[Practica_ProjectKB_Class10370]
+		[Practica_ProjectKB_Class10371]
+		[Practica_ProjectKB_Class10372]
+		[Practica_ProjectKB_Class10373]
+		[Practica_ProjectKB_Class10374]
+		[Practica_ProjectKB_Class10375]
+		[Practica_ProjectKB_Class10376]))
 
 ([CLSES_TAB] of  Widget
 
@@ -288,52 +288,52 @@
 ([Practica_ProjectKB_Class10104] of  Property_List
 )
 
-([Practica_ProjectKB_Class10207] of  String
+([Practica_ProjectKB_Class10367] of  String
 
 	(name "Calentamiento")
 	(string_value "{C_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10208] of  String
+([Practica_ProjectKB_Class10368] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Practica_ProjectKB_Class10209] of  String
+([Practica_ProjectKB_Class10369] of  String
 
 	(name "Incapacidad")
 	(string_value "{I_}dolencia"))
 
-([Practica_ProjectKB_Class10210] of  String
+([Practica_ProjectKB_Class10370] of  String
 
 	(name "Ejercicio")
 	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10211] of  String
+([Practica_ProjectKB_Class10371] of  String
 
 	(name "Objetivo")
 	(string_value "{O_}objetivo{_}intensidad"))
 
-([Practica_ProjectKB_Class10212] of  String
+([Practica_ProjectKB_Class10372] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([Practica_ProjectKB_Class10213] of  String
+([Practica_ProjectKB_Class10373] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([Practica_ProjectKB_Class10214] of  String
+([Practica_ProjectKB_Class10374] of  String
 
 	(name "Deporte")
 	(string_value "{D_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10215] of  String
+([Practica_ProjectKB_Class10375] of  String
 
 	(name "Lesion")
 	(string_value "{L_}dolencia{_}parte_cuerpo{_}rehabilitacion"))
 
-([Practica_ProjectKB_Class10216] of  String
+([Practica_ProjectKB_Class10376] of  String
 
 	(name "Enfermedad")
 	(string_value "{E_}dolencia"))
