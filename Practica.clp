@@ -16,18 +16,25 @@
   (slot muscular (type STRING)(default "n"))
   (slot fall (type STRING)(default "n"))
   (slot reduced_mobility(type STRING)(default "n"))
+)
 
+(deftemplate MAIN::Workout
+  (multislot exercises (type INSTANCE))
+  (slot duration (type INTEGER))
+  (slot intensity (type STRING))
 )
 
 (defrule MAIN::init
   (declare (salience 99))
   =>
   (printout t crlf)
-  (printout t "###############################################################")
+  (printout t "################################################################")
   (printout t crlf)
-  (format t "                       OLD PEOPLE%n")
   (printout t crlf)
-  (printout t "###############################################################")
+  (format t "                  SISTEMA DE RECOMENDACION%n")
+  (format t "                 DE EJERCICIOS Y ACTIVIDADES%n")
+  (printout t crlf)
+  (printout t "################################################################")
   (printout t crlf)
 
   (focus READ_DATA)
@@ -48,7 +55,7 @@
 	(return ?answer)
 )
 
-(deffunction RECOPILAR_INFO::ask_question_integer (?question)
+(deffunction READ_DATA::ask_question_integer (?question)
 ; "Escribe una pregunta y lee un entero"
   (printout t ?question)
   (printout t "(NUMBER): ")
@@ -89,14 +96,20 @@
   (assert (test_Disease))
 )
 
-(defrule RECOPILAR_INFO::dataReadCorret
+(defrule READ_DATA::dataReadCorrect
     (declare (salience 1))
     =>
     (focus PROCESS_DATA)
     (printout t crlf)
-    (format t "##########################################################################%n%n")
-    (format t "     Data Read ...   %n%n")
-    (format t "##########################################################################%n%n")
+    (format t "################################################################%n")
+    (format t "                          Data Read...   %n")
+    (format t "################################################################%n")
 )
 
 ; Proccess the data read from the user
+
+(defrule PROCESS_DATA::ini_scores
+  
+  =>
+
+)

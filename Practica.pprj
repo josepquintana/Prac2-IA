@@ -1,4 +1,4 @@
-; Fri Nov 30 15:07:17 CET 2018
+; Fri Nov 30 15:41:29 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,11 +20,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Practica_ProjectKB_Class135]
-		[Practica_ProjectKB_Class136]
-		[Practica_ProjectKB_Class137]
-		[Practica_ProjectKB_Class138]
-		[Practica_ProjectKB_Class139]))
+		[Practica_ProjectKB_Class140]
+		[Practica_ProjectKB_Class141]
+		[Practica_ProjectKB_Class142]
+		[Practica_ProjectKB_Class143]
+		[Practica_ProjectKB_Class144]))
 
 ([CLSES_TAB] of  Widget
 
@@ -583,27 +583,27 @@
 
 	(name "SearchTab_Query"))
 
-([Practica_ProjectKB_Class135] of  String
+([Practica_ProjectKB_Class140] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Practica_ProjectKB_Class136] of  String
+([Practica_ProjectKB_Class141] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([Practica_ProjectKB_Class137] of  String
+([Practica_ProjectKB_Class142] of  String
 
 	(name "AerobicExercise")
 	(string_value "name{_}duration{min}"))
 
-([Practica_ProjectKB_Class138] of  String
+([Practica_ProjectKB_Class143] of  String
 
 	(name "Exercise")
 	(string_value "name{_}duration{min}"))
 
-([Practica_ProjectKB_Class139] of  String
+([Practica_ProjectKB_Class144] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
