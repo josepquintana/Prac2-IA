@@ -1,4 +1,4 @@
-; Tue Dec 04 20:08:42 CET 2018
+; Sat Dec 08 14:40:03 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,16 +20,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Practica_ProjectKB_Class10367]
-		[Practica_ProjectKB_Class10368]
-		[Practica_ProjectKB_Class10369]
-		[Practica_ProjectKB_Class10370]
-		[Practica_ProjectKB_Class10371]
-		[Practica_ProjectKB_Class10372]
-		[Practica_ProjectKB_Class10373]
-		[Practica_ProjectKB_Class10374]
-		[Practica_ProjectKB_Class10375]
-		[Practica_ProjectKB_Class10376]))
+		[Practica_ProjectKB_Class10332]
+		[Practica_ProjectKB_Class10333]
+		[Practica_ProjectKB_Class10334]
+		[Practica_ProjectKB_Class10335]
+		[Practica_ProjectKB_Class10336]
+		[Practica_ProjectKB_Class10337]
+		[Practica_ProjectKB_Class10338]
+		[Practica_ProjectKB_Class10339]
+		[Practica_ProjectKB_Class10340]
+		[Practica_ProjectKB_Class10341]))
 
 ([CLSES_TAB] of  Widget
 
@@ -170,7 +170,7 @@
 
 	(properties [Practica_ProjectKB_Class134]))
 
-([KB_717772_Class0] of  Map
+([KB_192692_Class0] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List
@@ -260,80 +260,52 @@
 ([Practica_ProjectKB_Class10] of  Property_List
 )
 
-([Practica_ProjectKB_Class10101] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "intensidad_recomendada")
-	(property_list [Practica_ProjectKB_Class10102])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([Practica_ProjectKB_Class10102] of  Property_List
-)
-
-([Practica_ProjectKB_Class10103] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "inte")
-	(property_list [Practica_ProjectKB_Class10104])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([Practica_ProjectKB_Class10104] of  Property_List
-)
-
-([Practica_ProjectKB_Class10367] of  String
+([Practica_ProjectKB_Class10332] of  String
 
 	(name "Calentamiento")
 	(string_value "{C_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10368] of  String
+([Practica_ProjectKB_Class10333] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Practica_ProjectKB_Class10369] of  String
+([Practica_ProjectKB_Class10334] of  String
 
 	(name "Incapacidad")
 	(string_value "{I_}dolencia"))
 
-([Practica_ProjectKB_Class10370] of  String
-
-	(name "Ejercicio")
-	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
-
-([Practica_ProjectKB_Class10371] of  String
+([Practica_ProjectKB_Class10335] of  String
 
 	(name "Objetivo")
 	(string_value "{O_}objetivo{_}intensidad"))
 
-([Practica_ProjectKB_Class10372] of  String
+([Practica_ProjectKB_Class10336] of  String
 
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
+	(name "Ejercicio")
+	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10373] of  String
+([Practica_ProjectKB_Class10337] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([Practica_ProjectKB_Class10374] of  String
+([Practica_ProjectKB_Class10338] of  String
 
-	(name "Deporte")
-	(string_value "{D_}actividad{_}duracion{min}"))
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
 
-([Practica_ProjectKB_Class10375] of  String
+([Practica_ProjectKB_Class10339] of  String
 
 	(name "Lesion")
 	(string_value "{L_}dolencia{_}parte_cuerpo{_}rehabilitacion"))
 
-([Practica_ProjectKB_Class10376] of  String
+([Practica_ProjectKB_Class10340] of  String
+
+	(name "Deporte")
+	(string_value "{D_}actividad{_}duracion{min}"))
+
+([Practica_ProjectKB_Class10341] of  String
 
 	(name "Enfermedad")
 	(string_value "{E_}dolencia"))
@@ -670,11 +642,11 @@
 
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
+		[INSTANCE_ANNOTATION_FORM_WIDGET]
+		[STANDARD_SLOT_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
-		[STANDARD_CLASS_FORM_WIDGET]
-		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_SLOT_FORM_WIDGET])
+		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")

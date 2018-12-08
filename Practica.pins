@@ -1,4 +1,4 @@
-; Tue Dec 04 20:08:42 CET 2018
+; Sat Dec 08 14:40:03 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -149,17 +149,20 @@
 ([Practica_Class43] of  Lesion
 
 	(dolencia "Rotura")
-	(parte_cuerpo brazo))
+	(parte_cuerpo brazo)
+	(rehabilitacion FALSE))
 
 ([Practica_Class44] of  Lesion
 
 	(dolencia "Rotura")
-	(parte_cuerpo pierna))
+	(parte_cuerpo pierna)
+	(rehabilitacion FALSE))
 
 ([Practica_Class45] of  Lesion
 
 	(dolencia "Rotura")
-	(parte_cuerpo cadera))
+	(parte_cuerpo cadera)
+	(rehabilitacion FALSE))
 
 ([Practica_Class46] of  Lesion
 
