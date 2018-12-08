@@ -1,4 +1,4 @@
-; Sat Dec 08 18:22:38 CET 2018
+; Sat Dec 08 21:50:20 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -25,6 +25,11 @@
 		(create-accessor read-write))
 	(single-slot objetivo
 		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot tipo
+		(type SYMBOL)
+		(allowed-values Rotura Esguince Luxacion)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot orientado_a
@@ -68,10 +73,10 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot parte_cuerpo
+	(single-slot parte_cuerpo
 		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso)
-		(cardinality 1 ?VARIABLE)
+		(allowed-values pierna brazo espalda cadera torso tobillo)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot dolencia
 		(type STRING)
@@ -100,15 +105,15 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot parte_cuerpo
-		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
 	(multislot orientado_a
 		(type INSTANCE)
 ;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot parte_cuerpo
+		(type SYMBOL)
+		(allowed-values pierna brazo espalda cadera torso tobillo)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Calentamiento
@@ -181,10 +186,15 @@
 (defclass Lesion
 	(is-a Dolencia)
 	(role concrete)
-	(multislot parte_cuerpo
+	(single-slot tipo
 		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso)
-		(cardinality 1 ?VARIABLE)
+		(allowed-values Rotura Esguince Luxacion)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot parte_cuerpo
+		(type SYMBOL)
+		(allowed-values pierna brazo espalda cadera torso tobillo)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot rehabilitacion
 		(type SYMBOL)

@@ -1,10 +1,14 @@
-; Sat Dec 08 18:22:38 CET 2018
+; Sat Dec 08 21:50:20 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-(definstances instances
+([Practica_Class1] of  Lesion
 
+	(dolencia "Luxacion_Tobillo")
+	(parte_cuerpo tobillo)
+	(rehabilitacion TRUE)
+	(tipo Luxacion))
 
 ([Practica_Class17] of  Enfermedad
 
@@ -151,27 +155,31 @@
 
 ([Practica_Class43] of  Lesion
 
-	(dolencia "Rotura")
+	(dolencia "Rotura_Brazo")
 	(parte_cuerpo brazo)
-	(rehabilitacion FALSE))
+	(rehabilitacion FALSE)
+	(tipo Rotura))
 
 ([Practica_Class44] of  Lesion
 
-	(dolencia "Rotura")
+	(dolencia "Rotura_Pierna")
 	(parte_cuerpo pierna)
-	(rehabilitacion FALSE))
+	(rehabilitacion FALSE)
+	(tipo Rotura))
 
 ([Practica_Class45] of  Lesion
 
-	(dolencia "Rotura")
+	(dolencia "Rotura_Cadera")
 	(parte_cuerpo cadera)
-	(rehabilitacion FALSE))
+	(rehabilitacion FALSE)
+	(tipo Rotura))
 
 ([Practica_Class46] of  Lesion
 
-	(dolencia "Esguince")
+	(dolencia "Esguince_Pierna")
 	(parte_cuerpo pierna)
-	(rehabilitacion TRUE))
+	(rehabilitacion TRUE)
+	(tipo Esguince))
 
 ([Practica_Class47] of  Incapacidad
 
@@ -198,7 +206,7 @@
 		[Practica_Class31]
 		[Practica_Class18]
 		[Practica_Class36])
-	(parte_cuerpo brazo pierna espalda cadera))
+	(parte_cuerpo brazo))
 
 ([Practica_Class54] of  Calentamiento
 
@@ -228,7 +236,7 @@
 	(orientado_a
 		[Practica_Class33]
 		[Practica_Class36])
-	(parte_cuerpo brazo torso))
+	(parte_cuerpo brazo))
 
 ([Practica_Class57] of  Ejercicio
 
@@ -236,7 +244,7 @@
 	(duracion 15)
 	(material TRUE)
 	(orientado_a [Practica_Class34])
-	(parte_cuerpo torso brazo))
+	(parte_cuerpo torso))
 
 ([Practica_Class58] of  Ejercicio
 
@@ -247,7 +255,4 @@
 	(parte_cuerpo torso))
 
 ([Practica_Class59] of  Objetivo
-)
-
-
 )
