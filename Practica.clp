@@ -10,6 +10,12 @@
    (slot puntuacion (type INTEGER)(default 0)(create-accessor read-write))
 )
 
+(defclass MAIN::Test
+  (is-a USER) (role concrete)
+   ; (slot actividad (type INSTANCE)(create-accessor read-write))
+   (slot slot1 (type INTEGER)(default 0)(create-accessor read-write))
+)
+
 (deftemplate MAIN::Persona
   (slot grupo_edad (type STRING)) ; OLD, VERY_OLD, SUPER_OLD, ULTRA_OLD
   (multislot dolencias (type INSTANCE))
@@ -87,30 +93,29 @@
   (return ?answer)
 )
 
-;;; Funcion para hacer una pregunta multi-respuesta con indices
-(deffunction ASK_QUESTIONS::ask_question_multichoice (?pregunta $?valores-posibles)
-    (bind ?linea (format nil "%s" ?pregunta))
-    (printout t ?linea crlf)
-    (progn$ (?var ?valores-posibles)
-            (bind ?linea (format nil "  %d. %s" ?var-index ?var))
-            (printout t ?linea crlf)
-    )
-    (format t "%s" "Indica los numeros separados por un espacio: ")
-    (bind ?resp (readline))
-    (bind ?numeros (str-explode ?resp))
-    (bind $?lista (create$ ))
-    (progn$ (?var ?numeros)
-        (if (and (integerp ?var) (and (>= ?var 1) (<= ?var (length$ ?valores-posibles))))
-            then
-                (if (not (member$ ?var ?lista))
-                    then (bind ?lista (insert$ ?lista (+ (length$ ?lista) 1) ?var))
-                )
-        )
-    )
-    ?lista
+;;; Funcion para hacer una pregunta con un conjunto definido de valores de repuesta
+(deffunction ASK_QUESTIONS::ask_question_multichoice (?question $?allowed-values)
+	(printout t ?question " " crlf)
+  (progn$ (?var ?allowed-values)
+   (printout t ?var-index ". " ?var crlf)
+  )
+  (printout t crlf "Indique las respuestas separadas por un espacio: ")
+  (bind ?all_answers (readline))
+  (bind ?answers (str-explode ?all_answers))
+  (bind ?list_answers (create$ ))
+  (progn$ (?var ?answers)
+   (if (and (integerp ?var) (and (>= ?var 1) (<= ?var (length$ ?allowed-values))))
+    then
+     (if (not (member$ ?var ?list_answers))
+      then (bind ?list_answers (insert$ ?list_answers (+ (length$ ?list_answers) 1) ?var))
+     )
+   )
+  )
+	(return ?list_answers)
 )
 
-(defrule ASK_QUESTIONS::initialize_Persone
+
+(defrule ASK_QUESTIONS::initialize_Persona
   (declare (salience 25))
   (nueva_persona)
   (not (Persona))
@@ -131,7 +136,7 @@
   (assert (Persona (grupo_edad ?ga)))
 )
 
-(defrule ASK_QUESTIONS::ask_tieneEnfermedades
+(defrule ASK_QUESTIONS::ask_Enfermedades
   (declare (salience 10))
   ; (Persona (grupo_edad ?ga))
   (not (test_Enfermedades))
@@ -140,59 +145,26 @@
   =>
   (if (ask_question_yes_no "Padece alguna enfermedad?")
     then
-    (bind ?id_enf 99)
-    (while (> ?id_enf 0)
-     (printout t "1. Artrosis" crlf)
-     (printout t "2. Cardiovascular" crlf)
-     (printout t "3. Obesidad" crlf)
-     (printout t "4. Osteoporosis" crlf)
-     ; (printout t "5. Diabetes" crlf)
-     ; (printout t "6. Respiratorios" crlf)
-     (printout t "0. Ninguna mas" crlf)
-     (printout t crlf)
-     (bind ?id_enf (ask_question_allowed_values "Cual?" 1 2 3 4 0))
-
-     ; add to the multislot
-     (if (eq ?id_enf 1)
-      then
-      (printout t "fucked" crlf)
-      ; (printout t (length ?ref))
-     )
-
-    )
-    (printout t "next method" crlf)
-    (printout t "1. Artrosis" crlf)
-    (printout t "2. Cardiovascular" crlf)
-    (printout t "3. Obesidad" crlf)
-    (printout t "4. Osteoporosis" crlf)
-    ; (printout t "5. Diabetes" crlf)
-    ; (printout t "6. Respiratorios" crlf)
-    (printout t "0. Ninguna mas" crlf)
-    (printout t crlf)
-
-    (bind ?answer (ask_question_multichoice "Cuales?" 1 2 3 4 0))
-    (progn$ (?curr-for ?answer)
-      (switch ?curr-for
+     (bind ?list_answers (ask_question_multichoice "Cuales?" Artrosis Cardiovascular Obesidad Osteoporosis))
+     (progn$ (?curr-answer ?list_answers)
+      (switch ?curr-answer
        (case 1
         then (printout t "You chose 1" crlf))
        (case 2
-        then (assert (formato Serie)))
+        then (printout t "You chose 2" crlf))
        (case 3
+        then (printout t "You chose 3" crlf))
+       (case 4
+        then (printout t "You chose 4" crlf))
+       (case 5
         then (assert (formato Documental)))
       )
-    )
-
-  )
-
-
-
-  (printout t "end loop" crlf)
-
-  (assert (Persona) )
+     )
+   )
   (assert (test_Enfermedades))
 )
 
-(defrule ASK_QUESTIONS::askIncapacidades
+(defrule ASK_QUESTIONS::ask_Incapacidades
   (declare (salience 10))
   (not (test_Incapacidades))
   ?ref <- (Persona)
@@ -202,7 +174,7 @@
   (assert (test_Incapacidades))
 )
 
-(defrule ASK_QUESTIONS::askLesiones
+(defrule ASK_QUESTIONS::ask_Lesiones
   (declare (salience 10))
   ; (Persona (grupo_edad ?ga))
   (not (test_Lesiones))
@@ -231,13 +203,27 @@
   (printout t crlf)
   (printout t "####### MY TEST RULE #######" crlf)
 
-  (printout t ?ag)
+  (bind ?var_test (make-instance i1 of Test))
+  (send ?var_test put-slot1 12)
+  (bind ?var_test (make-instance i2 of Test))
+  (send ?var_test put-slot1 24)
+
+
+
+  (bind $?all_test (find-all-instances ((?inst Test)) TRUE))
+	(progn$ (?i ?all_test)
+		(printout t (send ?i get-slot1) crlf)
+	)
+
+	(printout t "L: " (length$ $?all_test) crlf)
+
+  ; (bind ?nom (send ?e1 get-equipo))
+  ; (printout t ?nom crlf)
 
   (printout t crlf "####### MY TEST RULE #######")
   (printout t crlf)
   (printout t crlf)
 )
-
 ; Proccess the data read from the user
 
 (defrule PROCESS_DATA::ini_scores
