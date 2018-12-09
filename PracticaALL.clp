@@ -5,8 +5,12 @@
 ;;;;;;;; INI_CLASSES (.PONT) ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; Sun Dec 09 00:45:58 CET 2018
+;
+;+ (version "3.5")
+;+ (build "Build 663")
 
-; Sat Dec 08 23:55:30 CET 2018
+; Sun Dec 09 01:11:01 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -17,90 +21,111 @@
 	(role abstract)
 	(single-slot inte
 		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot recomendado
 		(type INSTANCE)
+;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot indicado)
 		(create-accessor read-write))
 	(multislot no_recomendado
 		(type INSTANCE)
+;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot contra_indicado)
 		(create-accessor read-write))
 	(single-slot objetivo
 		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot tipo
 		(type SYMBOL)
 		(allowed-values Rotura Esguince Luxacion)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot orientado_a
 		(type INSTANCE)
+;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot material
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot intensidad_recomendada
 		(type SYMBOL)
 		(allowed-values baja media alta)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot equipo
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot duracion
+;+		(comment "[min]")
 		(type INTEGER)
-
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot contra_indicado
 		(type INSTANCE)
+;+		(allowed-classes Dolencia)
 		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot no_recomendado)
 		(create-accessor read-write))
 	(multislot indicado
 		(type INSTANCE)
+;+		(allowed-classes Dolencia)
 		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot recomendado)
 		(create-accessor read-write))
 	(single-slot actividad
 		(type STRING)
-
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot parte_cuerpo
 		(type SYMBOL)
 		(allowed-values pierna brazo espalda cadera torso tobillo)
-
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot dolencia
 		(type STRING)
-
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot rehabilitacion
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
-
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot intensidad
 		(type SYMBOL)
 		(allowed-values baja media alta)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Actividad
 	(is-a USER)
 	(role concrete)
 	(single-slot duracion
+;+		(comment "[min]")
 		(type INTEGER)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot actividad
 		(type STRING)
-
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot orientado_a
 		(type INSTANCE)
+;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot parte_cuerpo
 		(type SYMBOL)
 		(allowed-values pierna brazo espalda cadera torso tobillo)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Calentamiento
@@ -113,6 +138,7 @@
 	(single-slot material
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Deporte
@@ -121,6 +147,7 @@
 	(single-slot equipo
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Objetivo
@@ -129,9 +156,11 @@
 	(single-slot intensidad
 		(type SYMBOL)
 		(allowed-values baja media alta)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot objetivo
 		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Dolencia
@@ -139,6 +168,7 @@
 	(role concrete)
 	(single-slot dolencia
 		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Enfermedad
@@ -146,10 +176,12 @@
 	(role concrete)
 	(multislot recomendado
 		(type INSTANCE)
+;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(multislot no_recomendado
 		(type INSTANCE)
+;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
@@ -159,14 +191,17 @@
 	(single-slot tipo
 		(type SYMBOL)
 		(allowed-values Rotura Esguince Luxacion)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot parte_cuerpo
 		(type SYMBOL)
 		(allowed-values pierna brazo espalda cadera torso tobillo)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot rehabilitacion
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Incapacidad
@@ -183,12 +218,13 @@
 ;;;;;;;; INI_INSTANCES (.PINS) ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	; Sat Dec 08 23:55:30 CET 2018
+(definstances instances
+
+	; Sun Dec 09 01:11:01 CET 2018
 	;
 	;+ (version "3.5")
 	;+ (build "Build 663")
 
-(definstances instances
 	([Practica_Class1] of  Lesion
 
 		(dolencia "Luxacion_Tobillo")
@@ -198,7 +234,11 @@
 
 	([Practica_Class17] of  Enfermedad
 
-		(dolencia "Cardiovascular"))
+		(dolencia "Cardiovascular")
+		(no_recomendado [Practica_Class28])
+		(recomendado
+			[Practica_Class23]
+			[Practica_Class21]))
 
 	([Practica_Class18] of  Objetivo
 
@@ -282,11 +322,30 @@
 
 	([Practica_Class41] of  Enfermedad
 
-		(dolencia "Obesidad"))
+		(dolencia "Obesidad")
+		(no_recomendado
+			[Practica_Class28]
+			[Practica_Class32]
+			[Practica_Class36])
+		(recomendado
+			[Practica_Class23]
+			[Practica_Class20]
+			[Practica_Class18]
+			[Practica_Class33]))
 
 	([Practica_Class42] of  Enfermedad
 
-		(dolencia "Osteoporosis"))
+		(dolencia "Osteoporosis")
+		(no_recomendado
+			[Practica_Class28]
+			[Practica_Class34])
+		(recomendado
+			[Practica_Class23]
+			[Practica_Class22]
+			[Practica_Class29]
+			[Practica_Class20]
+			[Practica_Class31]
+			[Practica_Class21]))
 
 	([Practica_Class43] of  Lesion
 
@@ -322,7 +381,14 @@
 
 	([Practica_Class50] of  Enfermedad
 
-		(dolencia "Artrosis"))
+		(dolencia "Artrosis")
+		(no_recomendado
+			[Practica_Class34]
+			[Practica_Class33]
+			[Practica_Class36]
+			[Practica_Class21]
+			[Practica_Class35])
+		(recomendado [Practica_Class23]))
 
 	([Practica_Class53] of  Deporte
 
@@ -381,6 +447,8 @@
 		(material FALSE)
 		(orientado_a [Practica_Class36])
 		(parte_cuerpo torso))
+
+
 ) ;closes the definstances clause
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -413,11 +481,11 @@
 )
 
 (deftemplate MAIN::ObjetivosRecomendados
-	(multislot obj (type INSTANCE)) ; instance of Objectivo que es recomendado alguna de las enfermedades de la Persona
+	(multislot objs (type INSTANCE)) ; instance of Objetivo que es recomendado alguna de las enfermedades de la Persona
 )
 
 (deftemplate MAIN::ObjetivosNoRecomendados
-	(multislot obj (type INSTANCE))
+	(multislot objs (type INSTANCE))
 )
 
 (deftemplate MAIN::Persona
@@ -694,7 +762,6 @@
   (focus PROCESS_DATA)
 )
 
-
 (defrule PROCESS_DATA::myrule
   (declare (salience 100))
   ?ref <- (Persona (grupo_edad ?ag))
@@ -716,33 +783,113 @@
   =>
   (bind $?actividades (find-all-instances ((?inst Actividad)) TRUE))
 	(progn$ (?act-i ?actividades)
+		(printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "  " (send ?act-i get-parte_cuerpo) crlf)
 		(make-instance (gensym) of ValoracionActividades (actividad ?act-i) (puntuacion 0))
 	)
+	(printout t crlf)
+	(assert (ObjetivosRecomendados))
+	(assert (ObjetivosNoRecomendados))
 	(assert (puntuaciones inicializadas))
 )
 
-(defrule PROCESS_DATA::find_ObjectivosRecomendados
+(defrule PROCESS_DATA::find_ObjectivosRecomendados ; de momento solo para enfermedades
+	(declare (salience 95))
 	(not (objetivos_recomendados found))
-	?ref <- (Persona (dolencias $?dolencias))
+	?pref <- (Persona (dolencias $?dolencias))
+	?oref <- (ObjetivosRecomendados (objs $?objs))
 	=>
-	; (bind $?objs (create$ ))
 	(progn$ (?curr-dol ?dolencias)
-		(bind $?recomendados (send ?curr-dol get-recomendado))
-		(progn$ (?curr-objR ?recomendados)
-			(printout t "Cur-rec: " (send ?curr-objR get-objetivo) " " (send ?curr-objR get-intensidad) crlf)
+		(if (eq (class ?curr-dol) Enfermedad) then
+			(bind $?objRecomendadosEnf (send ?curr-dol get-recomendado))
+			(progn$ (?curr-objR ?objRecomendadosEnf)
+				(if (not (member$ ?curr-objR ?objs)) then
+					(bind ?obj_name (send ?curr-objR get-objetivo))
+					(bind ?obj_intensidad (send ?curr-objR get-intensidad))
+					(bind $?objs (insert$ $?objs (+ (length$ $?objs) 1) (find-instance ((?inst Objetivo)) (and (eq ?inst:objetivo ?obj_name) (eq ?inst:intensidad ?obj_intensidad)))))
+				)
+			)
 		)
-	; (if (member$ ?answer ?yes_values))
 	)
-
-
-
+	(modify ?oref (objs $?objs))
 	(assert (objetivos_recomendados found))
 )
 
-(defrule PROCESS_DATA::evaluate
-
+(defrule PROCESS_DATA::find_ObjetivosNoRecomendados ; de momento solo para enfermedades
+	(declare (salience 95))
+	(not (objetivos_no_recomendados found))
+	?pref <- (Persona (dolencias $?dolencias))
+	?oref <- (ObjetivosNoRecomendados (objs $?objs))
 	=>
+	(progn$ (?curr-dol ?dolencias)
+		(if (eq (class ?curr-dol) Enfermedad) then
+			(bind $?objNoRecomendadosEnf (send ?curr-dol get-no_recomendado))
+			(progn$ (?curr-objNR ?objNoRecomendadosEnf)
+				(if (not (member$ ?curr-objNR ?objs)) then
+					(bind ?obj_name (send ?curr-objNR get-objetivo))
+					(bind ?obj_intensidad (send ?curr-objNR get-intensidad))
+					(bind $?objs (insert$ $?objs (+ (length$ $?objs) 1) (find-instance ((?inst Objetivo)) (and (eq ?inst:objetivo ?obj_name) (eq ?inst:intensidad ?obj_intensidad)))))
+				)
+			)
+		)
+	)
+	(modify ?oref (objs $?objs))
+	(assert (objetivos_no_recomendados found))
+)
 
+(defrule PROCESS_DATA::printObjs
+	(declare (salience 90))
+	(ObjetivosRecomendados (objs $?objs_R))
+	(ObjetivosNoRecomendados (objs $?objs_NoR))
+	=>
+	(progn$ (?i_obj ?objs_R)
+		(printout t "ObjR  : " (send ?i_obj get-objetivo) "_" (send ?i_obj get-intensidad) crlf)
+	)
+	(printout t crlf)
+	(progn$ (?i_obj ?objs_NoR)
+		(printout t "ObjNoR: " (send ?i_obj get-objetivo) "_" (send ?i_obj get-intensidad) crlf)
+	)
+	(printout t crlf crlf)
+)
+
+(defrule PROCESS_DATA::evaluate_ActividadOrientadaAObjetivoRecomendadoEnfermedad ; iteracio (a nivell de regles) sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
+	(declare (salience 10))
+	; (not (evaluate_1 done))
+	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(ObjetivosRecomendados (objs $?objs))
+	=>
+	; (printout t ">>> " (length $?objs) crlf)
+	(printout t ">>> " (send ?act get-actividad) crlf )
+	(bind $?objs_Actividad (send ?act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
+	(progn$ (?i_objA ?objs_Actividad)
+		(printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
+		(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
+			(bind ?lol (find-instance ((?inst Objetivo)) (and (eq ?inst:objetivo (send ?i_objA get-objetivo)) (eq ?inst:intensidad (send ?i_objA get-intensidad)))))
+			(printout t "member!! " (send ?lol get-objetivo) crlf)
+			; (send ?va_ref put-puntuacion (+ (send ?va_ref get-puntuacion) 250))
+		)
+	)
+
+	; (assert (evaluate_1 done))
+)
+;
+; (defrule PROCESS_DATA::evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad ; iteracio (a nivell de regles) sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
+; 	(not (evaluate_2 done))
+; 	?objs_ref <- (ObjetivosNoRecomendados (objs $?objs))
+; 	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+; 	=>
+; 	(bind $?objs_Actividad (send ?act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
+; 	(progn$ (?i_objA ?objs_Actividad)
+; 		(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
+; 			(send ?va_ref put-puntuacion (- (send ?va_ref get-puntuacion) 250))
+; 		)
+; 	)
+;
+;	(assert (evaluate_2 done))
+;)
+
+(defrule PROCESS_DATA::evaluate
+	=>
+	(assert	(all_processed))
 )
 
 ; (defrule PROCESS_DATA::recopilar "Testing..."
@@ -759,10 +906,10 @@
 (defrule PROCESS_DATA::printPointsActivity
 	; no hace falta un loop ya que se ejecutara esta regla para cada valor de la classe ValoracionActividades
   (declare (salience 1))
-  ?inst <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
+	(not (all_processed))
+  ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
   =>
-  ; (printout t "Puntuacion Acitivdad: " (instance-name ?inst) ": " (send ?inst get-puntuacion) " puntos" crlf)
-  (printout t "Puntuacion Actividad " ?act ": " (send ?act get-actividad) " " ?puntos " puntos" crlf)
+  (printout t crlf "Puntuacion Actividad: " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
