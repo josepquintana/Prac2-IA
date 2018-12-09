@@ -485,7 +485,7 @@
 )
 
 (deftemplate MAIN::ObjetivosNoRecomendados
-	(multislot objs (type INSTANCE))
+	(multislot objs (type INSTANCE)) ; instance of Objetivo que es no_recomendado alguna de las enfermedades de la Persona
 )
 
 (deftemplate MAIN::Persona
@@ -795,8 +795,9 @@
 (defrule PROCESS_DATA::find_ObjectivosRecomendados ; de momento solo para enfermedades
 	(declare (salience 95))
 	(not (objetivos_recomendados found))
-	?pref <- (Persona (dolencias $?dolencias))
-	?oref <- (ObjetivosRecomendados (objs $?objs))
+	(Persona (dolencias $?dolencias))
+	?obj_ref <- (ObjetivosRecomendados (objs $?objs))
+	;;; problema amb class i template per accedir al mateix temps a objetivos_recomendados y a les actividades
 	=>
 	(progn$ (?curr-dol ?dolencias)
 		(if (eq (class ?curr-dol) Enfermedad) then
@@ -810,15 +811,16 @@
 			)
 		)
 	)
-	(modify ?oref (objs $?objs))
+
+	(modify ?obj_ref (objs $?objs))
 	(assert (objetivos_recomendados found))
 )
 
 (defrule PROCESS_DATA::find_ObjetivosNoRecomendados ; de momento solo para enfermedades
 	(declare (salience 95))
 	(not (objetivos_no_recomendados found))
-	?pref <- (Persona (dolencias $?dolencias))
-	?oref <- (ObjetivosNoRecomendados (objs $?objs))
+	(Persona (dolencias $?dolencias))
+	?obj_ref <- (ObjetivosNoRecomendados (objs $?objs))
 	=>
 	(progn$ (?curr-dol ?dolencias)
 		(if (eq (class ?curr-dol) Enfermedad) then
@@ -832,7 +834,7 @@
 			)
 		)
 	)
-	(modify ?oref (objs $?objs))
+	(modify ?obj_ref (objs $?objs))
 	(assert (objetivos_no_recomendados found))
 )
 
@@ -853,39 +855,45 @@
 
 (defrule PROCESS_DATA::evaluate_ActividadOrientadaAObjetivoRecomendadoEnfermedad ; iteracio (a nivell de regles) sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
 	(declare (salience 10))
-	; (not (evaluate_1 done))
-	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(not (evaluate_1 done))
 	(ObjetivosRecomendados (objs $?objs))
+	; ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	; ferho amb ref nomes al deftemplate i dewspres fer un find-all-instances de ValorcacoAitvciavdes!!!!!
 	=>
-	; (printout t ">>> " (length $?objs) crlf)
-	(printout t ">>> " (send ?act get-actividad) crlf )
-	(bind $?objs_Actividad (send ?act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
-	(progn$ (?i_objA ?objs_Actividad)
-		(printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
-		(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
-			(bind ?lol (find-instance ((?inst Objetivo)) (and (eq ?inst:objetivo (send ?i_objA get-objetivo)) (eq ?inst:intensidad (send ?i_objA get-intensidad)))))
-			(printout t "member!! " (send ?lol get-objetivo) crlf)
-			; (send ?va_ref put-puntuacion (+ (send ?va_ref get-puntuacion) 250))
+	(bind $?all_valorar_actividades (find-all-instances ((?inst ValoracionActividades)) TRUE))
+	(progn$ (?i_va ?all_valorar_actividades)
+		(bind ?i_act (send ?i_va get-actividad))
+		(printout t ">>> " (send ?i_act get-actividad) crlf)
+		(bind $?objs_Actividad (send ?i_act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
+		(progn$ (?i_objA ?objs_Actividad) ;; tots els objectius orientats_a del l'activitat ?act
+			(printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
+			(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
+				(send ?i_va put-puntuacion (+ (send ?i_va get-puntuacion) 250))
+			)
 		)
 	)
-
-	; (assert (evaluate_1 done))
+	(assert (evaluate_1 done))
 )
-;
-; (defrule PROCESS_DATA::evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad ; iteracio (a nivell de regles) sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
-; 	(not (evaluate_2 done))
-; 	?objs_ref <- (ObjetivosNoRecomendados (objs $?objs))
-; 	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
-; 	=>
-; 	(bind $?objs_Actividad (send ?act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
-; 	(progn$ (?i_objA ?objs_Actividad)
-; 		(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
-; 			(send ?va_ref put-puntuacion (- (send ?va_ref get-puntuacion) 250))
-; 		)
-; 	)
-;
-;	(assert (evaluate_2 done))
-;)
+
+(defrule PROCESS_DATA::evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad ; iteracio (a nivell de regles) sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
+	(declare (salience 10))
+	(not (evaluate_2 done))
+	?objs_ref <- (ObjetivosNoRecomendados (objs $?objs))
+	=>
+	(bind $?all_valorar_actividades (find-all-instances ((?inst ValoracionActividades)) TRUE))
+	(progn$ (?i_va ?all_valorar_actividades)
+		(bind ?i_act (send ?i_va get-actividad))
+		(printout t ">>> " (send ?i_act get-actividad) crlf)
+		(bind $?objs_Actividad (send ?i_act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
+		(progn$ (?i_objA ?objs_Actividad) ;; tots els objectius orientats_a del l'activitat ?act
+			(printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
+			(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar mal
+				(send ?i_va put-puntuacion (- (send ?i_va get-puntuacion) 250))
+			)
+		)
+	)
+	(assert (evaluate_2 done))
+)
 
 (defrule PROCESS_DATA::evaluate
 	=>

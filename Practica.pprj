@@ -1,4 +1,4 @@
-; Sun Dec 09 01:11:01 CET 2018
+; Sun Dec 09 03:03:50 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,16 +20,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Practica_ProjectKB_Class10331]
-		[Practica_ProjectKB_Class10332]
-		[Practica_ProjectKB_Class10333]
-		[Practica_ProjectKB_Class10334]
-		[Practica_ProjectKB_Class10335]
-		[Practica_ProjectKB_Class10336]
-		[Practica_ProjectKB_Class10337]
-		[Practica_ProjectKB_Class10338]
-		[Practica_ProjectKB_Class10339]
-		[Practica_ProjectKB_Class10340]))
+		[Practica_ProjectKB_Class10372]
+		[Practica_ProjectKB_Class10373]
+		[Practica_ProjectKB_Class10374]
+		[Practica_ProjectKB_Class10375]
+		[Practica_ProjectKB_Class10376]
+		[Practica_ProjectKB_Class10377]
+		[Practica_ProjectKB_Class10378]
+		[Practica_ProjectKB_Class10379]
+		[Practica_ProjectKB_Class10380]
+		[Practica_ProjectKB_Class10381]))
 
 ([CLSES_TAB] of  Widget
 
@@ -81,9 +81,9 @@
 ([KB_068609_Class1] of  Map
 
 	(entries
-		[Practica_ProjectKB_Class10341]
-		[Practica_ProjectKB_Class10342]
-		[Practica_ProjectKB_Class10343]))
+		[Practica_ProjectKB_Class10382]
+		[Practica_ProjectKB_Class10383]
+		[Practica_ProjectKB_Class10384]))
 
 ([KB_068609_Class132] of  String
 
@@ -268,71 +268,71 @@
 ([Practica_ProjectKB_Class10] of  Property_List
 )
 
-([Practica_ProjectKB_Class10331] of  String
+([Practica_ProjectKB_Class10372] of  String
 
 	(name "Calentamiento")
 	(string_value "{C_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10332] of  String
+([Practica_ProjectKB_Class10373] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Practica_ProjectKB_Class10333] of  String
+([Practica_ProjectKB_Class10374] of  String
 
 	(name "Incapacidad")
 	(string_value "{I_}dolencia"))
 
-([Practica_ProjectKB_Class10334] of  String
+([Practica_ProjectKB_Class10375] of  String
 
 	(name "Objetivo")
 	(string_value "{O_}objetivo{_}intensidad"))
 
-([Practica_ProjectKB_Class10335] of  String
+([Practica_ProjectKB_Class10376] of  String
 
 	(name "Ejercicio")
 	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10336] of  String
+([Practica_ProjectKB_Class10377] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([Practica_ProjectKB_Class10337] of  String
+([Practica_ProjectKB_Class10378] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([Practica_ProjectKB_Class10338] of  String
+([Practica_ProjectKB_Class10379] of  String
 
 	(name "Lesion")
 	(string_value "{L_}tipo{_}parte_cuerpo{_}rehabilitacion"))
 
-([Practica_ProjectKB_Class10339] of  String
+([Practica_ProjectKB_Class10380] of  String
 
 	(name "Deporte")
 	(string_value "{D_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class10340] of  String
+([Practica_ProjectKB_Class10381] of  String
 
 	(name "Enfermedad")
 	(string_value "{E_}dolencia"))
 
-([Practica_ProjectKB_Class10341] of  Map_Entry
+([Practica_ProjectKB_Class10382] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class10342] of  Map_Entry
+([Practica_ProjectKB_Class10383] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class10343] of  Map_Entry
+([Practica_ProjectKB_Class10384] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
