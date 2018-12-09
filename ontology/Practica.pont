@@ -1,4 +1,4 @@
-; Sun Dec 09 03:03:50 CET 2018
+; Sun Dec 09 13:36:04 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -69,6 +69,11 @@
 		(cardinality 1 ?VARIABLE)
 ;+		(inverse-slot recomendado)
 		(create-accessor read-write))
+	(single-slot parte_trabajada
+		(type SYMBOL)
+		(allowed-values pecho espalda biceps triceps hombro abdominales piernas)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot actividad
 		(type STRING)
 ;+		(cardinality 1 1)
@@ -96,6 +101,11 @@
 (defclass Actividad
 	(is-a USER)
 	(role concrete)
+	(single-slot parte_trabajada
+		(type SYMBOL)
+		(allowed-values pecho espalda biceps triceps hombro abdominales piernas)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot duracion
 ;+		(comment "[min]")
 		(type INTEGER)
@@ -109,11 +119,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot parte_cuerpo
-		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso tobillo)
-;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Calentamiento
@@ -194,4 +199,14 @@
 
 (defclass Incapacidad
 	(is-a Dolencia)
-	(role concrete))
+	(role concrete)
+	(multislot recomendado
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot no_recomendado
+		(type INSTANCE)
+;+		(allowed-classes Objetivo)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))

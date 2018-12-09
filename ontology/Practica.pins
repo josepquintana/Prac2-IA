@@ -1,0 +1,534 @@
+; Sun Dec 09 13:36:04 CET 2018
+;
+;+ (version "3.5")
+;+ (build "Build 663")
+
+(definstances instances
+
+([Practica_Class0] of  Deporte
+
+	(actividad "Tenis")
+	(duracion 60)
+	(equipo FALSE)
+	(orientado_a
+		[Practica_Class28]
+		[Practica_Class36])
+	(parte_trabajada piernas))
+
+([Practica_Class1] of  Lesion
+
+	(dolencia "Luxacion_Tobillo")
+	(parte_cuerpo tobillo)
+	(rehabilitacion TRUE)
+	(tipo Luxacion))
+
+([Practica_Class10003] of  Ejercicio
+
+	(actividad "Abdominales")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class31]
+		[Practica_Class35]
+		[Practica_Class28])
+	(parte_trabajada abdominales))
+
+([Practica_Class10006] of  Deporte
+
+	(actividad "Padel")
+	(duracion 30)
+	(equipo TRUE)
+	(orientado_a
+		[Practica_Class27]
+		[Practica_Class20]
+		[Practica_Class35])
+	(parte_trabajada abdominales))
+
+([Practica_Class10007] of  Calentamiento
+
+	(actividad "EstiramientosEspalda")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_trabajada espalda))
+
+([Practica_Class10008] of  Calentamiento
+
+	(actividad "EstiramientosPecho")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_trabajada pecho))
+
+([Practica_Class10012] of  Calentamiento
+
+	(actividad "EstiramientosHombro")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_trabajada hombro))
+
+([Practica_Class10016] of  Calentamiento
+
+	(actividad "EstiramientosTriceps")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_trabajada triceps))
+
+([Practica_Class10020] of  Deporte
+
+	(actividad "Volleyball")
+	(duracion 30)
+	(equipo TRUE)
+	(orientado_a
+		[Practica_Class27]
+		[Practica_Class20]
+		[Practica_Class21])
+	(parte_trabajada piernas))
+
+([Practica_Class10021] of  Ejercicio
+
+	(actividad "Caminar")
+	(duracion 20)
+	(material FALSE)
+	(orientado_a [Practica_Class23])
+	(parte_trabajada piernas))
+
+([Practica_Class10022] of  Ejercicio
+
+	(actividad "Correr")
+	(duracion 30)
+	(material FALSE)
+	(orientado_a [Practica_Class28])
+	(parte_trabajada piernas))
+
+([Practica_Class10023] of  Ejercicio
+
+	(actividad "Caminar")
+	(duracion 40)
+	(material FALSE)
+	(orientado_a [Practica_Class27])
+	(parte_trabajada piernas))
+
+([Practica_Class10024] of  Ejercicio
+
+	(actividad "Sentadillas")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class34])
+	(parte_trabajada piernas))
+
+([Practica_Class10025] of  Ejercicio
+
+	(actividad "Sentadillas")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class36])
+	(parte_trabajada piernas))
+
+([Practica_Class10026] of  Ejercicio
+
+	(actividad "CurlConBarra")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class33])
+	(parte_trabajada biceps))
+
+([Practica_Class10027] of  Ejercicio
+
+	(actividad "PressMilitar")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class35])
+	(parte_trabajada hombro))
+
+([Practica_Class10028] of  Ejercicio
+
+	(actividad "Dominadas")
+	(duracion 15)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class20]
+		[Practica_Class33]
+		[Practica_Class35])
+	(parte_trabajada espalda))
+
+([Practica_Class10029] of  Ejercicio
+
+	(actividad "Yoga")
+	(duracion 30)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class29]
+		[Practica_Class31]
+		[Practica_Class37])
+	(parte_trabajada espalda))
+
+([Practica_Class10030] of  Ejercicio
+
+	(actividad "BodyPump")
+	(duracion 30)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class29]
+		[Practica_Class31]
+		[Practica_Class35])
+	(parte_trabajada espalda))
+
+([Practica_Class10031] of  Incapacidad
+
+	(dolencia "Paralisis Cerebral")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class34])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class29]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class21]
+		[Practica_Class35]))
+
+([Practica_Class10032] of  Lesion
+
+	(dolencia "Esguince_Brazo")
+	(parte_cuerpo brazo)
+	(rehabilitacion FALSE)
+	(tipo Esguince))
+
+([Practica_Class10033] of  Lesion
+
+	(dolencia "Luxacion")
+	(parte_cuerpo brazo)
+	(rehabilitacion TRUE)
+	(tipo Luxacion))
+
+([Practica_Class10034] of  Lesion
+
+	(dolencia "Luxacion")
+	(parte_cuerpo cadera)
+	(rehabilitacion TRUE)
+	(tipo Luxacion))
+
+([Practica_Class10035] of  Deporte
+
+	(actividad "Natacion")
+	(duracion 30)
+	(equipo FALSE)
+	(orientado_a
+		[Practica_Class27]
+		[Practica_Class35])
+	(parte_trabajada pecho))
+
+([Practica_Class10036] of  Enfermedad
+
+	(dolencia "Respiratorios")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class34]
+		[Practica_Class36])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class33]
+		[Practica_Class21]))
+
+([Practica_Class10037] of  Enfermedad
+
+	(dolencia "Diabetes")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class34]
+		[Practica_Class36])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class27]
+		[Practica_Class22]
+		[Practica_Class29]
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class33]
+		[Practica_Class21]
+		[Practica_Class35]))
+
+([Practica_Class10039] of  Incapacidad
+
+	(dolencia "Distrofia Muscular")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class32]
+		[Practica_Class34]
+		[Practica_Class18]
+		[Practica_Class36])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21]))
+
+([Practica_Class17] of  Enfermedad
+
+	(dolencia "Cardiovascular")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class27]
+		[Practica_Class34]
+		[Practica_Class36])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class18]
+		[Practica_Class21]
+		[Practica_Class35]))
+
+([Practica_Class18] of  Objetivo
+
+	(intensidad baja)
+	(objetivo "Fuerza"))
+
+([Practica_Class20] of  Objetivo
+
+	(intensidad baja)
+	(objetivo "Flexibilidad"))
+
+([Practica_Class21] of  Objetivo
+
+	(intensidad baja)
+	(objetivo "Resistencia"))
+
+([Practica_Class22] of  Objetivo
+
+	(intensidad baja)
+	(objetivo "Equilibrio"))
+
+([Practica_Class23] of  Objetivo
+
+	(intensidad baja)
+	(objetivo "Cardio"))
+
+([Practica_Class27] of  Objetivo
+
+	(intensidad media)
+	(objetivo "Cardio"))
+
+([Practica_Class28] of  Objetivo
+
+	(intensidad alta)
+	(objetivo "Cardio"))
+
+([Practica_Class29] of  Objetivo
+
+	(intensidad media)
+	(objetivo "Equilibrio"))
+
+([Practica_Class30] of  Objetivo
+
+	(intensidad alta)
+	(objetivo "Equilibrio"))
+
+([Practica_Class31] of  Objetivo
+
+	(intensidad media)
+	(objetivo "Flexibilidad"))
+
+([Practica_Class32] of  Objetivo
+
+	(intensidad alta)
+	(objetivo "Flexibilidad"))
+
+([Practica_Class33] of  Objetivo
+
+	(intensidad media)
+	(objetivo "Fuerza"))
+
+([Practica_Class34] of  Objetivo
+
+	(intensidad alta)
+	(objetivo "Fuerza"))
+
+([Practica_Class35] of  Objetivo
+
+	(intensidad media)
+	(objetivo "Resistencia"))
+
+([Practica_Class36] of  Objetivo
+
+	(intensidad alta)
+	(objetivo "Resistencia"))
+
+([Practica_Class37] of  Objetivo
+
+	(intensidad media)
+	(objetivo "Salud Mental"))
+
+([Practica_Class41] of  Enfermedad
+
+	(dolencia "Obesidad")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class27]
+		[Practica_Class32]
+		[Practica_Class36])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21]
+		[Practica_Class35]))
+
+([Practica_Class42] of  Enfermedad
+
+	(dolencia "Osteoporosis")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class32]
+		[Practica_Class34]
+		[Practica_Class33]
+		[Practica_Class36])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class21]
+		[Practica_Class35]))
+
+([Practica_Class43] of  Lesion
+
+	(dolencia "Rotura_Brazo")
+	(parte_cuerpo brazo)
+	(rehabilitacion FALSE)
+	(tipo Rotura))
+
+([Practica_Class44] of  Lesion
+
+	(dolencia "Rotura_Pierna")
+	(parte_cuerpo pierna)
+	(rehabilitacion FALSE)
+	(tipo Rotura))
+
+([Practica_Class45] of  Lesion
+
+	(dolencia "Rotura_Cadera")
+	(parte_cuerpo cadera)
+	(rehabilitacion FALSE)
+	(tipo Rotura))
+
+([Practica_Class46] of  Lesion
+
+	(dolencia "Esguince_Pierna")
+	(parte_cuerpo pierna)
+	(rehabilitacion FALSE)
+	(tipo Esguince))
+
+([Practica_Class47] of  Incapacidad
+
+	(dolencia "Paraplegia")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class23]
+		[Practica_Class27]
+		[Practica_Class32])
+	(recomendado
+		[Practica_Class28]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class33]
+		[Practica_Class21]
+		[Practica_Class35]))
+
+([Practica_Class50] of  Enfermedad
+
+	(dolencia "Artrosis")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class32]
+		[Practica_Class34]
+		[Practica_Class36]
+		[Practica_Class35])
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class29]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class21]
+		[Practica_Class35]))
+
+([Practica_Class53] of  Deporte
+
+	(actividad "Baloncesto")
+	(duracion 60)
+	(equipo TRUE)
+	(orientado_a
+		[Practica_Class28]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class36])
+	(parte_trabajada piernas))
+
+([Practica_Class54] of  Calentamiento
+
+	(actividad "EstiramientosBiceps")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_trabajada biceps))
+
+([Practica_Class55] of  Calentamiento
+
+	(actividad "EstiramientosPiernas")
+	(duracion 10)
+	(orientado_a
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31])
+	(parte_trabajada piernas))
+
+([Practica_Class56] of  Ejercicio
+
+	(actividad "Flexiones")
+	(duracion 10)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class33]
+		[Practica_Class36])
+	(parte_trabajada pecho))
+
+([Practica_Class57] of  Ejercicio
+
+	(actividad "PressDeBanca")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class34])
+	(parte_trabajada pecho))
+
+([Practica_Class58] of  Ejercicio
+
+	(actividad "PressDeBanca")
+	(duracion 10)
+	(material TRUE)
+	(orientado_a [Practica_Class36])
+	(parte_trabajada pecho))
+
+)

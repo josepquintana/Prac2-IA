@@ -1,465 +1,5 @@
 
-;; Practica 2 - IA
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; INI_CLASSES (.PONT) ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Sun Dec 09 00:45:58 CET 2018
-;
-;+ (version "3.5")
-;+ (build "Build 663")
-
-; Sun Dec 09 01:11:01 CET 2018
-;
-;+ (version "3.5")
-;+ (build "Build 663")
-
-
-(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
-	(is-a USER)
-	(role abstract)
-	(single-slot inte
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot recomendado
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
-;+		(inverse-slot indicado)
-		(create-accessor read-write))
-	(multislot no_recomendado
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
-;+		(inverse-slot contra_indicado)
-		(create-accessor read-write))
-	(single-slot objetivo
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot tipo
-		(type SYMBOL)
-		(allowed-values Rotura Esguince Luxacion)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot orientado_a
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot material
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot intensidad_recomendada
-		(type SYMBOL)
-		(allowed-values baja media alta)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot equipo
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot duracion
-;+		(comment "[min]")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot contra_indicado
-		(type INSTANCE)
-;+		(allowed-classes Dolencia)
-		(cardinality 1 ?VARIABLE)
-;+		(inverse-slot no_recomendado)
-		(create-accessor read-write))
-	(multislot indicado
-		(type INSTANCE)
-;+		(allowed-classes Dolencia)
-		(cardinality 1 ?VARIABLE)
-;+		(inverse-slot recomendado)
-		(create-accessor read-write))
-	(single-slot actividad
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot parte_cuerpo
-		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso tobillo)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot dolencia
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot rehabilitacion
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot intensidad
-		(type SYMBOL)
-		(allowed-values baja media alta)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Actividad
-	(is-a USER)
-	(role concrete)
-	(single-slot duracion
-;+		(comment "[min]")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot actividad
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot orientado_a
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot parte_cuerpo
-		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso tobillo)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Calentamiento
-	(is-a Actividad)
-	(role concrete))
-
-(defclass Ejercicio
-	(is-a Actividad)
-	(role concrete)
-	(single-slot material
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Deporte
-	(is-a Actividad)
-	(role concrete)
-	(single-slot equipo
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Objetivo
-	(is-a USER)
-	(role concrete)
-	(single-slot intensidad
-		(type SYMBOL)
-		(allowed-values baja media alta)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot objetivo
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Dolencia
-	(is-a USER)
-	(role concrete)
-	(single-slot dolencia
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Enfermedad
-	(is-a Dolencia)
-	(role concrete)
-	(multislot recomendado
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot no_recomendado
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Lesion
-	(is-a Dolencia)
-	(role concrete)
-	(single-slot tipo
-		(type SYMBOL)
-		(allowed-values Rotura Esguince Luxacion)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot parte_cuerpo
-		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso tobillo)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot rehabilitacion
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Incapacidad
-	(is-a Dolencia)
-	(role concrete))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; END_CLASSES (.PONT) ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; INI_INSTANCES (.PINS) ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(definstances instances
-
-	; Sun Dec 09 01:11:01 CET 2018
-	;
-	;+ (version "3.5")
-	;+ (build "Build 663")
-
-	([Practica_Class1] of  Lesion
-
-		(dolencia "Luxacion_Tobillo")
-		(parte_cuerpo tobillo)
-		(rehabilitacion TRUE)
-		(tipo Luxacion))
-
-	([Practica_Class17] of  Enfermedad
-
-		(dolencia "Cardiovascular")
-		(no_recomendado [Practica_Class28])
-		(recomendado
-			[Practica_Class23]
-			[Practica_Class21]))
-
-	([Practica_Class18] of  Objetivo
-
-		(intensidad baja)
-		(objetivo "Fuerza"))
-
-	([Practica_Class20] of  Objetivo
-
-		(intensidad baja)
-		(objetivo "Flexibilidad"))
-
-	([Practica_Class21] of  Objetivo
-
-		(intensidad baja)
-		(objetivo "Resistencia"))
-
-	([Practica_Class22] of  Objetivo
-
-		(intensidad baja)
-		(objetivo "Equilibrio"))
-
-	([Practica_Class23] of  Objetivo
-
-		(intensidad baja)
-		(objetivo "Cardio"))
-
-	([Practica_Class27] of  Objetivo
-
-		(intensidad media)
-		(objetivo "Cardio"))
-
-	([Practica_Class28] of  Objetivo
-
-		(intensidad alta)
-		(objetivo "Cardio"))
-
-	([Practica_Class29] of  Objetivo
-
-		(intensidad media)
-		(objetivo "Equilibrio"))
-
-	([Practica_Class30] of  Objetivo
-
-		(intensidad alta)
-		(objetivo "Equilibrio"))
-
-	([Practica_Class31] of  Objetivo
-
-		(intensidad media)
-		(objetivo "Flexibilidad"))
-
-	([Practica_Class32] of  Objetivo
-
-		(intensidad alta)
-		(objetivo "Flexibilidad"))
-
-	([Practica_Class33] of  Objetivo
-
-		(intensidad media)
-		(objetivo "Fuerza"))
-
-	([Practica_Class34] of  Objetivo
-
-		(intensidad alta)
-		(objetivo "Fuerza"))
-
-	([Practica_Class35] of  Objetivo
-
-		(intensidad media)
-		(objetivo "Resistencia"))
-
-	([Practica_Class36] of  Objetivo
-
-		(intensidad alta)
-		(objetivo "Resistencia"))
-
-	([Practica_Class37] of  Objetivo
-
-		(intensidad media)
-		(objetivo "Salud Mental"))
-
-	([Practica_Class41] of  Enfermedad
-
-		(dolencia "Obesidad")
-		(no_recomendado
-			[Practica_Class28]
-			[Practica_Class32]
-			[Practica_Class36])
-		(recomendado
-			[Practica_Class23]
-			[Practica_Class20]
-			[Practica_Class18]
-			[Practica_Class33]))
-
-	([Practica_Class42] of  Enfermedad
-
-		(dolencia "Osteoporosis")
-		(no_recomendado
-			[Practica_Class28]
-			[Practica_Class34])
-		(recomendado
-			[Practica_Class23]
-			[Practica_Class22]
-			[Practica_Class29]
-			[Practica_Class20]
-			[Practica_Class31]
-			[Practica_Class21]))
-
-	([Practica_Class43] of  Lesion
-
-		(dolencia "Rotura_Brazo")
-		(parte_cuerpo brazo)
-		(rehabilitacion FALSE)
-		(tipo Rotura))
-
-	([Practica_Class44] of  Lesion
-
-		(dolencia "Rotura_Pierna")
-		(parte_cuerpo pierna)
-		(rehabilitacion FALSE)
-		(tipo Rotura))
-
-	([Practica_Class45] of  Lesion
-
-		(dolencia "Rotura_Cadera")
-		(parte_cuerpo cadera)
-		(rehabilitacion FALSE)
-		(tipo Rotura))
-
-	([Practica_Class46] of  Lesion
-
-		(dolencia "Esguince_Pierna")
-		(parte_cuerpo pierna)
-		(rehabilitacion TRUE)
-		(tipo Esguince))
-
-	([Practica_Class47] of  Incapacidad
-
-		(dolencia "Paraplegia"))
-
-	([Practica_Class50] of  Enfermedad
-
-		(dolencia "Artrosis")
-		(no_recomendado
-			[Practica_Class34]
-			[Practica_Class33]
-			[Practica_Class36]
-			[Practica_Class21]
-			[Practica_Class35])
-		(recomendado [Practica_Class23]))
-
-	([Practica_Class53] of  Deporte
-
-		(actividad "Baloncesto")
-		(duracion 60)
-		(equipo TRUE)
-		(orientado_a
-			[Practica_Class28]
-			[Practica_Class31]
-			[Practica_Class18]
-			[Practica_Class36])
-		(parte_cuerpo brazo))
-
-	([Practica_Class54] of  Calentamiento
-
-		(actividad "EstiramientoBrazos")
-		(duracion 10)
-		(orientado_a
-			[Practica_Class32]
-			[Practica_Class20]
-			[Practica_Class31])
-		(parte_cuerpo brazo))
-
-	([Practica_Class55] of  Calentamiento
-
-		(actividad "EstiramientosPiernas")
-		(duracion 10)
-		(orientado_a
-			[Practica_Class32]
-			[Practica_Class20]
-			[Practica_Class31])
-		(parte_cuerpo pierna))
-
-	([Practica_Class56] of  Ejercicio
-
-		(actividad "Flexiones")
-		(duracion 10)
-		(material FALSE)
-		(orientado_a
-			[Practica_Class33]
-			[Practica_Class36])
-		(parte_cuerpo brazo))
-
-	([Practica_Class57] of  Ejercicio
-
-		(actividad "PressDeBanca")
-		(duracion 15)
-		(material TRUE)
-		(orientado_a [Practica_Class34])
-		(parte_cuerpo torso))
-
-	([Practica_Class58] of  Ejercicio
-
-		(actividad "PressDeBanca")
-		(duracion 15)
-		(material FALSE)
-		(orientado_a [Practica_Class36])
-		(parte_cuerpo torso))
-
-
-) ;closes the definstances clause
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; END_INSTANCES (.PINS) ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;; INI_RULES (.CLP) ;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Practica 2 - IA
 
 (defmodule MAIN (export ?ALL))
 (defmodule ASK_QUESTIONS (import MAIN ?ALL)(export ?ALL))
@@ -497,17 +37,10 @@
 (defrule MAIN::init "initial rule"
   (declare (salience 99))
   =>
-  (printout t crlf)
-  (printout t "################################################################")
-  (printout t crlf)
-  (printout t crlf)
-  (format t "                  SISTEMA DE RECOMENDACION%n")
-  (format t "                 DE EJERCICIOS Y ACTIVIDADES%n")
-  (printout t crlf)
-  (printout t "################################################################")
-  (printout t crlf)
-  (printout t crlf)
-
+  (printout t crlf "################################################################" crlf crlf)
+	(printout t "                  SISTEMA DE RECOMENDACION" crlf)
+  (printout t "                DE EJERCICIOS Y ACTIVIDADES" crlf)
+  (printout t crlf "################################################################" crlf crlf)
   (assert (nueva_persona))
   (focus ASK_QUESTIONS)
 )
@@ -624,7 +157,7 @@
   ?ref <- (Persona (dolencias $?dolencias))
   =>
   (if (ask_question_yes_no "Padece alguna enfermedad?") then
-  	(bind ?list_answers (ask_question_multichoice "Cuales?" Artrosis Cardiovascular Obesidad Osteoporosis))
+  	(bind ?list_answers (ask_question_multichoice "Cuales?" Artrosis Cardiovascular Obesidad Osteoporosis Diabetes Respiratorios))
   	(progn$ (?curr-answer ?list_answers)
    		(switch ?curr-answer
     		(case 1 then
@@ -635,6 +168,10 @@
 				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Obesidad")))))
 	      (case 4 then
 				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Osteoporosis")))))
+				(case 5 then
+				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Diabetes")))))
+	      (case 6 then
+				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Respiratorios")))))
 	    )
   	)
   )
@@ -648,11 +185,15 @@
 	?ref <- (Persona (dolencias $?dolencias))
   =>
 	(if (ask_question_yes_no "Sufre alguna incapacidad?") then
-    (bind ?list_answers (ask_question_multichoice "Cuales?" Paraplegia))
+    (bind ?list_answers (ask_question_multichoice "Cuales?" Paraplegia "Paralisis Cerebral" "Distrofia Muscular"))
     (progn$ (?curr-answer ?list_answers)
      	(switch ?curr-answer
       	(case 1 then
         	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Incapacidad)) (eq ?inst:dolencia "Paraplegia")))))
+				(case 2 then
+        	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Incapacidad)) (eq ?inst:dolencia "Paralisis Cerebral")))))
+				(case 3 then
+        	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Incapacidad)) (eq ?inst:dolencia "Distrofia Muscular")))))
      	)
     )
   )
@@ -736,6 +277,19 @@
 	(assert (estado_fisico asked))
 )
 
+; (defrule ASK_QUESTIONS::ask_PracticaDeporte
+; 	(declare (salience 5))
+; 	?ref <- (Persona (estado_fisico ?estado_fisico))
+; 	(test (eq ?estado_fisico "MEJORA"))
+; 	=>
+; 	(if (ask_question_yes_no "Practica deporte de alto nivel fisico habitualmente?") then
+; 		(bind ?deportes (find-all-instances ((?inst Actividad)) (eq (class ?inst) Deporte)))
+; 		(progn$ ?i_dep ?deportes)
+; 	)
+;
+;
+; )
+
 (defrule ASK_QUESTIONS::printPerson
   (declare (salience 2))
   ?ref <- (Persona (grupo_edad ?ag) (dolencias $?dols) (estado_fisico ?ef))
@@ -783,7 +337,7 @@
   =>
   (bind $?actividades (find-all-instances ((?inst Actividad)) TRUE))
 	(progn$ (?act-i ?actividades)
-		(printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "  " (send ?act-i get-parte_cuerpo) crlf)
+		(printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "  " (send ?act-i get-parte_trabajada) crlf)
 		(make-instance (gensym) of ValoracionActividades (actividad ?act-i) (puntuacion 0))
 	)
 	(printout t crlf)
@@ -800,7 +354,7 @@
 	;;; problema amb class i template per accedir al mateix temps a objetivos_recomendados y a les actividades
 	=>
 	(progn$ (?curr-dol ?dolencias)
-		(if (eq (class ?curr-dol) Enfermedad) then
+		(if (or (eq (class ?curr-dol) Enfermedad) (eq (class ?curr-dol) Incapacidad)) then
 			(bind $?objRecomendadosEnf (send ?curr-dol get-recomendado))
 			(progn$ (?curr-objR ?objRecomendadosEnf)
 				(if (not (member$ ?curr-objR ?objs)) then
@@ -823,7 +377,7 @@
 	?obj_ref <- (ObjetivosNoRecomendados (objs $?objs))
 	=>
 	(progn$ (?curr-dol ?dolencias)
-		(if (eq (class ?curr-dol) Enfermedad) then
+		(if (or (eq (class ?curr-dol) Enfermedad) (eq (class ?curr-dol) Incapacidad)) then
 			(bind $?objNoRecomendadosEnf (send ?curr-dol get-no_recomendado))
 			(progn$ (?curr-objNR ?objNoRecomendadosEnf)
 				(if (not (member$ ?curr-objNR ?objs)) then
@@ -895,6 +449,20 @@
 	(assert (evaluate_2 done))
 )
 
+
+;;;;;;;;;;;;;;;;;;; I'm here. Primera implementacio feta. valora els exercicis segons si estan recomenats o no per la enfermetat
+
+;;;; to do:
+
+;; puntuar segons nivell de estat fisicas
+;; tractat incapacitats y lesions!
+;; generar 3..7 sessions segons estat fisic (si te moltes malaties i sha flipat baixarli)
+;; barrejar exercicis_type en les sessions
+;; anar sumant la duracio de ex_i i posarho a classe Sessio!
+;; finally print_class_sessio
+
+
+
 (defrule PROCESS_DATA::evaluate
 	=>
 	(assert	(all_processed))
@@ -920,6 +488,4 @@
   (printout t crlf "Puntuacion Actividad: " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
 )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;; END_RULES (.CLP) ;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; end
