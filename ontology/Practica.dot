@@ -1,146 +1,29 @@
 digraph Practica {
 	node [label="\N"];
-	graph [bb="0,0,3634,860"];
-	Practica_Class41 [label="{E_Obesidad|{dolencia =|{Obesidad}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="3395,235", rects="3322,235,3468,259 3322,211,3397,235 3397,211,3468,235", width="2.0278", height="0.68056"];
-	Enfermedad [label="{Enfermedad|{recomendado|Instance*|{Objetivo}}|{no_recomendado|Instance*|{Objetivo}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="2992,505", rects="2867,517,3117,541 2867,493,2967,517 2967,493,3044,517 3044,493,3117,517 2867,469,2982,493 2982,469,3052,493 3052,469,3117,493", width="3.4722", height="1.0139"];
-	Objetivo [label="{Objetivo|{intensidad|Symbol|{baja|media|alta}}|{objetivo|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="2681,235", rects="2589.5,271,2772.5,295 2589.5,199,2662.5,271 2662.5,199,2722.5,271 2722.5,247,2772.5,271 2722.5,223,2772.5,247 2722.5,199,2772.5,\
-223 2589.5,175,2686.5,199 2686.5,175,2772.5,199", width="2.5278", height="1.6806"];
-	Ejercicio [label="{Ejercicio|{material|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="632,505", rects="571.5,505,692.5,529 571.5,481,630.5,505 630.5,481,692.5,505", width="1.6667", height="0.68056"];
-	Actividad [label="{Actividad|{duracion|Integer}|{actividad|String}|{parte_cuerpo|Symbol|{pierna|brazo|espalda|...}}|{orientado_a|Instance*|{Objetivo\
-}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1070,763", rects="961,835,1179,859 961,811,1075,835 1075,811,1179,835 961,787,1078,811 1078,787,1179,811 961,691,1054,787 1054,691,1117,787 1117,763\
-,1179,787 1117,739,1179,763 1117,715,1179,739 1117,691,1179,715 961,667,1044,691 1044,667,1114,691 1114,667,1179,691", width="3.0278", height="2.6806"];
-	Practica_Class18 [label="{O_Fuerza_baja|{intensidad =|{baja}}|{objetivo =|{Fuerza}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1717,37", rects="1653,49,1781,73 1653,25,1740,49 1740,25,1781,49 1653,1,1727,25 1727,1,1781,25", width="1.7778", height="1.0139"];
-	Practica_Class17 [label="{E_Cardiovascular|{dolencia =|{Cardiovascular}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2878,235", rects="2790,235,2966,259 2790,211,2865,235 2865,211,2966,235", width="2.4444", height="0.68056"];
-	Practica_Class47 [label="{I_Paraplegia|{dolencia =|{Paraplegia}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="3560,235", rects="3485.5,235,3634.5,259 3485.5,211,3560.5,235 3560.5,211,3634.5,235", width="2.0556", height="0.68056"];
-	Incapacidad [label=Incapacidad, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="3406,505", width="1.1667", height="0.5"];
-	Practica_Class1 [label="{L_Luxacion_tobillo_true|{tipo =|{Luxacion}}|{parte_cuerpo =|{tobillo}}|{rehabilitacion =|{true}}|{dolencia =|{Luxacion_Tobillo}\
-}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2477,235", rects="2381.5,271,2572.5,295 2381.5,247,2467.5,271 2467.5,247,2572.5,271 2381.5,223,2502.5,247 2502.5,223,2572.5,247 2381.5,199,2508.5,\
-223 2508.5,199,2572.5,223 2381.5,175,2456.5,199 2456.5,175,2572.5,199", width="2.6389", height="1.6806"];
-	Lesion [label="{Lesion|{tipo|Symbol|{Rotura|Esguince|Luxacion}}|{parte_cuerpo|Symbol|{pierna|brazo|espalda|...}}|{rehabilitacion|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="2184,505", rects="2079,589,2289,613 2079,517,2131,589 2131,517,2206,589 2206,565,2289,589 2206,541,2289,565 2206,517,2289,541 2079,421,2170,517 2170\
-,421,2230,517 2230,493,2289,517 2230,469,2289,493 2230,445,2289,469 2230,421,2289,445 2079,397,2198,421 2198,397,2289,421", width="2.9167", height="3.0139"];
-	Practica_Class46 [label="{L_Esguince_pierna_true|{tipo =|{Esguince}}|{parte_cuerpo =|{pierna}}|{rehabilitacion =|{true}}|{dolencia =|{Esguince_Pierna}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1700,235", rects="1608,271,1792,295 1608,247,1691,271 1691,247,1792,271 1608,223,1726,247 1726,223,1792,247 1608,199,1732,223 1732,199,1792,223 1608\
-,175,1683,199 1683,175,1792,199", width="2.5556", height="1.6806"];
-	Practica_Class45 [label="{L_Rotura_cadera_false|{tipo =|{Rotura}}|{parte_cuerpo =|{cadera}}|{rehabilitacion =|{false}}|{dolencia =|{Rotura_Cadera}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1898,235", rects="1809.5,271,1986.5,295 1809.5,247,1895.5,271 1895.5,247,1986.5,271 1809.5,223,1922.5,247 1922.5,223,1986.5,247 1809.5,199,1927.5,\
-223 1927.5,199,1986.5,223 1809.5,175,1884.5,199 1884.5,175,1986.5,199", width="2.4444", height="1.6806"];
-	Dolencia [label="{Dolencia|{dolencia|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="2992,763", rects="2935.5,763,3048.5,787 2935.5,739,2998.5,763 2998.5,739,3048.5,763", width="1.5556", height="0.68056"];
-	Practica_Class44 [label="{L_Rotura_pierna_false|{tipo =|{Rotura}}|{parte_cuerpo =|{pierna}}|{rehabilitacion =|{false}}|{dolencia =|{Rotura_Pierna}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2090,235", rects="2004,271,2176,295 2004,247,2087,271 2087,247,2176,271 2004,223,2116,247 2116,223,2176,247 2004,199,2120,223 2120,199,2176,223 2004\
-,175,2079,199 2079,175,2176,199", width="2.3889", height="1.6806"];
-	Practica_Class43 [label="{L_Rotura_brazo_false|{tipo =|{Rotura}}|{parte_cuerpo =|{brazo}}|{rehabilitacion =|{false}}|{dolencia =|{Rotura_Brazo}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2279,235", rects="2194,271,2364,295 2194,247,2276,271 2276,247,2364,271 2194,223,2306,247 2306,223,2364,247 2194,199,2309,223 2309,199,2364,223 2194\
-,175,2269,199 2269,175,2364,199", width="2.3611", height="1.6806"];
-	Practica_Class42 [label="{E_Osteoporosis|{dolencia =|{Osteoporosis}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="3067,235", rects="2983.5,235,3150.5,259 2983.5,211,3058.5,235 3058.5,211,3150.5,235", width="2.3056", height="0.68056"];
-	Calentamiento [label=Calentamiento, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="959,505", width="1.3056", height="0.5"];
-	Practica_Class20 [label="{O_Flexibilidad_baja|{intensidad =|{baja}}|{objetivo =|{Flexibilidad}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="920,37", rects="842.5,49,997.5,73 842.5,25,942.5,49 942.5,25,997.5,49 842.5,1,916.5,25 916.5,1,997.5,25", width="2.1389", height="1.0139"];
-	Practica_Class21 [label="{O_Resistencia_baja|{intensidad =|{baja}}|{objetivo =|{Resistencia}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2702,37", rects="2625,49,2779,73 2625,25,2725,49 2725,25,2779,49 2625,1,2699,25 2699,1,2779,25", width="2.1389", height="1.0139"];
-	Practica_Class22 [label="{O_Equilibrio_baja|{intensidad =|{baja}}|{objetivo =|{Equilibrio}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2869,37", rects="2796.5,49,2941.5,73 2796.5,25,2891.5,49 2891.5,25,2941.5,49 2796.5,1,2870.5,25 2870.5,1,2941.5,25", width=2, height="1.0139"];
-	Practica_Class23 [label="{O_Cardio_baja|{intensidad =|{baja}}|{objetivo =|{Cardio}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="3023,37", rects="2958.5,49,3087.5,73 2958.5,25,3045.5,49 3045.5,25,3087.5,49 2958.5,1,3032.5,25 3032.5,1,3087.5,25", width="1.7778", height="1.0139"];
-	Practica_Class27 [label="{O_Cardio_media|{intensidad =|{media}}|{objetivo =|{Cardio}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="3172,37", rects="3104.5,49,3239.5,73 3104.5,25,3189.5,49 3189.5,25,3239.5,49 3104.5,1,3181.5,25 3181.5,1,3239.5,25", width="1.8611", height="1.0139"];
-	Practica_Class50 [label="{E_Artrosis|{dolencia =|{Artrosis}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="3236,235", rects="3167.5,235,3304.5,259 3167.5,211,3242.5,235 3242.5,211,3304.5,235", width="1.8889", height="0.68056"];
-	Practica_Class58 [label="{E_PressDeBanca_O_Resistencia_alta_15min|{material =|{false}}|{duracion =|{15}}|{actividad =|{PressDeBanca}}|{parte_cuerpo =|{torso\
-}}|{orientado_a =|{O_Resistencia_alta}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="134,235", rects="-0.5,283,268.5,307 -0.5,259,148.5,283 148.5,259,268.5,283 -0.5,235,157.5,259 157.5,235,268.5,259 -0.5,211,124.5,235 124.5,211,268.5\
-,235 -0.5,187,162.5,211 162.5,187,268.5,211 -0.5,163,119.5,187 119.5,163,268.5,187", width="3.7222", height="2.0139"];
-	Practica_Class36 [label="{O_Resistencia_alta|{intensidad =|{alta}}|{objetivo =|{Resistencia}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="500,37", rects="423,49,577,73 423,25,525,49 525,25,577,49 423,1,497,25 497,1,577,25", width="2.1389", height="1.0139"];
-	Practica_Class57 [label="{E_PressDeBanca_O_Fuerza_alta_15min|{material =|{true}}|{duracion =|{15}}|{actividad =|{PressDeBanca}}|{parte_cuerpo =|{torso}}|\
-{orientado_a =|{O_Fuerza_alta}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1216,235", rects="1094,283,1338,307 1094,259,1232,283 1232,259,1338,283 1094,235,1239,259 1239,235,1338,259 1094,211,1206,235 1206,211,1338,235 1094\
-,187,1244,211 1244,187,1338,211 1094,163,1214,187 1214,163,1338,187", width="3.3889", height="2.0139"];
-	Practica_Class34 [label="{O_Fuerza_alta|{intensidad =|{alta}}|{objetivo =|{Fuerza}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1566,37", rects="1502,49,1630,73 1502,25,1591,49 1591,25,1630,49 1502,1,1576,25 1576,1,1630,25", width="1.7778", height="1.0139"];
-	Practica_Class29 [label="{O_Equilibrio_media|{intensidad =|{media}}|{objetivo =|{Equilibrio}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2021,37", rects="1948.5,49,2093.5,73 1948.5,25,2038.5,49 2038.5,25,2093.5,49 1948.5,1,2022.5,25 2022.5,1,2093.5,25", width=2, height="1.0139"];
-	Practica_Class28 [label="{O_Cardio_alta|{intensidad =|{alta}}|{objetivo =|{Cardio}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1866,37", rects="1801.5,49,1930.5,73 1801.5,25,1890.5,49 1890.5,25,1930.5,49 1801.5,1,1875.5,25 1875.5,1,1930.5,25", width="1.7778", height="1.0139"];
-	Practica_Class54 [label="{C_EstiramientoBrazos_10min|{duracion =|{10}}|{actividad =|{EstiramientoBrazos}}|{parte_cuerpo =|{brazo}}|{orientado_a =|{O_Flexibilidad\
-_alta|O_Flexibilidad_baja|O_Flexibilidad_media}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="959,235", rects="841.5,295,1076.5,319 841.5,271,982.5,295 982.5,271,1076.5,295 841.5,247,935.5,271 935.5,247,1076.5,271 841.5,223,986.5,247 986.5\
-,223,1076.5,247 841.5,151,936.5,223 936.5,199,1076.5,223 936.5,175,1076.5,199 936.5,151,1076.5,175", width="3.25", height="2.3472"];
-	Practica_Class32 [label="{O_Flexibilidad_alta|{intensidad =|{alta}}|{objetivo =|{Flexibilidad}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1134,37", rects="1056.5,49,1211.5,73 1056.5,25,1158.5,49 1158.5,25,1211.5,49 1056.5,1,1130.5,25 1130.5,1,1211.5,25", width="2.1389", height="1.0139"];
-	Practica_Class31 [label="{O_Flexibilidad_media|{intensidad =|{media}}|{objetivo =|{Flexibilidad}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1380,37", rects="1302.5,49,1457.5,73 1302.5,25,1397.5,49 1397.5,25,1457.5,49 1302.5,1,1376.5,25 1376.5,1,1457.5,25", width="2.1389", height="1.0139"];
-	Practica_Class53 [label="{D_Baloncesto_60min|{equipo =|{true}}|{duracion =|{60}}|{actividad =|{Baloncesto}}|{parte_cuerpo =|{brazo}}|{orientado_a =|{O_Cardio\
-_alta|O_Flexibilidad_media|O_Fuerza_baja|...}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="1473,235", rects="1355.5,319,1590.5,343 1355.5,295,1487.5,319 1487.5,295,1590.5,319 1355.5,271,1496.5,295 1496.5,271,1590.5,295 1355.5,247,1472.5,\
-271 1472.5,247,1590.5,271 1355.5,223,1500.5,247 1500.5,223,1590.5,247 1355.5,127,1450.5,223 1450.5,199,1590.5,223 1450.5,175,1590.5\
-,199 1450.5,151,1590.5,175 1450.5,127,1590.5,151", width="3.25", height="3.0139"];
-	Deporte [label="{Deporte|{equipo|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1180,505", rects="1121.5,505,1238.5,529 1121.5,481,1176.5,505 1176.5,481,1238.5,505", width="1.6111", height="0.68056"];
-	Practica_Class56 [label="{E_Flexiones_\{O_Fuerza_media, O_Resistenc...|{material =|{false}}|{duracion =|{10}}|{actividad =|{Flexiones}}|{parte_cuerpo =|{\
-brazo}}|{orientado_a =|{O_Fuerza_media|O_Resistencia_alta}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="429,235", rects="285.5,295,572.5,319 285.5,271,443.5,295 443.5,271,572.5,295 285.5,247,452.5,271 452.5,247,572.5,271 285.5,223,433.5,247 433.5,223\
-,572.5,247 285.5,199,456.5,223 456.5,199,572.5,223 285.5,151,414.5,199 414.5,175,572.5,199 414.5,151,572.5,175", width="3.9722", height="2.3472"];
-	Practica_Class33 [label="{O_Fuerza_media|{intensidad =|{media}}|{objetivo =|{Fuerza}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="722,37", rects="654.5,49,789.5,73 654.5,25,739.5,49 739.5,25,789.5,49 654.5,1,731.5,25 731.5,1,789.5,25", width="1.8611", height="1.0139"];
-	Practica_Class55 [label="{C_EstiramientosPiernas_10min|{duracion =|{10}}|{actividad =|{EstiramientosPiernas}}|{parte_cuerpo =|{pierna}}|{orientado_a =|{O\
-_Flexibilidad_alta|O_Flexibilidad_baja|O_Flexibilidad_media}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="707,235", rects="589.5,295,824.5,319 589.5,271,730.5,295 730.5,271,824.5,295 589.5,247,680.5,271 680.5,247,824.5,271 589.5,223,733.5,247 733.5,223\
-,824.5,247 589.5,151,684.5,223 684.5,199,824.5,223 684.5,175,824.5,199 684.5,151,824.5,175", width="3.25", height="2.3472"];
-	Practica_Class37 [label="{O_Salud Mental_media|{intensidad =|{media}}|{objetivo =|{Salud Mental}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2192,37", rects="2110.5,49,2273.5,73 2110.5,25,2209.5,49 2209.5,25,2273.5,49 2110.5,1,2184.5,25 2184.5,1,2273.5,25", width="2.25", height="1.0139"];
-	Practica_Class35 [label="{O_Resistencia_media|{intensidad =|{media}}|{objetivo =|{Resistencia}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2368,37", rects="2291,49,2445,73 2291,25,2385,49 2385,25,2445,49 2291,1,2365,25 2365,1,2445,25", width="2.1389", height="1.0139"];
-	Practica_Class30 [label="{O_Equilibrio_alta|{intensidad =|{alta}}|{objetivo =|{Equilibrio}}}", shape=record, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="2535,37", rects="2462.5,49,2607.5,73 2462.5,25,2559.5,49 2559.5,25,2607.5,49 2462.5,1,2536.5,25 2536.5,1,2607.5,25", width=2, height="1.0139"];
-	Enfermedad -> Practica_Class41 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,3092,468.9 3101.6,464.94 3167.3,437.44 3250.1,396.44 3313,344 3342.1,319.73 3366.9,283.22 3381.3,259.25", lp="3287.5,370"];
-	Actividad -> Ejercicio [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,960.89,698.73 952.02,693.5 859.36,638.92 735.8,566.14 672.76,529.01", lp="873,640"];
-	Objetivo -> Practica_Class18 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2640.9,174.82 2634.2,167.21 2619.3,150.77 2601.2,135.27 2581,126 2521.6,98.78 2057.9,115.6 1993,108 1957.9,103.89 1949.9,98.141\
- 1915,92 1861,82.489 1845.4,90.185 1793,74 1789.1,72.787 1785.1,71.396 1781.1,69.881", lp="1998.5,100"];
-	Enfermedad -> Practica_Class17 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2976.7,468.87 2972.8,459.62 2948.5,401.96 2907.3,304.5 2888.3,259.33", lp="2940.5,370"];
-	Incapacidad -> Practica_Class47 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,3416.3,486.87 3421.3,478.09 3451.4,425.41 3517.5,309.43 3546.3,259.09", lp="3488.5,370"];
-	Lesion -> Practica_Class1 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2289.2,418.73 2297,412.01 2322.5,390.19 2349,366.67 2373,344 2389.3,328.64 2406.2,311.38 2421.7,295.2", lp="2358.5,370"];
-	Lesion -> Practica_Class46 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2078.8,474.27 2069.2,471.07 1989.5,444.22 1883.3,401.63 1801,344 1781.6,330.39 1763,312.48 1747.3,295.13", lp="1854.5,370"];
-	Lesion -> Practica_Class45 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2078.7,419.76 2070.8,413.01 2045.3,391.05 2018.7,367.22 1995,344 1979.4,328.76 1963.4,311.46 1948.9,295.2", lp="2034.5,370"];
-	Dolencia -> Lesion [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,2935.2,744.86 2925.4,741.74 2785,696.92 2457.9,592.45 2289,538.53", lp="2620,640"];
-	Lesion -> Practica_Class44 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2146.3,396.74 2142.9,386.94 2131.9,355.23 2120.4,322.24 2110.9,295.14", lp="2142.5,370"];
-	Dolencia -> Enfermedad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,2992,738.73 2992,728.68 2992,679.94 2992,591.09 2992,541.29", lp="3000,640"];
-	Enfermedad -> Objetivo [label="recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,2667.1,295.12 2866.7,487.37 2800,470.93 2723.4,439.19 2682,378 2667.8,357.03 2664.8,330.08 2666.3,305.24", lp="2724,370"];
-	Enfermedad -> Objetivo [label="no_recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,2732.7,295.03 2939.2,468.79 2895.2,437.69 2831.7,390.61 2781,344 2767,331.13 2752.7,316.58 2739.5,302.4", lp="2872,370"];
-	Lesion -> Practica_Class43 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2222.1,396.74 2225.5,386.94 2236.7,355.23 2248.3,322.24 2257.8,295.14", lp="2236.5,370"];
-	Enfermedad -> Practica_Class42 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,3002,468.87 3004.8,458.91 3020.8,401.15 3047.7,304.31 3060.2,259.33", lp="3034.5,370"];
-	Actividad -> Calentamiento [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,1028.7,666.93 1024.6,657.54 1002.8,606.88 978.89,551.22 966.84,523.23", lp="1026,640"];
-	Objetivo -> Practica_Class20 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2641.2,174.88 2634.5,167.23 2619.5,150.69 2601.4,135.14 2581,126 2512.2,95.198 1297.1,126.28 1224,108 1209,104.24 1207.8,96.582\
- 1193,92 1131,72.81 1111.6,87.057 1048,74 1031.6,70.628 1014.2,66.198 997.69,61.581", lp="1229.5,100"];
-	Objetivo -> Practica_Class21 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2687.4,174.79 2688.5,164.47 2691.8,133.53 2695.5,98.54 2698.2,73.055", lp="2700.5,100"];
-	Objetivo -> Practica_Class22 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2735.4,174.94 2742.3,167.36 2755,153.59 2768.4,139.26 2781,126 2797.8,108.38 2816.7,89.14 2832.7,73.073", lp="2817.5,100"];
-	Objetivo -> Practica_Class23 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2725.9,174.79 2732.8,167.28 2747,152.02 2763.5,137.08 2781,126 2797.6,115.51 2931.8,81.357 2950,74 2952.8,72.883 2955.6,71.7 2958.4\
-,70.469", lp="2892.5,100"];
-	Objetivo -> Practica_Class27 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2723.1,174.89 2730.1,167.08 2744.7,151.25 2762,136.09 2781,126 2829,100.51 2848.3,116.69 2902,108 2988.4,94.003 3012.7,100.98 \
-3096,74 3098.8,73.095 3101.6,72.106 3104.4,71.052", lp="3028.5,100"];
-	Actividad -> Objetivo [label="orientado_a*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,2640.8,295.27 1179.3,758.52 1441.8,746.39 2100.5,707.28 2298,614 2446.1,544.04 2570.8,392.47 2634.8,303.66", lp="2597.5,505"];
-	Enfermedad -> Practica_Class50 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,3033.6,468.94 3041.2,462.08 3075.8,430.87 3122.3,386.76 3159,344 3182.5,316.57 3206,282.1 3220.7,259.35", lp="3147.5,370"];
-	Ejercicio -> Practica_Class58 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,571.21,482.3 561.6,478.55 488.24,449.75 371.1,400.22 277,344 258.64,333.03 239.87,320.13 222.22,307.11", lp="338.5,370"];
-	Practica_Class58 -> Practica_Class36 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,422.8,61.956 221.05,162.77 238.96,149.62 258.12,136.7 277,126 319.99,101.64 370.98,80.759 413.34,65.356", lp="375.5,100"];
-	Ejercicio -> Practica_Class57 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,673.83,480.83 682.75,475.89 743.02,442.72 847.55,389.57 944,362 1004.7,344.64 1027.1,369.21 1085,344 1105.9,334.91 1126.1,321.43\
- 1144.1,307.01", lp="949.5,370"];
-	Practica_Class57 -> Practica_Class34 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1562.5,73.097 1287.4,162.72 1305.5,148.23 1325.8,134.78 1347,126 1387.4,109.26 1508.8,135.32 1543,108 1551,101.63 1556.2,92.457\
- 1559.7,82.813", lp="1589.5,100"];
-	Objetivo -> Practica_Class29 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2639.8,174.73 2632.8,166.83 2618,150.83 2600.5,135.64 2581,126 2541.4,106.4 2426.9,112.65 2383,108 2257.9,94.748 2223.1,108.09\
- 2102,74 2099.3,73.246 2096.6,72.415 2093.9,71.521", lp="2388.5,100"];
-	Objetivo -> Practica_Class28 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2640.8,174.98 2634.1,167.38 2619.2,150.94 2601.2,135.4 2581,126 2539.3,106.56 2212.8,112.42 2167,108 2065.5,98.215 2037.3,104.75\
- 1940,74 1937,73.048 1933.9,71.986 1930.9,70.84", lp="2172.5,100"];
-	Calentamiento -> Practica_Class54 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,959,486.87 959,476.8 959,439.76 959,373.1 959,319.13", lp="964.5,370"];
-	Practica_Class54 -> Practica_Class32 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1127.9,73.174 1053.6,150.99 1064,142.36 1074.6,133.88 1085,126 1096.5,117.27 1103.4,119.55 1112,108 1117.6,100.56 1121.7,91.692\
- 1124.9,82.786", lp="1155.5,100"];
-	Practica_Class54 -> Practica_Class20 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,918.59,73.28 930.25,150.69 926.46,136.59 923.15,121.99 921,108 919.79,100.12 919.13,91.686 918.81,83.485", lp="954.5,100"];
-	Practica_Class54 -> Practica_Class31 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1358.1,73.226 1041.8,151 1055.3,141.07 1069.9,132.26 1085,126 1135.2,105.16 1281.6,134.58 1329,108 1335.3,104.47 1343.9,93.776\
- 1352.3,81.719", lp="1378.5,100"];
-	Deporte -> Practica_Class53 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,1206.3,480.8 1213.8,473.89 1248.5,441.89 1304.6,390.22 1355.7,343.11", lp="1332.5,370"];
-	Practica_Class53 -> Practica_Class28 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1854.9,73.211 1590.7,129.77 1593.4,128.43 1596.2,127.17 1599,126 1646.1,106.32 1785.3,135.93 1828,108 1837.5,101.79 1844.8,92.385\
- 1850.3,82.431", lp="1877.5,100"];
-	Practica_Class53 -> Practica_Class31 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1407.6,73.147 1435.5,126.71 1430.4,114.8 1424.9,103.01 1419,92 1417.2,88.553 1415.1,85.07 1413,81.619", lp="1460.5,100"];
-	Practica_Class53 -> Practica_Class18 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1705,73.057 1590.5,130.52 1593.3,128.94 1596.2,127.43 1599,126 1631.5,109.58 1650,130.07 1679,108 1687.9,101.26 1694.9,91.844 \
-1700.4,82.069", lp="1727.5,100"];
-	Practica_Class53 -> Practica_Class36 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,532.87,73.136 1355.4,129.55 1352.6,128.28 1349.8,127.09 1347,126 1266.8,95.074 653.33,140.98 574,108 565.82,104.6 552.8,93.103\
- 539.96,80.324", lp="607.5,100"];
-	Ejercicio -> Practica_Class56 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,613.63,480.56 607.53,472.46 579.15,434.71 531.26,371 492.21,319.08", lp="536.5,370"];
-	Practica_Class56 -> Practica_Class33 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,689.51,73.346 537.02,150.79 551.36,141.65 566.22,133.11 581,126 607.63,113.2 619.21,122.41 645,108 658.16,100.65 670.86,90.617\
- 682.03,80.41", lp="700.5,100"];
-	Practica_Class56 -> Practica_Class36 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,487.04,73.155 459.21,150.74 467.58,127.41 476.35,102.95 483.6,82.723", lp="513.5,100"];
-	Calentamiento -> Practica_Class55 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,942.07,486.87 934.87,479.15 900.79,442.63 836.97,374.25 785.52,319.13", lp="838.5,370"];
-	Practica_Class55 -> Practica_Class32 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1069.6,73.207 790.64,150.76 803.96,141.01 818.24,132.31 833,126 910.58,92.825 944.2,140.66 1022,108 1032.2,103.73 1032,98.387 \
-1041,92 1047.3,87.498 1054.1,83.01 1060.9,78.651", lp="1074.5,100"];
-	Practica_Class55 -> Practica_Class20 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,871.58,73.154 787.08,150.71 806.84,130.93 828.29,110.31 849,92 853.68,87.866 858.63,83.679 863.65,79.558", lp="882.5,100"];
-	Practica_Class55 -> Practica_Class31 [label=orientado_a, color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,1302.3,68.469 789.27,150.86 802.94,140.88 817.68,132.1 833,126 916.7,92.685 1153.7,139.7 1238,108 1248.7,103.99 1248.3,97.942 \
-1258,92 1269.1,85.236 1281.1,78.808 1293.1,72.891", lp="1291.5,100"];
-	Objetivo -> Practica_Class33 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2641.2,174.85 2634.5,167.21 2619.5,150.67 2601.4,135.13 2581,126 2501.2,90.391 1091.6,136.41 1009,108 997.9,104.18 998.88,96.393\
- 988,92 924.1,66.202 901.28,88.884 834,74 819.5,70.793 804.24,66.435 789.8,61.835", lp="1014.5,100"];
-	Objetivo -> Practica_Class34 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2640.9,174.72 2634.3,167.12 2619.3,150.68 2601.3,135.2 2581,126 2503.3,90.733 1897.1,122.66 1813,108 1790.8,104.14 1786.9,97.23\
- 1765,92 1712.1,79.356 1696,89.823 1644,74 1639.4,72.604 1634.8,70.979 1630.1,69.204", lp="1818.5,100"];
-	Objetivo -> Practica_Class31 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2641.2,174.96 2634.5,167.32 2619.5,150.78 2601.4,135.21 2581,126 2534.6,105.04 1713.8,118.82 1664,108 1646.5,104.2 1644.3,96.793\
- 1627,92 1569.1,75.923 1551.6,87.405 1493,74 1481.4,71.352 1469.4,68.027 1457.6,64.463", lp="1669.5,100"];
-	Objetivo -> Practica_Class32 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2641.2,174.93 2634.5,167.28 2619.5,150.75 2601.4,135.18 2581,126 2527.7,102.04 1586.7,121.9 1530,108 1514.6,104.21 1513.3,96.331\
- 1498,92 1410.4,67.212 1383.9,88.288 1294,74 1267,69.703 1237.7,63.426 1211.7,57.258", lp="1535.5,100"];
-	Dolencia -> Incapacidad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,3030.6,738.96 3039.1,733.63 3125.4,679.84 3306.5,566.99 3377,523.05", lp="3207,640"];
-	Objetivo -> Practica_Class37 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2638.5,174.92 2631.5,167.16 2616.9,151.41 2599.8,136.27 2581,126 2566.2,117.91 2298.2,78.678 2282,74 2279.2,73.203 2276.5,72.349\
- 2273.6,71.449", lp="2487.5,100"];
-	Objetivo -> Practica_Class35 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2634.3,174.74 2627.2,166.99 2613.3,152.17 2597.5,137.5 2581,126 2531,91.133 2510.2,97.609 2454,74 2451.2,72.805 2448.3,71.583 \
-2445.3,70.345", lp="2554.5,100"];
-	Objetivo -> Practica_Class36 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2641.2,174.84 2634.6,167.19 2619.6,150.65 2601.4,135.11 2581,126 2536.3,106.06 866.71,113.07 818,108 781.94,104.24 773.57,99.037\
- 738,92 697.13,83.914 686.65,83.121 646,74 623.55,68.963 599.28,63.016 577.1,57.381", lp="823.5,100"];
-	Actividad -> Deporte [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,1111,666.93 1115,657.53 1135.1,610.23 1157.2,558.55 1169.7,529.12", lp="1133,640"];
-	Objetivo -> Practica_Class30 [dir=back, label=io, color="0.0,1.0,1.0", fontcolor="0.0,1.0,1.0", pos="s,2636.6,174.79 2630.5,166.48 2607.3,135.06 2580.8,99.094 2561.6,73.055", lp="2591.5,100"];
+	graph [bb="0,0,1052,494"];
+	Calentamiento [label=Calentamiento, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="47,61", width="1.3056", height="0.5"];
+	Actividad [label="{Actividad|{parte_trabajada|Symbol|{pecho|espalda|biceps|...}}|{duracion|Integer}|{actividad|String}|{orientado_a|Instance*|{Objetivo\
+}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="174,283", rects="63.5,355,284.5,379 63.5,259,165.5,355 165.5,259,225.5,355 225.5,331,284.5,355 225.5,307,284.5,331 225.5,283,284.5,307 225.5,259,\
+284.5,283 63.5,235,178.5,259 178.5,235,284.5,259 63.5,211,182.5,235 182.5,211,284.5,235 63.5,187,147.5,211 147.5,187,218.5,211 218.5\
+,187,284.5,211", width="3.0556", height="2.6806"];
+	Incapacidad [label="{Incapacidad|{recomendado|Instance*|{Objetivo}}|{no_recomendado|Instance*|{Objetivo}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="431,283", rects="306,295,556,319 306,271,406,295 406,271,483,295 483,271,556,295 306,247,421,271 421,247,491,271 491,247,556,271", width="3.4722", height="1.0139"];
+	Dolencia [label="{Dolencia|{dolencia|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="679,469", rects="622.5,469,735.5,493 622.5,445,685.5,469 685.5,445,735.5,469", width="1.5556", height="0.68056"];
+	Objetivo [label="{Objetivo|{intensidad|Symbol|{baja|media|alta}}|{objetivo|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="547,61", rects="455.5,97,638.5,121 455.5,25,528.5,97 528.5,25,588.5,97 588.5,73,638.5,97 588.5,49,638.5,73 588.5,25,638.5,49 455.5,1,552.5,25 552.5\
+,1,638.5,25", width="2.5278", height="1.6806"];
+	Ejercicio [label="{Ejercicio|{material|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="172,61", rects="111.5,61,232.5,85 111.5,37,170.5,61 170.5,37,232.5,61", width="1.6667", height="0.68056"];
+	Lesion [label="{Lesion|{tipo|Symbol|{Rotura|Esguince|Luxacion}}|{parte_cuerpo|Symbol|{pierna|brazo|espalda|...}}|{rehabilitacion|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="679,283", rects="574,367,784,391 574,295,626,367 626,295,701,367 701,343,784,367 701,319,784,343 701,295,784,319 574,199,665,295 665,199,725,295 \
+725,271,784,295 725,247,784,271 725,223,784,247 725,199,784,223 574,175,693,199 693,175,784,199", width="2.9167", height="3.0139"];
+	Deporte [label="{Deporte|{equipo|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="308,61", rects="249.5,61,366.5,85 249.5,37,304.5,61 304.5,37,366.5,61", width="1.6111", height="0.68056"];
+	Enfermedad [label="{Enfermedad|{recomendado|Instance*|{Objetivo}}|{no_recomendado|Instance*|{Objetivo}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="927,283", rects="802,295,1052,319 802,271,902,295 902,271,979,295 979,271,1052,295 802,247,917,271 917,247,987,271 987,247,1052,271", width="3.4722", height="1.0139"];
+	Actividad -> Calentamiento [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,119.03,186.92 113.85,177.86 92.228,140.06 70.088,101.36 57.492,79.34", lp="108,148"];
+	Dolencia -> Incapacidad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,641.46,444.85 633.01,439.28 611.97,425.35 586.91,408.26 565,392 533.57,368.68 499.37,340.81 473.38,319.09", lp="619,418"];
+	Incapacidad -> Objetivo [label="recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,455.48,119.69 425.55,246.9 422.74,216.51 423.04,172.87 441,140 443.35,135.69 446.05,131.56 449.02,127.59", lp="483,148"];
+	Incapacidad -> Objetivo [label="no_recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,537.03,121.03 463.98,246.97 484.38,222.85 509.54,189.5 525,156 528.66,148.07 531.74,139.48 534.32,130.81", lp="583,148"];
+	Actividad -> Ejercicio [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,173.13,186.92 173.04,176.77 172.73,142.39 172.42,107.4 172.22,85.022", lp="181,148"];
+	Dolencia -> Lesion [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,679,444.68 679,434.65 679,421.98 679,406.84 679,391.12", lp="687,418"];
+	Actividad -> Deporte [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,231.99,186.92 237.32,178.1 258.33,143.29 279.82,107.69 293.5,85.022", lp="265,148"];
+	Dolencia -> Enfermedad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,716.54,444.85 724.99,439.28 746.03,425.35 771.09,408.26 793,392 824.43,368.68 858.63,340.81 884.62,319.09", lp="773,418"];
+	Enfermedad -> Objetivo [label="recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,638.63,96.565 887.95,246.8 862.23,224.1 827.12,195.23 793,174 747.46,145.65 693.63,120.12 647.95,100.53", lp="803,148"];
+	Enfermedad -> Objetivo [label="no_recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,638.84,76.744 916.39,246.71 904.98,214.03 883.64,167.09 849,140 817.8,115.6 723.75,93.305 648.81,78.668", lp="918,148"];
+	Actividad -> Objetivo [label="orientado_a*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,455.46,92.548 279.5,186.99 285.33,182.49 291.18,178.13 297,174 342.44,141.78 398.54,115.41 446.07,96.278", lp="384.5,148"];
 }

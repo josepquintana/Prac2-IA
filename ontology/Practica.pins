@@ -1,4 +1,4 @@
-; Sun Dec 09 13:36:04 CET 2018
+; Sun Dec 09 19:08:37 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,6 +21,30 @@
 	(parte_cuerpo tobillo)
 	(rehabilitacion TRUE)
 	(tipo Luxacion))
+
+([Practica_Class10000] of  Enfermedad
+
+	(dolencia "Asma")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class27]
+		[Practica_Class34]
+		[Practica_Class36]
+		[Practica_Class35])
+	(recomendado
+		[Practica_Class28]
+		[Practica_Class22]
+		[Practica_Class29]
+		[Practica_Class32]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21]))
+
+([Practica_Class10001] of  Enfermedad
+
+	(dolencia "Depresion")
+	(no_recomendado [Practica_Class36])
+	(recomendado [Practica_Class37]))
 
 ([Practica_Class10003] of  Ejercicio
 
@@ -531,4 +555,4 @@
 	(orientado_a [Practica_Class36])
 	(parte_trabajada pecho))
 
-)
+	)

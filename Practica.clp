@@ -157,22 +157,27 @@
   ?ref <- (Persona (dolencias $?dolencias))
   =>
   (if (ask_question_yes_no "Padece alguna enfermedad?") then
-  	(bind ?list_answers (ask_question_multichoice "Cuales?" Artrosis Cardiovascular Obesidad Osteoporosis Diabetes Respiratorios))
+		(bind ?BD_enfermedades (create$ Artrosis Cardiovascular Obesidad Osteoporosis Diabetes Respiratorios Asma Depresion))
+		(bind ?list_answers (ask_question_multichoice "Cuales?" ?BD_enfermedades))
   	(progn$ (?curr-answer ?list_answers)
-   		(switch ?curr-answer
-    		(case 1 then
-					(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Artrosis")))))
-	      (case 2 then
-				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Cardiovascular")))))
-	      (case 3 then
-				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Obesidad")))))
-	      (case 4 then
-				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Osteoporosis")))))
-				(case 5 then
-				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Diabetes")))))
-	      (case 6 then
-				  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Respiratorios")))))
-	    )
+			(bind ?enf (nth$ ?curr-answer ?BD_enfermedades))
+			(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia (format nil "%s" ?enf)))))
+
+   		; (switch ?curr-answer
+    	; 	(case 1 then
+			; 		(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Artrosis")))))
+	    ;   (case 2 then
+			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Cardiovascular")))))
+	    ;   (case 3 then
+			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Obesidad")))))
+	    ;   (case 4 then
+			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Osteoporosis")))))
+			; 	(case 5 then
+			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Diabetes")))))
+	    ;   (case 6 then
+			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Respiratorios")))))
+	    ; )
+
   	)
   )
 	(modify ?ref (dolencias $?dolencias))
@@ -185,16 +190,11 @@
 	?ref <- (Persona (dolencias $?dolencias))
   =>
 	(if (ask_question_yes_no "Sufre alguna incapacidad?") then
-    (bind ?list_answers (ask_question_multichoice "Cuales?" Paraplegia "Paralisis Cerebral" "Distrofia Muscular"))
+		(bind ?BD_incapacidades (create$ "Paraplegia" "Paralisis Cerebral" "Distrofia Muscular"))
+    (bind ?list_answers (ask_question_multichoice "Cuales?" ?BD_incapacidades))
     (progn$ (?curr-answer ?list_answers)
-     	(switch ?curr-answer
-      	(case 1 then
-        	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Incapacidad)) (eq ?inst:dolencia "Paraplegia")))))
-				(case 2 then
-        	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Incapacidad)) (eq ?inst:dolencia "Paralisis Cerebral")))))
-				(case 3 then
-        	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Incapacidad)) (eq ?inst:dolencia "Distrofia Muscular")))))
-     	)
+			(bind ?inc (nth$ ?curr-answer ?BD_incapacidades))
+    	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Incapacidad)) (eq ?inst:dolencia (format nil "%s" ?inc)))))
     )
   )
 	(modify ?ref (dolencias $?dolencias))
@@ -220,22 +220,13 @@
 		(if (= 1 ?curr-tipo) then (bind ?tipo Rotura))
 		(if (= 2 ?curr-tipo) then (bind ?tipo Esguince))
 		(if (= 3 ?curr-tipo) then (bind ?tipo Luxacion))
+
 		(printout t "Referente a su lesion numero " ?curr-tipo-index " de tipo " ?tipo " -> ")
-		(bind ?parte_cuerpo (ask_question_one_choice "En que parte del cuerpo sufre la lesion?" Pierna Brazo Espalda Cadera Torso Tobillo))
-	   	(switch ?parte_cuerpo
-	    	(case 1 then
-	      	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Lesion)) (and (eq ?inst:tipo ?tipo) (eq ?inst:parte_cuerpo pierna))))) ) ;; pierna sin comillas pq es SYMBOL
-				(case 2 then
-      		(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Lesion)) (and (eq ?inst:tipo ?tipo) (eq ?inst:parte_cuerpo brazo))))) )
-				(case 3 then
-	      	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Lesion)) (and (eq ?inst:tipo ?tipo) (eq ?inst:parte_cuerpo espalda))))) )
-				(case 4 then
-	      	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Lesion)) (and (eq ?inst:tipo ?tipo) (eq ?inst:parte_cuerpo cadera))))) )
-				(case 5 then
-	      	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Lesion)) (and (eq ?inst:tipo ?tipo) (eq ?inst:parte_cuerpo torso))))) )
-				(case 6 then
-					(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Lesion)) (and (eq ?inst:tipo ?tipo) (eq ?inst:parte_cuerpo tobillo))))) )
-			)
+		(bind ?BD_partes_cuerpo (create$ Pierna Brazo Espalda Cadera Torso Tobillo))
+		(bind ?answer (ask_question_one_choice "En que parte del cuerpo sufre la lesion?" ?BD_partes_cuerpo))
+
+		(bind ?parte_cuerpo (nth$ ?answer ?BD_partes_cuerpo))
+  	(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Lesion)) (and (eq ?inst:tipo ?tipo) (eq ?inst:parte_cuerpo (lowcase ?parte_cuerpo)))))) ;; pierna sin comillas pq es SYMBOL
   )
 	(modify ?ref (dolencias $?dolencias))
   (assert (lesiones asked))
@@ -337,10 +328,10 @@
   =>
   (bind $?actividades (find-all-instances ((?inst Actividad)) TRUE))
 	(progn$ (?act-i ?actividades)
-		(printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "  " (send ?act-i get-parte_trabajada) crlf)
+		; (printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "_" (send ?act-i get-parte_trabajada) crlf)
 		(make-instance (gensym) of ValoracionActividades (actividad ?act-i) (puntuacion 0))
 	)
-	(printout t crlf)
+	(printout t "DB_Actividades: " (length$ (find-all-instances ((?it ValoracionActividades)) TRUE)) crlf)
 	(assert (ObjetivosRecomendados))
 	(assert (ObjetivosNoRecomendados))
 	(assert (puntuaciones inicializadas))
@@ -412,15 +403,15 @@
 	(not (evaluate_1 done))
 	(ObjetivosRecomendados (objs $?objs))
 	; ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
-	; ferho amb ref nomes al deftemplate i dewspres fer un find-all-instances de ValorcacoAitvciavdes!!!!!
+	; ferho amb ref nomes al deftemplate i dewspres fer un find-all-instances de ValoracionActividades!!!!!
 	=>
 	(bind $?all_valorar_actividades (find-all-instances ((?inst ValoracionActividades)) TRUE))
 	(progn$ (?i_va ?all_valorar_actividades)
 		(bind ?i_act (send ?i_va get-actividad))
-		(printout t ">>> " (send ?i_act get-actividad) crlf)
+		; (printout t ">>> " (send ?i_act get-actividad) crlf)
 		(bind $?objs_Actividad (send ?i_act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
 		(progn$ (?i_objA ?objs_Actividad) ;; tots els objectius orientats_a del l'activitat ?act
-			(printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
+			; (printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
 			(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
 				(send ?i_va put-puntuacion (+ (send ?i_va get-puntuacion) 250))
 			)
@@ -437,11 +428,10 @@
 	(bind $?all_valorar_actividades (find-all-instances ((?inst ValoracionActividades)) TRUE))
 	(progn$ (?i_va ?all_valorar_actividades)
 		(bind ?i_act (send ?i_va get-actividad))
-		(printout t ">>> " (send ?i_act get-actividad) crlf)
 		(bind $?objs_Actividad (send ?i_act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
 		(progn$ (?i_objA ?objs_Actividad) ;; tots els objectius orientats_a del l'activitat ?act
-			(printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
 			(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar mal
+						(printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
 				(send ?i_va put-puntuacion (- (send ?i_va get-puntuacion) 250))
 			)
 		)
@@ -485,7 +475,7 @@
 	(not (all_processed))
   ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
   =>
-  (printout t crlf "Puntuacion Actividad: " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
+  (printout t "Puntuacion Actividad: " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
 )
 
 ; end
