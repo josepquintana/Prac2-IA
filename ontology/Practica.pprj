@@ -1,4 +1,4 @@
-; Sun Dec 09 19:08:37 CET 2018
+; Sun Dec 09 19:31:13 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,16 +21,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Practica_ProjectKB_Class20142]
-		[Practica_ProjectKB_Class20143]
-		[Practica_ProjectKB_Class20144]
-		[Practica_ProjectKB_Class20145]
-		[Practica_ProjectKB_Class20146]
-		[Practica_ProjectKB_Class20147]
-		[Practica_ProjectKB_Class20148]
-		[Practica_ProjectKB_Class20149]
-		[Practica_ProjectKB_Class20150]
-		[Practica_ProjectKB_Class20151]))
+		[Practica_ProjectKB_Class20217]
+		[Practica_ProjectKB_Class20218]
+		[Practica_ProjectKB_Class20219]
+		[Practica_ProjectKB_Class20220]
+		[Practica_ProjectKB_Class20221]
+		[Practica_ProjectKB_Class20222]
+		[Practica_ProjectKB_Class20223]
+		[Practica_ProjectKB_Class20224]
+		[Practica_ProjectKB_Class20225]
+		[Practica_ProjectKB_Class20226]))
 
 ([CLSES_TAB] of  Widget
 
@@ -83,11 +83,11 @@
 ([KB_068609_Class1] of  Map
 
 	(entries
-		[Practica_ProjectKB_Class20152]
-		[Practica_ProjectKB_Class20153]
-		[Practica_ProjectKB_Class20155]
-		[Practica_ProjectKB_Class20156])
-	(referenced_maps [Practica_ProjectKB_Class20154]))
+		[Practica_ProjectKB_Class20227]
+		[Practica_ProjectKB_Class20228]
+		[Practica_ProjectKB_Class20230]
+		[Practica_ProjectKB_Class20231])
+	(referenced_maps [Practica_ProjectKB_Class20229]))
 
 ([KB_068609_Class132] of  String
 
@@ -358,81 +358,81 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
 
-([Practica_ProjectKB_Class20142] of  String
+([Practica_ProjectKB_Class20217] of  String
 
 	(name "Calentamiento")
 	(string_value "{C_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class20143] of  String
+([Practica_ProjectKB_Class20218] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Practica_ProjectKB_Class20144] of  String
+([Practica_ProjectKB_Class20219] of  String
 
 	(name "Incapacidad")
 	(string_value "{I_}dolencia"))
 
-([Practica_ProjectKB_Class20145] of  String
+([Practica_ProjectKB_Class20220] of  String
 
 	(name "Ejercicio")
 	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
 
-([Practica_ProjectKB_Class20146] of  String
+([Practica_ProjectKB_Class20221] of  String
 
 	(name "Objetivo")
 	(string_value "{O_}objetivo{_}intensidad"))
 
-([Practica_ProjectKB_Class20147] of  String
+([Practica_ProjectKB_Class20222] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([Practica_ProjectKB_Class20148] of  String
+([Practica_ProjectKB_Class20223] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([Practica_ProjectKB_Class20149] of  String
+([Practica_ProjectKB_Class20224] of  String
 
 	(name "Deporte")
 	(string_value "{D_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class20150] of  String
+([Practica_ProjectKB_Class20225] of  String
 
 	(name "Lesion")
 	(string_value "{L_}tipo{_}parte_cuerpo{_}rehabilitacion"))
 
-([Practica_ProjectKB_Class20151] of  String
+([Practica_ProjectKB_Class20226] of  String
 
 	(name "Enfermedad")
 	(string_value "{E_}dolencia"))
 
-([Practica_ProjectKB_Class20152] of  Map_Entry
+([Practica_ProjectKB_Class20227] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class20153] of  Map_Entry
+([Practica_ProjectKB_Class20228] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class20154] of  Map
+([Practica_ProjectKB_Class20229] of  Map
 )
 
-([Practica_ProjectKB_Class20155] of  Map_Entry
+([Practica_ProjectKB_Class20230] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "Practica_ProjectKB_Class20154")
+	(value "Practica_ProjectKB_Class20229")
 	(value_class "java.util.Map"))
 
-([Practica_ProjectKB_Class20156] of  Map_Entry
+([Practica_ProjectKB_Class20231] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")

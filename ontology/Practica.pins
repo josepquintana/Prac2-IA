@@ -1,9 +1,10 @@
-; Sun Dec 09 19:08:37 CET 2018
+; Sun Dec 09 19:31:13 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 (definstances instances
+
 
 ([Practica_Class0] of  Deporte
 
@@ -45,6 +46,19 @@
 	(dolencia "Depresion")
 	(no_recomendado [Practica_Class36])
 	(recomendado [Practica_Class37]))
+
+([Practica_Class10002] of  Enfermedad
+
+	(dolencia "Mononucleosis")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class27]
+		[Practica_Class34]
+		[Practica_Class36])
+	(recomendado
+		[Practica_Class18]
+		[Practica_Class21]
+		[Practica_Class23]))
 
 ([Practica_Class10003] of  Ejercicio
 
@@ -555,4 +569,4 @@
 	(orientado_a [Practica_Class36])
 	(parte_trabajada pecho))
 
-	)
+)

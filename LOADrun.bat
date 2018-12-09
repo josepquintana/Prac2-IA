@@ -1,8 +1,23 @@
 ###########################################################################
 (batch "C:/Users/josep/Google Drive/FIB/IA/Lab/Prac2/Code/LOAD.bat")
 (run)
+Vinicius
 98
 si
+9
+no
+si
+3
+6
+no
+4
+0
+4
+2
+2
 5
-n
-n
+3
+4
+1
+9
+0
