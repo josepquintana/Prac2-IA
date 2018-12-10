@@ -1,4 +1,4 @@
-; Mon Dec 10 17:01:36 CET 2018
+; Mon Dec 10 21:48:40 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,16 +21,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Practica_ProjectKB_Class20064]
-		[Practica_ProjectKB_Class20065]
-		[Practica_ProjectKB_Class20066]
-		[Practica_ProjectKB_Class20067]
-		[Practica_ProjectKB_Class20068]
-		[Practica_ProjectKB_Class20069]
-		[Practica_ProjectKB_Class20070]
-		[Practica_ProjectKB_Class20071]
-		[Practica_ProjectKB_Class20072]
-		[Practica_ProjectKB_Class20073]))
+		[Practica_ProjectKB_Class20218]
+		[Practica_ProjectKB_Class20219]
+		[Practica_ProjectKB_Class20220]
+		[Practica_ProjectKB_Class20221]
+		[Practica_ProjectKB_Class20222]
+		[Practica_ProjectKB_Class20223]
+		[Practica_ProjectKB_Class20224]
+		[Practica_ProjectKB_Class20225]
+		[Practica_ProjectKB_Class20226]
+		[Practica_ProjectKB_Class20227]))
 
 ([CLSES_TAB] of  Widget
 
@@ -83,11 +83,11 @@
 ([KB_068609_Class1] of  Map
 
 	(entries
-		[Practica_ProjectKB_Class20074]
-		[Practica_ProjectKB_Class20075]
-		[Practica_ProjectKB_Class20077]
-		[Practica_ProjectKB_Class20078])
-	(referenced_maps [Practica_ProjectKB_Class20076]))
+		[Practica_ProjectKB_Class20228]
+		[Practica_ProjectKB_Class20229]
+		[Practica_ProjectKB_Class20231]
+		[Practica_ProjectKB_Class20232])
+	(referenced_maps [Practica_ProjectKB_Class20230]))
 
 ([KB_068609_Class132] of  String
 
@@ -181,7 +181,7 @@
 
 	(properties [Practica_ProjectKB_Class134]))
 
-([KB_278510_Class5] of  Map
+([KB_224209_Class5] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List
@@ -331,81 +331,81 @@
 ([Practica_ProjectKB_Class20] of  Property_List
 )
 
-([Practica_ProjectKB_Class20064] of  String
+([Practica_ProjectKB_Class20218] of  String
 
 	(name "Calentamiento")
 	(string_value "{C_}actividad{_}orientado_a{_}duracion{min}"))
 
-([Practica_ProjectKB_Class20065] of  String
+([Practica_ProjectKB_Class20219] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Practica_ProjectKB_Class20066] of  String
+([Practica_ProjectKB_Class20220] of  String
 
 	(name "Incapacidad")
 	(string_value "{I_}dolencia"))
 
-([Practica_ProjectKB_Class20067] of  String
-
-	(name "Ejercicio")
-	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
-
-([Practica_ProjectKB_Class20068] of  String
+([Practica_ProjectKB_Class20221] of  String
 
 	(name "Objetivo")
 	(string_value "{O_}objetivo{_}intensidad"))
 
-([Practica_ProjectKB_Class20069] of  String
+([Practica_ProjectKB_Class20222] of  String
 
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
+	(name "Ejercicio")
+	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
 
-([Practica_ProjectKB_Class20070] of  String
+([Practica_ProjectKB_Class20223] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([Practica_ProjectKB_Class20071] of  String
+([Practica_ProjectKB_Class20224] of  String
 
-	(name "Deporte")
-	(string_value "{D_}actividad{_}duracion{min}"))
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
 
-([Practica_ProjectKB_Class20072] of  String
+([Practica_ProjectKB_Class20225] of  String
 
 	(name "Lesion")
 	(string_value "{L_}tipo{_}parte_cuerpo{_}rehabilitacion"))
 
-([Practica_ProjectKB_Class20073] of  String
+([Practica_ProjectKB_Class20226] of  String
+
+	(name "Deporte")
+	(string_value "{D_}actividad{_}duracion{min}"))
+
+([Practica_ProjectKB_Class20227] of  String
 
 	(name "Enfermedad")
 	(string_value "{E_}dolencia"))
 
-([Practica_ProjectKB_Class20074] of  Map_Entry
+([Practica_ProjectKB_Class20228] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class20075] of  Map_Entry
+([Practica_ProjectKB_Class20229] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class20076] of  Map
+([Practica_ProjectKB_Class20230] of  Map
 )
 
-([Practica_ProjectKB_Class20077] of  Map_Entry
+([Practica_ProjectKB_Class20231] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "Practica_ProjectKB_Class20076")
+	(value "Practica_ProjectKB_Class20230")
 	(value_class "java.util.Map"))
 
-([Practica_ProjectKB_Class20078] of  Map_Entry
+([Practica_ProjectKB_Class20232] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
@@ -693,8 +693,8 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_FACET_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[STANDARD_FACET_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
 		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")

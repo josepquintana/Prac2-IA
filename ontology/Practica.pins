@@ -1,4 +1,4 @@
-; Mon Dec 10 17:01:36 CET 2018
+; Mon Dec 10 21:48:40 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -17,7 +17,7 @@
 
 ([Practica_Class1] of  Lesion
 
-	(dolencia "Luxacion_Tobillo")
+	(dolencia "Luxacion Tobillo")
 	(no_recomendado
 		[Practica_Class28]
 		[Practica_Class30]
@@ -226,6 +226,7 @@
 	(no_recomendado
 		[Practica_Class28]
 		[Practica_Class34])
+	(parte_afectada cerebro)
 	(recomendado
 		[Practica_Class23]
 		[Practica_Class22]
@@ -239,7 +240,7 @@
 
 ([Practica_Class10032] of  Lesion
 
-	(dolencia "Esguince_Brazo")
+	(dolencia "Esguince Brazo")
 	(no_recomendado [Practica_Class34])
 	(parte_cuerpo brazo)
 	(recomendado
@@ -251,7 +252,7 @@
 
 ([Practica_Class10033] of  Lesion
 
-	(dolencia "Luxacion")
+	(dolencia "Luxacion Brazo")
 	(no_recomendado [Practica_Class34])
 	(parte_cuerpo brazo)
 	(recomendado
@@ -263,7 +264,7 @@
 
 ([Practica_Class10034] of  Lesion
 
-	(dolencia "Luxacion")
+	(dolencia "Luxacion Cadera")
 	(no_recomendado
 		[Practica_Class28]
 		[Practica_Class34]
@@ -330,6 +331,7 @@
 		[Practica_Class34]
 		[Practica_Class18]
 		[Practica_Class36])
+	(parte_afectada cerebro brazos)
 	(recomendado
 		[Practica_Class23]
 		[Practica_Class20]
@@ -786,7 +788,7 @@
 
 ([Practica_Class44] of  Lesion
 
-	(dolencia "Rotura_Pierna")
+	(dolencia "Rotura Pierna")
 	(no_recomendado
 		[Practica_Class28]
 		[Practica_Class23]
@@ -809,7 +811,7 @@
 
 ([Practica_Class45] of  Lesion
 
-	(dolencia "Rotura_Cadera")
+	(dolencia "Rotura Cadera")
 	(no_recomendado
 		[Practica_Class28]
 		[Practica_Class27]
@@ -827,7 +829,7 @@
 
 ([Practica_Class46] of  Lesion
 
-	(dolencia "Esguince_Pierna")
+	(dolencia "Esguince Pierna")
 	(no_recomendado [Practica_Class34])
 	(parte_cuerpo pierna)
 	(recomendado
@@ -839,12 +841,13 @@
 
 ([Practica_Class47] of  Incapacidad
 
-	(dolencia "Paraplegia")
+	(dolencia "Paraplegia Piernas")
 	(no_recomendado
 		[Practica_Class28]
 		[Practica_Class23]
 		[Practica_Class27]
 		[Practica_Class32])
+	(parte_afectada piernas)
 	(recomendado
 		[Practica_Class28]
 		[Practica_Class20]
@@ -874,6 +877,34 @@
 		[Practica_Class21]
 		[Practica_Class35]))
 
+([Practica_Class50001] of  Lesion
+
+	(dolencia "Esguince Pie")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class27]
+		[Practica_Class36])
+	(parte_cuerpo pie)
+	(recomendado
+		[Practica_Class22]
+		[Practica_Class20])
+	(rehabilitacion FALSE)
+	(tipo Esguince))
+
+([Practica_Class50002] of  Incapacidad
+
+	(dolencia "Paraplegia Brazos")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class32]
+		[Practica_Class34])
+	(parte_afectada brazos)
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class21])
+	(requiere_ayuda FALSE))
+
 ([Practica_Class53] of  Deporte
 
 	(actividad "Baloncesto")
@@ -884,7 +915,7 @@
 		[Practica_Class31]
 		[Practica_Class18]
 		[Practica_Class36])
-	(parte_trabajada piernas))
+	(parte_trabajada piernas hombro))
 
 ([Practica_Class54] of  Calentamiento
 
@@ -926,5 +957,4 @@
 	(orientado_a [Practica_Class36])
 	(parte_trabajada pecho))
 
-
-)
+	)
