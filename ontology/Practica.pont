@@ -1,4 +1,4 @@
-; Sun Dec 09 19:31:13 CET 2018
+; Mon Dec 10 01:42:47 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -55,6 +55,11 @@
 	(single-slot duracion
 ;+		(comment "[min]")
 		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot requiere_ayuda
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot contra_indicado
@@ -159,14 +164,6 @@
 (defclass Dolencia
 	(is-a USER)
 	(role concrete)
-	(single-slot dolencia
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Enfermedad
-	(is-a Dolencia)
-	(role concrete)
 	(multislot recomendado
 		(type INSTANCE)
 ;+		(allowed-classes Objetivo)
@@ -176,7 +173,15 @@
 		(type INSTANCE)
 ;+		(allowed-classes Objetivo)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot dolencia
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
+
+(defclass Enfermedad
+	(is-a Dolencia)
+	(role concrete))
 
 (defclass Lesion
 	(is-a Dolencia)
@@ -200,13 +205,8 @@
 (defclass Incapacidad
 	(is-a Dolencia)
 	(role concrete)
-	(multislot recomendado
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot no_recomendado
-		(type INSTANCE)
-;+		(allowed-classes Objetivo)
-		(cardinality 1 ?VARIABLE)
+	(single-slot requiere_ayuda
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))

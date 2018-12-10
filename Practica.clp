@@ -3,8 +3,8 @@
 
 (defmodule MAIN (export ?ALL))
 (defmodule ASK_QUESTIONS (import MAIN ?ALL)(export ?ALL))
-(defmodule PROCESS_DATA  (import MAIN ?ALL)(export ?ALL))
-; (defmodule PROCESS_DATA  (import MAIN ?ALL)(export ?ALL))
+(defmodule ASSESSMENT_ACTIVITIES  (import MAIN ?ALL)(export ?ALL))
+(defmodule GENERATE_SESSIONS  (import MAIN ?ALL)(export ?ALL))
 (defmodule PRINT_WORKOUT (import MAIN ?ALL)(export ?ALL))
 
 (defclass MAIN::ValoracionActividades
@@ -355,12 +355,12 @@
   (declare (salience 1))
   =>
   (printout t crlf)
-  (printout t "                  <<    Data Entered   >>")
+  (printout t "                  <<    Data Entered   >>" crlf)
   (printout t crlf)
-  (focus PROCESS_DATA)
+  (focus ASSESSMENT_ACTIVITIES)
 )
 
-(defrule PROCESS_DATA::my_TEST_RULE
+(defrule ASSESSMENT_ACTIVITIES::my_TEST_RULE
   (declare (salience 100))
   ?ref <- (Persona (grupo_edad ?ag))
   =>
@@ -375,14 +375,21 @@
 
 ; Proccess the data read from the user
 
-(deffunction PROCESS_DATA::translate_nivel_to_intensidad(?nivel)
-	(if (eq ?nivel "BASICO") 				then (bind ?intensidad baja))
-	(if (eq ?nivel "MEJORA") 				then (bind ?intensidad media))
-	(if (eq ?nivel "MANTENIMIENTO") then (bind ?intensidad alta))
-	(return ?intensidad)
+(deffunction ASSESSMENT_ACTIVITIES::translate_nivel_to_digit(?nivel)
+	(if (eq ?nivel "BASICO") 				then (bind ?digit 1))
+	(if (eq ?nivel "MEJORA") 				then (bind ?digit 2))
+	(if (eq ?nivel "MANTENIMIENTO") then (bind ?digit 3))
+	(return ?digit)
 )
 
-(defrule PROCESS_DATA::ini_scores
+(deffunction ASSESSMENT_ACTIVITIES::translate_intensidad_to_digit(?intensidad)
+	(if (eq ?intensidad baja) 				then (bind ?digit 1))
+	(if (eq ?intensidad media) 				then (bind ?digit 2))
+	(if (eq ?intensidad alta) 				then (bind ?digit 3))
+	(return ?digit)
+)
+
+(defrule ASSESSMENT_ACTIVITIES::ini_scores
  	(declare (salience 99))
  	(not (puntuaciones inicializadas))
   =>
@@ -397,7 +404,7 @@
 	(assert (puntuaciones inicializadas))
 )
 
-(defrule PROCESS_DATA::find_ObjectivosRecomendados ; de momento solo para enfermedades
+(defrule ASSESSMENT_ACTIVITIES::find_ObjectivosRecomendados ; de momento solo para enfermedades
 	(declare (salience 95))
 	(not (objetivos_recomendados found))
 	(Persona (dolencias $?dolencias))
@@ -405,7 +412,7 @@
 	;;; problema amb class i template per accedir al mateix temps a objetivos_recomendados y a les actividades
 	=>
 	(progn$ (?curr-dol ?dolencias)
-		(if (or (eq (class ?curr-dol) Enfermedad) (eq (class ?curr-dol) Incapacidad)) then
+		; (if (or (eq (class ?curr-dol) Enfermedad) (eq (class ?curr-dol) Incapacidad)) then
 			(bind $?objRecomendadosEnf (send ?curr-dol get-recomendado))
 			(progn$ (?curr-objR ?objRecomendadosEnf)
 				(if (not (member$ ?curr-objR ?objs)) then
@@ -414,14 +421,14 @@
 					(bind $?objs (insert$ $?objs (+ (length$ $?objs) 1) (find-instance ((?inst Objetivo)) (and (eq ?inst:objetivo ?obj_name) (eq ?inst:intensidad ?obj_intensidad)))))
 				)
 			)
-		)
+		; )
 	)
 
 	(modify ?obj_ref (objs $?objs))
 	(assert (objetivos_recomendados found))
 )
 
-(defrule PROCESS_DATA::find_ObjetivosNoRecomendados ; de momento solo para enfermedades
+(defrule ASSESSMENT_ACTIVITIES::find_ObjetivosNoRecomendados ; de momento solo para enfermedades
 	(declare (salience 95))
 	(not (objetivos_no_recomendados found))
 	(Persona (dolencias $?dolencias))
@@ -443,22 +450,22 @@
 	(assert (objetivos_no_recomendados found))
 )
 
-(defrule PROCESS_DATA::printObjs
+(defrule ASSESSMENT_ACTIVITIES::printObjs
 	(declare (salience 90))
 	(ObjetivosRecomendados (objs $?objs_R))
 	(ObjetivosNoRecomendados (objs $?objs_NoR))
 	=>
-	(progn$ (?i_obj ?objs_R)
-		(printout t "ObjR  : " (send ?i_obj get-objetivo) "_" (send ?i_obj get-intensidad) crlf)
-	)
-	(printout t crlf)
-	(progn$ (?i_obj ?objs_NoR)
-		(printout t "ObjNoR: " (send ?i_obj get-objetivo) "_" (send ?i_obj get-intensidad) crlf)
-	)
-	(printout t crlf crlf)
+	; (progn$ (?i_obj ?objs_R)
+	; 	(printout t "ObjR  : " (send ?i_obj get-objetivo) "_" (send ?i_obj get-intensidad) crlf)
+	; )
+	; (printout t crlf)
+	; (progn$ (?i_obj ?objs_NoR)
+	; 	(printout t "ObjNoR: " (send ?i_obj get-objetivo) "_" (send ?i_obj get-intensidad) crlf)
+	; )
+	; (printout t crlf crlf)
 )
 
-(defrule PROCESS_DATA::evaluate_ActividadOrientadaAObjetivoRecomendadoEnfermedad ; iteracio sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
+(defrule ASSESSMENT_ACTIVITIES::evaluate_ActividadOrientadaAObjetivoRecomendadoEnfermedad ; iteracio sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
 	(declare (salience 50))
 	(not (evaluate_1 done))
 	(ObjetivosRecomendados (objs $?objs))
@@ -480,7 +487,7 @@
 	(assert (evaluate_1 done))
 )
 
-(defrule PROCESS_DATA::evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad ; iteracio sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
+(defrule ASSESSMENT_ACTIVITIES::evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad ; iteracio sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
 	(declare (salience 50))
 	(not (evaluate_2 done))
 	?objs_ref <- (ObjetivosNoRecomendados (objs $?objs))
@@ -495,85 +502,92 @@
 			; (if (and (eq ?i_va-index 12) (eq ?i_objA-index 1)) then (printout t "orientado_a " (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf))
 			(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar mal
 				; (if (and (eq ?i_va-index 12) (eq ?i_objA-index 1)) then (printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf))
-				(send ?i_va put-puntuacion (- (send ?i_va get-puntuacion) 250))
+				(send ?i_va put-puntuacion (- (send ?i_va get-puntuacion) 750))
 			)
 		)
 	)
 	(assert (evaluate_2 done))
 )
 
-(defrule PROCESS_DATA::evaluate_IntensidadActividadVsEstadoFisicoPersona ; iteracio (a nivell de regles) consultant les actividades:intensidad with persona:estado_fisico
+(defrule ASSESSMENT_ACTIVITIES::evaluate_IntensidadActividadVsEstadoFisicoPersona ; iteracio (a nivell de regles) consultant les actividades:intensidad with persona:estado_fisico
 	(declare (salience 50))
-	; (not (evaluate_3 done))
 	?pers <- (Persona (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
+	(not (valorado_Intensidad ?act))
 	=>
-	(printout t "Doing evaluate_3 on " (send ?act get-actividad) crlf)
-
-	(bind ?max_intensidad "baja")
 	(bind ?orientado_a (send ?act get-orientado_a))
 	(progn$ (?i_or_a ?orientado_a)
 		(bind ?i_objetivo (send ?i_or_a get-objetivo))
 		(bind ?i_intensidad (send ?i_or_a get-intensidad))
 
-		(if (eq "Padel" (send ?act get-actividad)) then (printout t "   Checking obj: " ?i_objetivo "_" ?i_intensidad crlf))
+		; esto sirve para asignar a ?nivel el nivel_X de la persona donde X es el tipo de Objetivo mismo que el ?i_objetivo actual
+		(if (eq ?i_objetivo "Cardio") 			then (bind ?nivel ?nc ))
+		(if (eq ?i_objetivo "Equilibrio") 	then (bind ?nivel ?ne ))
+		(if (eq ?i_objetivo "Flexibilidad") then (bind ?nivel ?nx ))
+		(if (eq ?i_objetivo "Fuerza") 			then (bind ?nivel ?nf ))
+		(if (eq ?i_objetivo "Resistencia") 	then (bind ?nivel ?nr ))
+		(if (eq ?i_objetivo "Salud Mental") then (bind ?nivel ?nsm))
+		; ahora si que podemos comparar con ?nivel
 
-		(if (eq ?i_objetivo "Cardio")
-			then
-				(printout t "Obj_cardio" crlf)
-				; (if (neq (format nil "%s" ?i_intensidad) ?nc)
+		(bind ?dn (translate_nivel_to_digit 			?nivel))
+		(bind ?di (translate_intensidad_to_digit  ?i_intensidad))
+		; ahora comparamos por digito (1,2,3)
 
+		(if (= ?dn ?di) ; yo_nivel_X vs obj_X_intensidad
+			then (modify-instance ?va_ref (puntuacion (+ (send ?va_ref get-puntuacion) 100))) ; puntuar BIEN pq el objetivo_i de la Actividad act coincide con el nivel del usuario en este objetivo
+			else
+				(if (> ?dn ?di) ;;; could try --> (if (and (> ?dn ?di) (= (- ?dn ?di) 1)) ;;
+					then (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 25)))
+					else (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 125)))
+				)
 		)
-		;
-		; (if (eq ?i_objetivo "equilibrio") 	then (bind ?ne ?nivel))
-		; (if (eq ?i_objetivo "flexibilidad") then (bind ?nx ?nivel))
-		; (if (eq ?i_objetivo "fuerza") 			then (bind ?nf ?nivel))
-		; (if (eq ?i_objetivo "resistencia") 	then (bind ?nr ?nivel))
-		; (if (eq ?i_objetivo "salud mental") then (bind ?nsm ?nivel))
-
-		; (printout t ?i_or_a_intensidad crlf)
-		; comparar amb el nivel_cardio de la persona
 	)
+	(assert (valorado_Intensidad ?act))
 )
 
-;;;;;;;;;;;;;;;;;;; I'm here. Primera implementacio feta. valora els exercicis segons si estan recomenats o no per la enfermetat
+(defrule ASSESSMENT_ACTIVITIES::all_processed
+	(declare (salience 1))
+	=>
+	(printout t crlf)
+	(printout t "                  <<    Actividades valoradas correctamente   >> " crlf )
+	(printout t crlf)
+	(focus GENERATE_SESSIONS)
+)
+
+; Tenemos toda las valoraciones de las actividades. Ahora procedemos a escoger las mejores para la persona y generamos 3..7 sesiones de 30min..90min
+
+(defrule GENERATE_SESSIONS::decide_how_many_sessions
+
+	=>
+
+)
+
+(defrule GENERATE_SESSIONS::all_processed
+	(declare (salience 1))
+	=>
+	(printout t crlf)
+	(printout t "                  <<    Sessiones generas correctamente   >> " crlf)
+	(printout t crlf)
+	(focus PRINT_WORKOUT)
+)
 
 ;;;; to do:
 
-;; filtrar millor per aconseguir estado_fisico. Relacio amb la edad
-;; tractat lesions!
+;; Relacio amb la edad
+;; tractat lesions::parte_cuerpo incompatibles!
+;; modificar les instancies pq nomes hi hagi una intensidad per cada objetivo ya que sino resto dos vegades maybe
 ;; generar 3..7 sessions segons estat fisic (si te moltes malaties i sha flipat baixarli)
-;; barrejar exercicis_type en les sessions
+;; barrejar exercicis_type en les sessions (el 1r de tipus Calentamiento)
 ;; anar sumant la duracio de ex_i i posarho a classe Sessio!
 ;; finally print_class_sessio
 
 
-
-(defrule PROCESS_DATA::all_processed
-	(declare (salience 1))
-	=>
-	(printout t crlf crlf "#### ValoracionActividades:" crlf crlf)
-	(assert	(all_processed done))
-)
-
-; (defrule PROCESS_DATA::recopilar "Testing..."
-;  (declare (salience 10))
-;  =>
-;  (bind ?list (find-all-instances ((?inst Actividad)) TRUE))
-;  (loop-for-count (?i 1 (length$ ?list)) do
-;   (bind ?aux (nth$ ?i ?list))
-;   ;aquí hacemos lo que queramos
-;   (printout t "Puntuacion" crlf)
-;  )
-; )
-
-(defrule PROCESS_DATA::printPointsActivity
+(defrule PRINT_WORKOUT::printPointsActivity
 	; no hace falta un loop ya que se ejecutara esta regla para cada valor de la classe ValoracionActividades
-  ; (declare (salience 1))
-	(all_processed done)
+  (declare (salience 1))
   ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
   =>
-  ; (printout t "  " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
+  (printout t "  " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
 )
 
 ; end

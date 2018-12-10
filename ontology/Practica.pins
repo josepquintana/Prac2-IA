@@ -1,10 +1,9 @@
-; Sun Dec 09 19:31:13 CET 2018
+; Mon Dec 10 01:42:47 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 (definstances instances
-
 
 ([Practica_Class0] of  Deporte
 
@@ -19,7 +18,18 @@
 ([Practica_Class1] of  Lesion
 
 	(dolencia "Luxacion_Tobillo")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class30]
+		[Practica_Class36])
 	(parte_cuerpo tobillo)
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class29]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21])
 	(rehabilitacion TRUE)
 	(tipo Luxacion))
 
@@ -236,26 +246,45 @@
 		[Practica_Class31]
 		[Practica_Class18]
 		[Practica_Class21]
-		[Practica_Class35]))
+		[Practica_Class35])
+	(requiere_ayuda FALSE))
 
 ([Practica_Class10032] of  Lesion
 
 	(dolencia "Esguince_Brazo")
+	(no_recomendado [Practica_Class34])
 	(parte_cuerpo brazo)
+	(recomendado
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21])
 	(rehabilitacion FALSE)
 	(tipo Esguince))
 
 ([Practica_Class10033] of  Lesion
 
 	(dolencia "Luxacion")
+	(no_recomendado [Practica_Class34])
 	(parte_cuerpo brazo)
+	(recomendado
+		[Practica_Class20]
+		[Practica_Class21]
+		[Practica_Class35])
 	(rehabilitacion TRUE)
 	(tipo Luxacion))
 
 ([Practica_Class10034] of  Lesion
 
 	(dolencia "Luxacion")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class34]
+		[Practica_Class36])
 	(parte_cuerpo cadera)
+	(recomendado
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21])
 	(rehabilitacion TRUE)
 	(tipo Luxacion))
 
@@ -317,7 +346,8 @@
 		[Practica_Class23]
 		[Practica_Class20]
 		[Practica_Class31]
-		[Practica_Class21]))
+		[Practica_Class21])
+	(requiere_ayuda FALSE))
 
 ([Practica_Class17] of  Enfermedad
 
@@ -450,28 +480,71 @@
 ([Practica_Class43] of  Lesion
 
 	(dolencia "Rotura_Brazo")
+	(no_recomendado
+		[Practica_Class32]
+		[Practica_Class34]
+		[Practica_Class33]
+		[Practica_Class36])
 	(parte_cuerpo brazo)
+	(recomendado
+		[Practica_Class22]
+		[Practica_Class29]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21])
 	(rehabilitacion FALSE)
 	(tipo Rotura))
 
 ([Practica_Class44] of  Lesion
 
 	(dolencia "Rotura_Pierna")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class23]
+		[Practica_Class27]
+		[Practica_Class30]
+		[Practica_Class32]
+		[Practica_Class34]
+		[Practica_Class36]
+		[Practica_Class35])
 	(parte_cuerpo pierna)
+	(recomendado
+		[Practica_Class28]
+		[Practica_Class22]
+		[Practica_Class29]
+		[Practica_Class20]
+		[Practica_Class35]
+		[Practica_Class37])
 	(rehabilitacion FALSE)
 	(tipo Rotura))
 
 ([Practica_Class45] of  Lesion
 
 	(dolencia "Rotura_Cadera")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class27]
+		[Practica_Class34]
+		[Practica_Class36]
+		[Practica_Class35])
 	(parte_cuerpo cadera)
+	(recomendado
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class31]
+		[Practica_Class21])
 	(rehabilitacion FALSE)
 	(tipo Rotura))
 
 ([Practica_Class46] of  Lesion
 
 	(dolencia "Esguince_Pierna")
+	(no_recomendado [Practica_Class34])
 	(parte_cuerpo pierna)
+	(recomendado
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class21])
 	(rehabilitacion FALSE)
 	(tipo Esguince))
 
@@ -490,7 +563,8 @@
 		[Practica_Class18]
 		[Practica_Class33]
 		[Practica_Class21]
-		[Practica_Class35]))
+		[Practica_Class35])
+	(requiere_ayuda TRUE))
 
 ([Practica_Class50] of  Enfermedad
 

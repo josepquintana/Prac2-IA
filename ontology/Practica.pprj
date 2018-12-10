@@ -1,4 +1,4 @@
-; Sun Dec 09 19:31:13 CET 2018
+; Mon Dec 10 01:42:47 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,16 +21,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Practica_ProjectKB_Class20217]
-		[Practica_ProjectKB_Class20218]
-		[Practica_ProjectKB_Class20219]
-		[Practica_ProjectKB_Class20220]
-		[Practica_ProjectKB_Class20221]
-		[Practica_ProjectKB_Class20222]
-		[Practica_ProjectKB_Class20223]
-		[Practica_ProjectKB_Class20224]
-		[Practica_ProjectKB_Class20225]
-		[Practica_ProjectKB_Class20226]))
+		[Practica_ProjectKB_Class20128]
+		[Practica_ProjectKB_Class20129]
+		[Practica_ProjectKB_Class20130]
+		[Practica_ProjectKB_Class20131]
+		[Practica_ProjectKB_Class20132]
+		[Practica_ProjectKB_Class20133]
+		[Practica_ProjectKB_Class20134]
+		[Practica_ProjectKB_Class20135]
+		[Practica_ProjectKB_Class20136]
+		[Practica_ProjectKB_Class20137]))
 
 ([CLSES_TAB] of  Widget
 
@@ -83,11 +83,11 @@
 ([KB_068609_Class1] of  Map
 
 	(entries
-		[Practica_ProjectKB_Class20227]
-		[Practica_ProjectKB_Class20228]
-		[Practica_ProjectKB_Class20230]
-		[Practica_ProjectKB_Class20231])
-	(referenced_maps [Practica_ProjectKB_Class20229]))
+		[Practica_ProjectKB_Class20138]
+		[Practica_ProjectKB_Class20139]
+		[Practica_ProjectKB_Class20141]
+		[Practica_ProjectKB_Class20142])
+	(referenced_maps [Practica_ProjectKB_Class20140]))
 
 ([KB_068609_Class132] of  String
 
@@ -181,7 +181,7 @@
 
 	(properties [Practica_ProjectKB_Class134]))
 
-([KB_923297_Class5] of  Map
+([KB_770313_Class5] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List
@@ -331,108 +331,95 @@
 ([Practica_ProjectKB_Class20] of  Property_List
 )
 
-([Practica_ProjectKB_Class20082] of  Widget
+([Practica_ProjectKB_Class20081] of  Widget
 
-	(height 120)
+	(height 60)
 	(is_hidden FALSE)
-	(name "no_recomendado")
-	(property_list [Practica_ProjectKB_Class20083])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(name "Practica_Class20000")
+	(property_list [Practica_ProjectKB_Class20082])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 0)
-	(y 120))
+	(y 180))
 
-([Practica_ProjectKB_Class20083] of  Property_List
+([Practica_ProjectKB_Class20082] of  Property_List
+)
 
-	(properties
-		[Practica_ProjectKB_Class20084]
-		[Practica_ProjectKB_Class20085]))
-
-([Practica_ProjectKB_Class20084] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Practica_ProjectKB_Class20085] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([Practica_ProjectKB_Class20217] of  String
+([Practica_ProjectKB_Class20128] of  String
 
 	(name "Calentamiento")
 	(string_value "{C_}actividad{_}duracion{min}"))
 
-([Practica_ProjectKB_Class20218] of  String
+([Practica_ProjectKB_Class20129] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Practica_ProjectKB_Class20219] of  String
+([Practica_ProjectKB_Class20130] of  String
 
 	(name "Incapacidad")
 	(string_value "{I_}dolencia"))
 
-([Practica_ProjectKB_Class20220] of  String
-
-	(name "Ejercicio")
-	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
-
-([Practica_ProjectKB_Class20221] of  String
+([Practica_ProjectKB_Class20131] of  String
 
 	(name "Objetivo")
 	(string_value "{O_}objetivo{_}intensidad"))
 
-([Practica_ProjectKB_Class20222] of  String
+([Practica_ProjectKB_Class20132] of  String
 
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
+	(name "Ejercicio")
+	(string_value "{E_}actividad{_}orientado_a{_}duracion{min}"))
 
-([Practica_ProjectKB_Class20223] of  String
+([Practica_ProjectKB_Class20133] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([Practica_ProjectKB_Class20224] of  String
+([Practica_ProjectKB_Class20134] of  String
 
-	(name "Deporte")
-	(string_value "{D_}actividad{_}duracion{min}"))
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
 
-([Practica_ProjectKB_Class20225] of  String
+([Practica_ProjectKB_Class20135] of  String
 
 	(name "Lesion")
 	(string_value "{L_}tipo{_}parte_cuerpo{_}rehabilitacion"))
 
-([Practica_ProjectKB_Class20226] of  String
+([Practica_ProjectKB_Class20136] of  String
+
+	(name "Deporte")
+	(string_value "{D_}actividad{_}duracion{min}"))
+
+([Practica_ProjectKB_Class20137] of  String
 
 	(name "Enfermedad")
 	(string_value "{E_}dolencia"))
 
-([Practica_ProjectKB_Class20227] of  Map_Entry
+([Practica_ProjectKB_Class20138] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class20228] of  Map_Entry
+([Practica_ProjectKB_Class20139] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([Practica_ProjectKB_Class20229] of  Map
+([Practica_ProjectKB_Class20140] of  Map
 )
 
-([Practica_ProjectKB_Class20230] of  Map_Entry
+([Practica_ProjectKB_Class20141] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "Practica_ProjectKB_Class20229")
+	(value "Practica_ProjectKB_Class20140")
 	(value_class "java.util.Map"))
 
-([Practica_ProjectKB_Class20231] of  Map_Entry
+([Practica_ProjectKB_Class20142] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
@@ -720,8 +707,8 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_FACET_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[STANDARD_FACET_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
 		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
