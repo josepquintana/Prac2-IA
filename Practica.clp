@@ -21,6 +21,9 @@
 	; (slot final?)
 )
 
+; (defglobal ?*min_duracion_sesion* = 0)
+; (defglobal ?*max_duracion_sesion* = 0)
+
 (deftemplate MAIN::ObjetivosRecomendados
 	(multislot objs						(type INSTANCE)) ; instance of Objetivo que es recomendado alguna de las enfermedades de la Persona
 )
@@ -592,8 +595,8 @@
 	(return ?digit)
 )
 
-(deffunction GENERATE_SESSIONS::how_many_workout_days(?dias_act ?nc ?ne ?nx ?nf ?nr ?nsm)
-	; determina el numero de sesiones de actividades que vamos a recomendar en funcion de el nivel en cada objetivo y lo habitualmente que realiza ejercicio fisico
+(deffunction GENERATE_SESSIONS::get_nivel_average(?nc ?ne ?nx ?nf ?nr ?nsm)
+	; determina el la media del nivel de la persona
 	(bind ?dc (get_digit_lvl ?nc))
 	(bind ?de (get_digit_lvl ?ne))
 	(bind ?dx (get_digit_lvl ?nx))
@@ -607,6 +610,13 @@
 
 	(bind ?sum (+ ?sum1 ?sum2))
 	(bind ?sum (+ ?sum ?sum3))
+
+	(return ?sum)
+)
+
+(deffunction GENERATE_SESSIONS::how_many_workout_days(?dias_act ?nc ?ne ?nx ?nf ?nr ?nsm)
+	; determina el numero de sesiones de actividades que vamos a recomendar en funcion de el nivel en cada objetivo y lo habitualmente que realiza ejercicio fisico
+	(bind ?sum (get_nivel_average ?nc ?ne ?nx ?nf ?nr ?nsm))
 
 	(if (< ?sum 12) then
 		(if (< ?dias_act 5)
@@ -634,29 +644,17 @@
 	(return ?sesiones)
 )
 
-
 (defrule GENERATE_SESSIONS::determine_how_many_workout_days
 	(declare (salience 99))
 	(not (workout_days determined))
 	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	=>
-	(bind $?acts_validas (find-all-instances ((?inst ValoracionActividades)) (> (send ?inst get-puntuacion) 0)))
-	(bind ?duracion_total 0)
-	(progn$ (?i_act_valida ?acts_validas)
-		(bind ?act (send ?i_act_valida get-actividad))
-		(bind ?act_duracion (send ?act get-duracion))
-		(bind ?duracion_total (+ ?duracion_total ?act_duracion))
-	)
-	(printout t "DD " ?duracion_total crlf)
-
 	(bind ?sesiones (how_many_workout_days ?da ?nc ?ne ?nx ?nf ?nr ?nsm))
 	(printout t "n_sessiones " ?sesiones crlf )
-
 	(loop-for-count (?d 1 ?sesiones) do
 		(printout t ?d crlf)
 		(make-instance (gensym) of SesionEjercicios (dia ?d) (actividades (create$)) (duracion 0))
 	)
-
 	(assert (workout_days determined))
 )
 
@@ -665,7 +663,8 @@
 	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	(not (created_sesion ?dia))
 	=>
-	(printout t " > Sesion Ejes Dia " ?dia crlf)
+	(printout t " >>>> Sesion Ejes Dia " ?dia crlf)
+	; (printout t "MAX_DUR: " ?*max_duracion_sesion* crlf )
 
 	(while (not (> (send ?se_ref get-duracion) 90)) do
 
@@ -673,15 +672,10 @@
 		(bind ?max_val_act (maximum_slot ?all_val_acts get-puntuacion -99999))
 		(bind ?max_act (send ?max_val_act get-actividad))
 
-		(printout t "ACT: " (send ?max_act get-actividad) crlf)
-
 		(slot-insert$ ?se_ref actividades (+ (length$ (send ?se_ref get-actividades)) 1) ?max_act)
-
 		(send ?se_ref put-duracion (+ (send ?se_ref get-duracion) (send ?max_act get-duracion)))
-		(printout t "Length "(length$ (send ?se_ref get-actividades)) crlf)
 
 		(send ?max_val_act delete) ; eliminar la instancia con mas puntuacion despues de añadirla
-
 	)
 	(assert (created_sesion ?dia))
 )
