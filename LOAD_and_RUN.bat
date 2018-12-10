@@ -6,11 +6,8 @@
 (reset)
 (run)
 Vinicius Jr
-98
-si
-9
+65
 no
-si
-2
-7
+no
+no
 si
