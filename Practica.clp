@@ -761,7 +761,11 @@
 	(printout t crlf " > Dia:             " ?dia)
 	(printout t crlf " > Actividades:     ")
 	(progn$ (?act ?actividades)
-	  (printout t crlf "    + " (send ?act get-actividad) " [" (send ?act get-duracion) " min] ")
+	  (printout t crlf "    + " (send ?act get-actividad) " ")
+		(bind $?or_a (send ?act get-orientado_a))
+		(if (eq Calentamiento (class ?act)) then (printout t  (send (nth$ 1 ?or_a) get-intensidad)))
+		(printout t " [" (send ?act get-duracion) " min] ")
+
 	)
 	(printout t crlf crlf " > Duracion:        " ?duracion " min")
 	(printout t crlf crlf "____________________________________________" crlf)
