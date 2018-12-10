@@ -364,7 +364,7 @@
   (focus ASSESSMENT_ACTIVITIES)
 )
 
-; Proccess the data read from the user
+; Proccess the data read from the user 
 
 (deffunction ASSESSMENT_ACTIVITIES::translate_nivel_to_digit(?nivel)
 	(if (eq ?nivel "BASICO") 				then (bind ?digit 1))
