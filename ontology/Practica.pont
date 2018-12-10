@@ -1,4 +1,4 @@
-; Mon Dec 10 22:48:46 CET 2018
+; Mon Dec 10 23:08:06 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,11 +7,6 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(multislot parte_afectada
-		(type SYMBOL)
-		(allowed-values piernas brazos cerebro)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
 	(single-slot inte
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -79,11 +74,10 @@
 		(cardinality 1 ?VARIABLE)
 ;+		(inverse-slot recomendado)
 		(create-accessor read-write))
-	(multislot parte_trabajada
-;+		(comment "todas: solo usadas en Deporte")
+	(single-slot parte_trabajada
 		(type SYMBOL)
 		(allowed-values pecho espalda biceps triceps hombro abdominales piernas)
-		(cardinality 1 ?VARIABLE)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot actividad
 		(type STRING)
@@ -91,7 +85,7 @@
 		(create-accessor read-write))
 	(single-slot parte_cuerpo
 		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso tobillo pie)
+		(allowed-values pierna brazo espalda cadera torso tobillo)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot dolencia
@@ -112,11 +106,10 @@
 (defclass Actividad
 	(is-a USER)
 	(role concrete)
-	(multislot parte_trabajada
-;+		(comment "todas: solo usadas en Deporte")
+	(single-slot parte_trabajada
 		(type SYMBOL)
 		(allowed-values pecho espalda biceps triceps hombro abdominales piernas)
-		(cardinality 1 ?VARIABLE)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot duracion
 ;+		(comment "[min]")
@@ -200,7 +193,7 @@
 		(create-accessor read-write))
 	(single-slot parte_cuerpo
 		(type SYMBOL)
-		(allowed-values pierna brazo espalda cadera torso tobillo pie)
+		(allowed-values pierna brazo espalda cadera torso tobillo)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot rehabilitacion
@@ -212,11 +205,6 @@
 (defclass Incapacidad
 	(is-a Dolencia)
 	(role concrete)
-	(multislot parte_afectada
-		(type SYMBOL)
-		(allowed-values piernas brazos cerebro)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
 	(single-slot requiere_ayuda
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
