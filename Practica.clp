@@ -5,7 +5,7 @@
 (defmodule ASK_QUESTIONS					(import MAIN ?ALL)(export ?ALL))
 (defmodule ASSESSMENT_ACTIVITIES  (import MAIN ?ALL)(export ?ALL))
 (defmodule GENERATE_SESSIONS  		(import MAIN ?ALL)(export ?ALL))
-(defmodule PRINT_WORKOUT 					(import MAIN ?ALL)(export ?ALL))
+(defmodule SHOW_SOLUTION 					(import MAIN ?ALL)(export ?ALL))
 
 (defclass MAIN::ValoracionActividades
   (is-a USER) (role concrete)
@@ -21,8 +21,8 @@
 	; (slot final?)
 )
 
-; (defglobal ?*min_duracion_sesion* = 0)
-; (defglobal ?*max_duracion_sesion* = 0)
+(defglobal ?*min_duracion_sesion* = 0)
+(defglobal ?*max_duracion_sesion* = 0)
 
 (deftemplate MAIN::ObjetivosRecomendados
 	(multislot objs						(type INSTANCE)) ; instance of Objetivo que es recomendado alguna de las enfermedades de la Persona
@@ -644,15 +644,35 @@
 	(return ?sesiones)
 )
 
-(defrule GENERATE_SESSIONS::determine_how_many_workout_days
+(defrule GENERATE_SESSIONS::set_MinMaxDuracionSesion
 	(declare (salience 99))
+	(not (MinMaxDuracion set))
+	?pers <- (Persona (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
+	=>
+	(bind ?sum (get_nivel_average ?nc  ?ne ?nx ?nf ?nr ?nsm))
+	(if (< ?sum 12) then
+		(bind ?*min_duracion_sesion* 30)
+		(bind ?*max_duracion_sesion* 60)
+	)
+	(if (and (>= ?sum 12) (< ?sum 18)) then
+		(bind ?*min_duracion_sesion* 45)
+		(bind ?*max_duracion_sesion* 75)
+	)
+	(if (>= ?sum 18) then
+		(bind ?*min_duracion_sesion* 60)
+		(bind ?*max_duracion_sesion* 90)
+	)
+	(assert (MinMaxDuracion set))
+)
+
+(defrule GENERATE_SESSIONS::determine_how_many_workout_days
+	(declare (salience 98))
 	(not (workout_days determined))
 	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	=>
 	(bind ?sesiones (how_many_workout_days ?da ?nc ?ne ?nx ?nf ?nr ?nsm))
 	(printout t "n_sessiones " ?sesiones crlf )
 	(loop-for-count (?d 1 ?sesiones) do
-		(printout t ?d crlf)
 		(make-instance (gensym) of SesionEjercicios (dia ?d) (actividades (create$)) (duracion 0))
 	)
 	(assert (workout_days determined))
@@ -663,10 +683,12 @@
 	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	(not (created_sesion ?dia))
 	=>
-	(printout t " >>>> Sesion Ejes Dia " ?dia crlf)
-	; (printout t "MAX_DUR: " ?*max_duracion_sesion* crlf )
+	(printout t " >>>> Generatin Sesion Ejs Dia " ?dia crlf)
 
-	(while (not (> (send ?se_ref get-duracion) 90)) do
+	(while (not (> (send ?se_ref get-duracion) ?*max_duracion_sesion*)) do
+
+	;; si es la primera iteracio cardar un Calentamiento
+
 
 		(bind $?all_val_acts (find-all-instances ((?inst ValoracionActividades)) TRUE))
 		(bind ?max_val_act (maximum_slot ?all_val_acts get-puntuacion -99999))
@@ -686,7 +708,7 @@
 	(printout t crlf)
 	(printout t "                  <<    Sessiones generadas correctamente   >> " crlf)
 	(printout t crlf)
-	(focus PRINT_WORKOUT)
+	(focus SHOW_SOLUTION)
 )
 
 ;;;; to do:
@@ -699,7 +721,7 @@
 ;; anar sumant la duracio de ex_i i posarho a classe Sessio!
 ;; finally print_class_sessio
 
-(defrule PRINT_WORKOUT::print_SesionEjercicios
+(defrule SHOW_SOLUTION::print_SesionEjercicios
 	(declare (salience 99))
 	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	=>
