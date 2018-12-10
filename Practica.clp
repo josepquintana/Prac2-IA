@@ -218,7 +218,7 @@
 	?ref <- (Persona (dolencias $?dolencias))
   =>
 	(if (ask_question_yes_no "Sufre alguna incapacidad?") then
-		(bind ?BD_incapacidades (create$ "Paraplegia" "Paralisis Cerebral" "Distrofia Muscular"))
+		(bind ?BD_incapacidades (create$ "Paraplegia Brazos" "Paraplegia Piernas" "Paralisis Cerebral" "Distrofia Muscular"))
     (bind ?list_answers (ask_question_multichoice "Cuales?" ?BD_incapacidades))
     (progn$ (?curr-answer ?list_answers)
 			(bind ?inc (nth$ ?curr-answer ?BD_incapacidades))
@@ -250,7 +250,7 @@
 		(if (= 3 ?curr-tipo) then (bind ?tipo Luxacion))
 
 		(printout t "Referente a su lesion numero " ?curr-tipo-index " de tipo " ?tipo " -> ")
-		(bind ?BD_partes_cuerpo (create$ Pierna Brazo Espalda Cadera Torso Tobillo))
+		(bind ?BD_partes_cuerpo (create$ Pierna Brazo Espalda Cadera Torso Tobillo Pie))
 		(bind ?answer (ask_question_one_choice "En que parte del cuerpo sufre la lesion?" ?BD_partes_cuerpo))
 
 		(bind ?parte_cuerpo (nth$ ?answer ?BD_partes_cuerpo))
@@ -364,7 +364,23 @@
   (focus ASSESSMENT_ACTIVITIES)
 )
 
-; Proccess the data read from the user 
+; Proccess the data read from the user
+
+(deffunction ASSESSMENT_ACTIVITIES::translate_to_parte_trabajada(?parte_cuerpo)
+	(if (eq ?parte_cuerpo pierna) 	then (bind ?parte_trabajada piernas))
+	(if (eq ?parte_cuerpo brazo) 		then (bind ?parte_trabajada biceps))
+	(if (eq ?parte_cuerpo espalda) 	then (bind ?parte_trabajada espalda))
+	(if (eq ?parte_cuerpo cadera) 	then (bind ?parte_trabajada abdominales))
+	(if (eq ?parte_cuerpo torso) 		then (bind ?parte_trabajada pecho))
+	(if (eq ?parte_cuerpo tobillo) 	then (bind ?parte_trabajada piernas))
+	(if (eq ?parte_cuerpo pie) 			then (bind ?parte_trabajada piernas))
+
+	(if (eq ?parte_cuerpo piernas) 	then (bind ?parte_trabajada piernas))
+	(if (eq ?parte_cuerpo brazos) 	then (bind ?parte_trabajada piernas))
+	(if (eq ?parte_cuerpo cerebro)	then (bind ?parte_trabajada null))
+
+	(return ?parte_trabajada)
+)
 
 (deffunction ASSESSMENT_ACTIVITIES::translate_nivel_to_digit(?nivel)
 	(if (eq ?nivel "BASICO") 				then (bind ?digit 1))
@@ -389,7 +405,6 @@
 		; (printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "_" (send ?act-i get-parte_trabajada) crlf)
 		(make-instance (gensym) of ValoracionActividades (actividad ?act-i) (puntuacion 0))
 	)
-	; (printout t "DB_Actividades: " (length$ (find-all-instances ((?it ValoracionActividades)) TRUE)) crlf)
 	(assert (ObjetivosRecomendados))
 	(assert (ObjetivosNoRecomendados))
 	(assert (puntuaciones inicializadas))
@@ -486,6 +501,45 @@
 	(assert (valorado_ObjNR ?act))
 )
 
+(defrule ASSESSMENT_ACTIVITIES::evaluate_ParteCuerpoLesion ; mirant la Activitat ?act i consultant la parte_cuerpo lesionada" de l'usuari -> puntuar Acitivitat
+	(declare (salience 50))
+	?pers <- (Persona (dolencias $?dolencias))
+	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(not (valorado_ParteCuerpoLesion ?act))
+	=>
+	(progn$ (?i_dol ?dolencias) ; tots els objectius orientats_a del l'activitat ?act
+		(if (eq (class ?i_dol) Lesion) then
+			(bind ?parte_cuerpo (send ?i_dol get-parte_cuerpo))
+			(if (member$ (translate_to_parte_trabajada ?parte_cuerpo) (send ?act get-parte_trabajada)) then
+				(if (eq (send ?i_dol get-rehabilitacion) TRUE)
+					then	(send ?va_ref put-puntuacion (- (send ?va_ref get-puntuacion) 0))			; lesionado pero quiere hacer rehabilitacion
+					else 	(send ?va_ref put-puntuacion (- (send ?va_ref get-puntuacion) 10000))	; lesionada para trabjar esta parte
+				)
+			)
+		)
+	)
+	(assert (valorado_ParteCuerpoLesion ?act))
+)
+
+(defrule ASSESSMENT_ACTIVITIES::evaluate_ParteCuerpoIncapacidad ; mirant la Activitat ?act i consultant la parte_cuerpo "no usable"" de l'usuari -> puntuar Acitivitat
+	(declare (salience 50))
+	?pers <- (Persona (dolencias $?dolencias))
+	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(not (valorado_ParteCuerpoIncapacidad ?act))
+	=>
+	(progn$ (?i_dol ?dolencias) ; tots els objectius orientats_a del l'activitat ?act
+		(if (eq (class ?i_dol) Incapacidad) then
+			(bind $?parte_afectada (send ?i_dol get-parte_afectada))
+			(progn$ (?i_pa ?parte_afectada)
+				(if (member$ (translate_to_parte_trabajada ?i_pa) (send ?act get-parte_trabajada)) then
+					(send ?va_ref put-puntuacion (- (send ?va_ref get-puntuacion) 10000)) ;; incapacitado para trabajar esta parte
+				)
+			)
+		)
+	)
+	(assert (valorado_ParteCuerpoIncapacidad ?act))
+)
+
 (defrule ASSESSMENT_ACTIVITIES::evaluate_IntensidadActividadVsEstadoFisicoPersona ; iteracio (a nivell de regles) consultant les actividades:intensidad with persona:estado_fisico
 	(declare (salience 50))
 	?pers <- (Persona (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
@@ -514,7 +568,7 @@
 			then (modify-instance ?va_ref (puntuacion (+ (send ?va_ref get-puntuacion) 150))) ; puntuar BIEN pq el objetivo_i de la Actividad act coincide con el nivel del usuario en este objetivo
 			else
 				(if (> ?dn ?di) ;;; could try --> (if (and (> ?dn ?di) (= (- ?dn ?di) 1)) ;;
-					then (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 25)))
+					then (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 10)))
 					else (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 125)))
 				)
 		)
@@ -707,7 +761,11 @@
 	(printout t crlf " > Dia:             " ?dia)
 	(printout t crlf " > Actividades:     ")
 	(progn$ (?act ?actividades)
-	  (printout t crlf "    + " (send ?act get-actividad) " [" (send ?act get-duracion) " min] ")
+	  (printout t crlf "    + " (send ?act get-actividad) " ")
+		(bind $?or_a (send ?act get-orientado_a))
+		(if (eq Calentamiento (class ?act)) then (printout t  (send (nth$ 1 ?or_a) get-intensidad)))
+		(printout t " [" (send ?act get-duracion) " min] ")
+
 	)
 	(printout t crlf crlf " > Duracion:        " ?duracion " min")
 	(printout t crlf crlf "____________________________________________" crlf)

@@ -11,7 +11,7 @@ Práctica de Sistemas Basados en el Conocimiento - IA
 ## TO DO:
 - [ ] Relacio amb grupo_edad
 - [ ] Probar casos extrems (0 0 0 0 0) or (7 7 7 7 7)
-- [ ] Tractat lesions::parte_cuerpo vs parte_trabajada incompatibles!
+- [x] Tractat lesions::parte_cuerpo vs parte_trabajada incompatibles!
 - [ ] SesionEjercicios: ejercicios de un mismo tipo
 - [ ] posar més instancies
 - [ ] \(opcional) modificar les instancies pq nomes hi hagi una intensidad per cada objetivo ya que sino resto dos vegades maybe
