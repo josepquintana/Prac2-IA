@@ -13,7 +13,7 @@
 	(slot puntuacion 					(type INTEGER)(default 0)(create-accessor read-write))
 )
 
-(defclass MAIN::SesionEjercicios
+(defclass MAIN::SesionActividades
 	(is-a USER) (role concrete)
 	(slot dia 								(type INTEGER)(create-accessor read-write))
 	(multislot actividades		(type INSTANCE)(create-accessor read-write))
@@ -645,21 +645,21 @@
 	=>
 	(bind ?n_sesiones (how_many_workout_days ?da ?nc ?ne ?nx ?nf ?nr ?nsm))
 	(loop-for-count (?d 1 ?n_sesiones) do
-		(make-instance (gensym) of SesionEjercicios (dia ?d) (actividades (create$)) (duracion 0))
+		(make-instance (gensym) of SesionActividades (dia ?d) (actividades (create$)) (duracion 0))
 	)
 	(assert (workout_days determined))
 )
 
 (defrule GENERATE_SESSIONS::generate
 	(declare (salience 50))
-	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
+	?se_ref <- (object (is-a SesionActividades) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	(not (created_sesion ?dia))
 	=>
 	(printout t " >>>> Generating Sesion Acts del dia " ?dia crlf)
 	(bind ?it 1)
 
-	(while (not (> (send ?se_ref get-duracion) ?*max_duracion_sesion*)) do
-
+	(while (not (> (send ?se_ref get-duracion) ?*max_duracion_sesion*))
+		do
 		(if (<= ?it 2) ; si es la 1a o 2a iteracio (1r i 2n exercici de la Sessio) posar-hi un Calentamiento
 			then
 				(bind $?all_val_acts (find-all-instances ((?inst ValoracionActividades))  (eq Calentamiento (class (send ?inst get-actividad)))))
@@ -699,9 +699,9 @@
 	(assert (print_ini done))
 )
 
-(defrule SHOW_SOLUTION::print_SesionEjercicios
+(defrule SHOW_SOLUTION::print_SesionActividades
 	(declare (salience 50))
-	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
+	?se_ref <- (object (is-a SesionActividades) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	=>
 	(printout t crlf)
 	(printout t crlf " > Dia:             " ?dia)
