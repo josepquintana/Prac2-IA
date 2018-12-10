@@ -1,4 +1,4 @@
-; Mon Dec 10 21:48:40 CET 2018
+; Mon Dec 10 22:48:46 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -956,5 +956,4 @@
 	(material TRUE)
 	(orientado_a [Practica_Class36])
 	(parte_trabajada pecho))
-
-	)
+)
