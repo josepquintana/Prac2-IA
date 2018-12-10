@@ -288,9 +288,9 @@
 
 (defrule ASK_QUESTIONS::set_NivelesObjetivos
 	(declare (salience 5))
+	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	(not (niveles set))
 	(not (is_Sedentary))
-	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	=>
 	(bind ?nivel "none")
 	(bind $?niveles (create$ "cardio" "equilibrio" "flexibilidad" "fuerza" "resistencia" "salud mental"))
@@ -336,8 +336,8 @@
   =>
   (printout t crlf crlf "###### > Datos Persona" crlf)
 	(printout t crlf " > Nombre:             " ?nombre)
-  (printout t crlf " > Edad:               " ?e " anos [" ?ge "]")
-  (printout t crlf " > Dolencias:          ")
+  (printout t crlf " > Edad:               " ?e)
+  (printout t crlf " > Dolencias:          " )
   (if (>= (length$ $?dols) 1) then
 		(progn$ (?curr-dol ?dols)
    		(printout t crlf "    + " (send ?curr-dol get-dolencia))
@@ -362,19 +362,6 @@
   (printout t "                  <<    Data Entered   >>" crlf)
   (printout t crlf)
   (focus ASSESSMENT_ACTIVITIES)
-)
-
-(defrule ASSESSMENT_ACTIVITIES::my_TEST_RULE
-  (declare (salience 100))
-  ?ref <- (Persona (grupo_edad ?ag))
-  =>
-  (printout t crlf)
-  (printout t crlf)
-  (printout t "#######  <MY TEST RULE> #######" crlf)
-
-  (printout t crlf "####### </MY TEST RULE> #######")
-  (printout t crlf)
-  (printout t crlf)
 )
 
 ; Proccess the data read from the user
@@ -469,48 +456,34 @@
 	; (printout t crlf crlf)
 )
 
-(defrule ASSESSMENT_ACTIVITIES::evaluate_ActividadOrientadaAObjetivoRecomendadoEnfermedad ; iteracio sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
+(defrule ASSESSMENT_ACTIVITIES::evaluate_ActividadOrientadaAObjetivoRecomendadoEnfermedad ; mirant la Activitat ?act i consultant els objectius_Rec dels templates -> puntuar Acitivitat
 	(declare (salience 50))
-	(not (evaluate_1 done))
 	(ObjetivosRecomendados (objs $?objs))
-	; ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
-	; ferho amb ref nomes al deftemplate i dewspres fer un find-all-instances de ValoracionActividades!!!!!
+	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(not (valorado_ObjR ?act))
 	=>
-	(bind $?all_valorar_actividades (find-all-instances ((?inst ValoracionActividades)) TRUE))
-	(progn$ (?i_va ?all_valorar_actividades)
-		(bind ?i_act (send ?i_va get-actividad))
-		; (printout t ">>> " (send ?i_act get-actividad) crlf)
-		(bind $?objs_Actividad (send ?i_act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
-		(progn$ (?i_objA ?objs_Actividad) ;; tots els objectius orientats_a del l'activitat ?act
-			; (printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf)
-			(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
-				(send ?i_va put-puntuacion (+ (send ?i_va get-puntuacion) 250))
-			)
+	(bind $?objs_Actividad (send ?act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
+	(progn$ (?i_objA ?objs_Actividad) ; tots els objectius orientats_a del l'activitat ?act
+		(if (member$ ?i_objA ?objs) then ; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar bien
+			(send ?va_ref put-puntuacion (+ (send ?va_ref get-puntuacion) 250))
 		)
 	)
-	(assert (evaluate_1 done))
+	(assert (valorado_ObjR ?act))
 )
 
-(defrule ASSESSMENT_ACTIVITIES::evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad ; iteracio sobre les Activiats consultant els objectius dels templates -> puntuar Acitivitat
+(defrule ASSESSMENT_ACTIVITIES::evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad ; mirant la Activitat ?act i consultant els objectius_No_Rec dels templates -> puntuar Acitivitat
 	(declare (salience 50))
-	(not (evaluate_2 done))
-	?objs_ref <- (ObjetivosNoRecomendados (objs $?objs))
+	(ObjetivosNoRecomendados (objs $?objs))
+	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(not (valorado_ObjNR ?act))
 	=>
-	; (printout t "evaluate_ActividadOrientadaAObjetivoNoRecomendadoEnfermedad" crlf)
-	(bind $?all_valorar_actividades (find-all-instances ((?inst ValoracionActividades)) TRUE))
-	(progn$ (?i_va ?all_valorar_actividades)
-		(bind ?i_act (send ?i_va get-actividad))
-		; (if (eq ?i_va-index 12) then (printout t "Act: " (send ?i_act get-actividad) crlf))
-		(bind $?objs_Actividad (send ?i_act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
-		(progn$ (?i_objA ?objs_Actividad) ;; tots els objectius orientats_a del l'activitat ?act
-			; (if (and (eq ?i_va-index 12) (eq ?i_objA-index 1)) then (printout t "orientado_a " (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf))
-			(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar mal
-				; (if (and (eq ?i_va-index 12) (eq ?i_objA-index 1)) then (printout t "     O_" (send ?i_objA get-objetivo) "_" (send ?i_objA get-intensidad) crlf))
-				(send ?i_va put-puntuacion (- (send ?i_va get-puntuacion) 750))
-			)
+	(bind $?objs_Actividad (send ?act get-orientado_a)) ; Actividad >----->>orientado_a>>-----> Objetivo
+	(progn$ (?i_objA ?objs_Actividad) ;; tots els objectius orientats_a del l'activitat ?act
+		(if (member$ ?i_objA ?objs) then ;; si el i_obj de la Actividad iteradaEnLaRegla es de los recomendados --> puntuar mal
+			(send ?va_ref put-puntuacion (- (send ?va_ref get-puntuacion) 750))
 		)
 	)
-	(assert (evaluate_2 done))
+	(assert (valorado_ObjNR ?act))
 )
 
 (defrule ASSESSMENT_ACTIVITIES::evaluate_IntensidadActividadVsEstadoFisicoPersona ; iteracio (a nivell de regles) consultant les actividades:intensidad with persona:estado_fisico
@@ -670,9 +643,8 @@
 	(not (workout_days determined))
 	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	=>
-	(bind ?sesiones (how_many_workout_days ?da ?nc ?ne ?nx ?nf ?nr ?nsm))
-	(printout t "n_sessiones " ?sesiones crlf )
-	(loop-for-count (?d 1 ?sesiones) do
+	(bind ?n_sesiones (how_many_workout_days ?da ?nc ?ne ?nx ?nf ?nr ?nsm))
+	(loop-for-count (?d 1 ?n_sesiones) do
 		(make-instance (gensym) of SesionEjercicios (dia ?d) (actividades (create$)) (duracion 0))
 	)
 	(assert (workout_days determined))
@@ -683,21 +655,26 @@
 	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	(not (created_sesion ?dia))
 	=>
-	(printout t " >>>> Generatin Sesion Ejs Dia " ?dia crlf)
+	(printout t " >>>> Generating Sesion Acts del dia " ?dia crlf)
+	(bind ?it 1)
 
 	(while (not (> (send ?se_ref get-duracion) ?*max_duracion_sesion*)) do
 
-	;; si es la primera iteracio cardar un Calentamiento
+		(if (<= ?it 2) ; si es la 1a o 2a iteracio (1r i 2n exercici de la Sessio) posar-hi un Calentamiento
+			then
+				(bind $?all_val_acts (find-all-instances ((?inst ValoracionActividades))  (eq Calentamiento (class (send ?inst get-actividad)))))
+				(bind ?it (+ ?it 1))
+			else
+				(bind $?all_val_acts (find-all-instances ((?inst ValoracionActividades)) (neq Calentamiento (class (send ?inst get-actividad)))))
+		)
 
-
-		(bind $?all_val_acts (find-all-instances ((?inst ValoracionActividades)) TRUE))
 		(bind ?max_val_act (maximum_slot ?all_val_acts get-puntuacion -99999))
 		(bind ?max_act (send ?max_val_act get-actividad))
 
 		(slot-insert$ ?se_ref actividades (+ (length$ (send ?se_ref get-actividades)) 1) ?max_act)
 		(send ?se_ref put-duracion (+ (send ?se_ref get-duracion) (send ?max_act get-duracion)))
 
-		(send ?max_val_act delete) ; eliminar la instancia con mas puntuacion despues de añadirla
+		(send ?max_val_act delete) ; eliminar la instancia_con_mas_puntuacion despues de añadirla
 	)
 	(assert (created_sesion ?dia))
 )
@@ -711,29 +688,41 @@
 	(focus SHOW_SOLUTION)
 )
 
-;;;; to do:
+; escribir por pantalla la recomendacion generada
 
-;; Relacio amb la edad
-;; tractat lesions::parte_cuerpo incompatibles!
-;; modificar les instancies pq nomes hi hagi una intensidad per cada objetivo ya que sino resto dos vegades maybe
-;; generar 3..7 sessions segons estat fisic (si te moltes malaties i sha flipat baixarli)
-;; barrejar exercicis_type en les sessions (el 1r de tipus Calentamiento)
-;; anar sumant la duracio de ex_i i posarho a classe Sessio!
-;; finally print_class_sessio
+(defrule SHOW_SOLUTION::print_ini
+	(declare (salience 99))
+	(not (print_ini done))
+	=>
+	(printout t crlf crlf)
+	(printout t crlf "#######   Sessiones de Actividades   ####### " crlf)
+	(assert (print_ini done))
+)
 
 (defrule SHOW_SOLUTION::print_SesionEjercicios
-	(declare (salience 99))
+	(declare (salience 50))
 	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	=>
-	(printout t crlf crlf "###### > Session Ejercicios" crlf)
+	(printout t crlf)
 	(printout t crlf " > Dia:             " ?dia)
 	(printout t crlf " > Actividades:     ")
 	(progn$ (?act ?actividades)
-		  (printout t crlf "    + " (send ?act get-actividad) "_" (send ?act get-duracion) "min ")
+	  (printout t crlf "    + " (send ?act get-actividad) " [" (send ?act get-duracion) " min] ")
 	)
 	(printout t crlf crlf " > Duracion:        " ?duracion " min")
-	(printout t crlf crlf "########################################" crlf)
+	(printout t crlf crlf "____________________________________________" crlf)
+)
 
+(defrule SHOW_SOLUTION::end "last rule"
+	(declare (salience 1))
+	(not (end done))
+	(Persona (nombre ?nombre))
+	=>
+	(printout t crlf crlf)
+	(printout t "Esta es la planificacion semanal de actividades fisicas para usted." crlf crlf)
+	(printout t "Que tenga un buen dia, " ?nombre "!" crlf)
+	(printout t crlf)
+	(assert (end done))
 )
 
 ; end

@@ -1,4 +1,4 @@
-; Mon Dec 10 12:46:03 CET 2018
+; Mon Dec 10 17:01:36 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -90,46 +90,34 @@
 		[Practica_Class27]
 		[Practica_Class20]
 		[Practica_Class35])
-	(parte_trabajada abdominales))
+	(parte_trabajada piernas))
 
 ([Practica_Class10007] of  Calentamiento
 
 	(actividad "EstiramientosEspalda")
 	(duracion 10)
-	(orientado_a
-		[Practica_Class32]
-		[Practica_Class20]
-		[Practica_Class31])
+	(orientado_a [Practica_Class20])
 	(parte_trabajada espalda))
 
 ([Practica_Class10008] of  Calentamiento
 
 	(actividad "EstiramientosPecho")
 	(duracion 10)
-	(orientado_a
-		[Practica_Class32]
-		[Practica_Class20]
-		[Practica_Class31])
+	(orientado_a [Practica_Class20])
 	(parte_trabajada pecho))
 
 ([Practica_Class10012] of  Calentamiento
 
 	(actividad "EstiramientosHombro")
 	(duracion 10)
-	(orientado_a
-		[Practica_Class32]
-		[Practica_Class20]
-		[Practica_Class31])
+	(orientado_a [Practica_Class20])
 	(parte_trabajada hombro))
 
 ([Practica_Class10016] of  Calentamiento
 
 	(actividad "EstiramientosTriceps")
 	(duracion 10)
-	(orientado_a
-		[Practica_Class32]
-		[Practica_Class20]
-		[Practica_Class31])
+	(orientado_a [Practica_Class20])
 	(parte_trabajada triceps))
 
 ([Practica_Class10020] of  Deporte
@@ -586,6 +574,111 @@
 		[Practica_Class35])
 	(parte_trabajada espalda))
 
+([Practica_Class30015] of  Calentamiento
+
+	(actividad "EstiramientosBiceps")
+	(duracion 10)
+	(orientado_a [Practica_Class32])
+	(parte_trabajada biceps))
+
+([Practica_Class30016] of  Calentamiento
+
+	(actividad "EstiramientosBiceps")
+	(duracion 10)
+	(orientado_a [Practica_Class31])
+	(parte_trabajada biceps))
+
+([Practica_Class30017] of  Calentamiento
+
+	(actividad "EstiramientosEspalda")
+	(duracion 10)
+	(orientado_a [Practica_Class32])
+	(parte_trabajada espalda))
+
+([Practica_Class30018] of  Calentamiento
+
+	(actividad "EstiramientosEspalda")
+	(duracion 10)
+	(orientado_a [Practica_Class31])
+	(parte_trabajada espalda))
+
+([Practica_Class30019] of  Calentamiento
+
+	(actividad "EstiramientosHombro")
+	(duracion 10)
+	(orientado_a [Practica_Class32])
+	(parte_trabajada hombro))
+
+([Practica_Class30020] of  Calentamiento
+
+	(actividad "EstiramientosHombro")
+	(duracion 10)
+	(orientado_a [Practica_Class31])
+	(parte_trabajada hombro))
+
+([Practica_Class30021] of  Calentamiento
+
+	(actividad "EstiramientosPecho")
+	(duracion 10)
+	(orientado_a [Practica_Class32])
+	(parte_trabajada pecho))
+
+([Practica_Class30022] of  Calentamiento
+
+	(actividad "EstiramientosPecho")
+	(duracion 10)
+	(orientado_a [Practica_Class31])
+	(parte_trabajada pecho))
+
+([Practica_Class30023] of  Calentamiento
+
+	(actividad "EstiramientosPiernas")
+	(duracion 10)
+	(orientado_a [Practica_Class32])
+	(parte_trabajada piernas))
+
+([Practica_Class30024] of  Calentamiento
+
+	(actividad "EstiramientosPiernas")
+	(duracion 10)
+	(orientado_a [Practica_Class31])
+	(parte_trabajada piernas))
+
+([Practica_Class30025] of  Calentamiento
+
+	(actividad "EstiramientosTriceps")
+	(duracion 10)
+	(orientado_a [Practica_Class32])
+	(parte_trabajada triceps))
+
+([Practica_Class30026] of  Calentamiento
+
+	(actividad "EstiramientosTriceps")
+	(duracion 10)
+	(orientado_a [Practica_Class31])
+	(parte_trabajada triceps))
+
+([Practica_Class30028] of  Calentamiento
+
+	(actividad "EstiramientosAbdominales")
+	(duracion 10)
+	(orientado_a [Practica_Class32])
+	(parte_trabajada abdominales))
+
+([Practica_Class30029] of  Calentamiento
+
+	(actividad "EstiramientosAbdominales")
+	(duracion 10)
+	(orientado_a [Practica_Class31])
+	(parte_trabajada abdominales))
+
+([Practica_Class30030] of  Calentamiento
+
+	(actividad "EstiramientosAbdominales")
+	(duracion 10)
+	(orientado_a [Practica_Class20])
+	(parte_trabajada abdominales))
+
 ([Practica_Class31] of  Objetivo
 
 	(intensidad media)
@@ -620,6 +713,26 @@
 
 	(intensidad media)
 	(objetivo "Salud Mental"))
+
+([Practica_Class40000] of  Ejercicio
+
+	(actividad "Zumba")
+	(duracion 30)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class27]
+		[Practica_Class35])
+	(parte_trabajada piernas))
+
+([Practica_Class40001] of  Ejercicio
+
+	(actividad "Eliptica")
+	(duracion 20)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class23]
+		[Practica_Class21])
+	(parte_trabajada piernas))
 
 ([Practica_Class41] of  Enfermedad
 
@@ -777,20 +890,14 @@
 
 	(actividad "EstiramientosBiceps")
 	(duracion 10)
-	(orientado_a
-		[Practica_Class32]
-		[Practica_Class20]
-		[Practica_Class31])
+	(orientado_a [Practica_Class20])
 	(parte_trabajada biceps))
 
 ([Practica_Class55] of  Calentamiento
 
 	(actividad "EstiramientosPiernas")
 	(duracion 10)
-	(orientado_a
-		[Practica_Class32]
-		[Practica_Class20]
-		[Practica_Class31])
+	(orientado_a [Practica_Class20])
 	(parte_trabajada piernas))
 
 ([Practica_Class56] of  Ejercicio
@@ -819,4 +926,5 @@
 	(orientado_a [Practica_Class36])
 	(parte_trabajada pecho))
 
-	)
+
+)
