@@ -1,31 +1,34 @@
 
 ; Practica 2 - IA
 
-(defmodule MAIN (export ?ALL))
-(defmodule ASK_QUESTIONS (import MAIN ?ALL)(export ?ALL))
+(defmodule MAIN 									(export ?ALL))
+(defmodule ASK_QUESTIONS					(import MAIN ?ALL)(export ?ALL))
 (defmodule ASSESSMENT_ACTIVITIES  (import MAIN ?ALL)(export ?ALL))
-(defmodule GENERATE_SESSIONS  (import MAIN ?ALL)(export ?ALL))
-(defmodule PRINT_WORKOUT (import MAIN ?ALL)(export ?ALL))
+(defmodule GENERATE_SESSIONS  		(import MAIN ?ALL)(export ?ALL))
+(defmodule PRINT_WORKOUT 					(import MAIN ?ALL)(export ?ALL))
 
 (defclass MAIN::ValoracionActividades
   (is-a USER) (role concrete)
-	(slot actividad (type INSTANCE)(create-accessor read-write))
-	(slot puntuacion (type INTEGER)(default 0)(create-accessor read-write))
+	(slot actividad 					(type INSTANCE)(create-accessor read-write))
+	(slot puntuacion 					(type INTEGER)(default 0)(create-accessor read-write))
 )
 
 (defclass MAIN::SesionEjercicios
 	(is-a USER) (role concrete)
-	(slot dia (type INTEGER)(create-accessor read-write))
-	(multislot actividades (type INSTANCE)(create-accessor read-write))
-	(slot duracion (type INTEGER)(default 0)(create-accessor read-write))
+	(slot dia 								(type INTEGER)(create-accessor read-write))
+	(multislot actividades		(type INSTANCE)(create-accessor read-write))
+	; (multislot ejercicios 		(type INSTANCE)(create-accessor read-write))
+	; (multislot deportes				(type STRING)(create-accessor read-write))
+	(slot duracion 						(type INTEGER)(default 0)(create-accessor read-write))
+	; (slot final?)
 )
 
 (deftemplate MAIN::ObjetivosRecomendados
-	(multislot objs (type INSTANCE)) ; instance of Objetivo que es recomendado alguna de las enfermedades de la Persona
+	(multislot objs						(type INSTANCE)) ; instance of Objetivo que es recomendado alguna de las enfermedades de la Persona
 )
 
 (deftemplate MAIN::ObjetivosNoRecomendados
-	(multislot objs (type INSTANCE)) ; instance of Objetivo que es no_recomendado alguna de las enfermedades de la Persona
+	(multislot objs 					(type INSTANCE)) ; instance of Objetivo que es no_recomendado alguna de las enfermedades de la Persona
 )
 
 (deftemplate MAIN::Persona
@@ -398,7 +401,7 @@
 		; (printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "_" (send ?act-i get-parte_trabajada) crlf)
 		(make-instance (gensym) of ValoracionActividades (actividad ?act-i) (puntuacion 0))
 	)
-	(printout t "DB_Actividades: " (length$ (find-all-instances ((?it ValoracionActividades)) TRUE)) crlf)
+	; (printout t "DB_Actividades: " (length$ (find-all-instances ((?it ValoracionActividades)) TRUE)) crlf)
 	(assert (ObjetivosRecomendados))
 	(assert (ObjetivosNoRecomendados))
 	(assert (puntuaciones inicializadas))
@@ -534,7 +537,7 @@
 		; ahora comparamos por digito (1,2,3)
 
 		(if (= ?dn ?di) ; yo_nivel_X vs obj_X_intensidad
-			then (modify-instance ?va_ref (puntuacion (+ (send ?va_ref get-puntuacion) 100))) ; puntuar BIEN pq el objetivo_i de la Actividad act coincide con el nivel del usuario en este objetivo
+			then (modify-instance ?va_ref (puntuacion (+ (send ?va_ref get-puntuacion) 150))) ; puntuar BIEN pq el objetivo_i de la Actividad act coincide con el nivel del usuario en este objetivo
 			else
 				(if (> ?dn ?di) ;;; could try --> (if (and (> ?dn ?di) (= (- ?dn ?di) 1)) ;;
 					then (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 25)))
@@ -545,8 +548,16 @@
 	(assert (valorado_Intensidad ?act))
 )
 
+(defrule ASSESSMENT_ACTIVITIES::printPointsActivity
+	; no hace falta un loop ya que se ejecutara esta regla para cada valor de la classe ValoracionActividades
+  (declare (salience 2))
+  ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
+  =>
+  (printout t "  " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
+)
+
 (defrule ASSESSMENT_ACTIVITIES::all_processed
-	(declare (salience 1))
+	(declare (salience 2))
 	=>
 	(printout t crlf)
 	(printout t "                  <<    Actividades valoradas correctamente   >> " crlf )
@@ -556,17 +567,70 @@
 
 ; Tenemos toda las valoraciones de las actividades. Ahora procedemos a escoger las mejores para la persona y generamos 3..7 sesiones de 30min..90min
 
-(defrule GENERATE_SESSIONS::decide_how_many_sessions
-
-	=>
-
+(deffunction GENERATE_SESSIONS::maximum_slot (?li ?sl ?init)
+	(bind ?encontrado FALSE)
+	(if (neq ?li FALSE) then
+		(bind ?li (create$ ?li))
+		(if (> (length ?li) 0) then
+			(bind ?max ?init)
+			(loop-for-count (?i 1 (length ?li))
+				(bind ?v (send (nth$ ?i ?li) ?sl))
+			 	(if (> ?v ?max) then
+			 		(bind ?encontrado TRUE)
+			 		(bind ?max ?v)
+			 		(bind ?ins (nth$ ?i ?li))
+			 	)
+			)
+		)
+	)
+	(if (eq ?encontrado FALSE) then (bind ?ins FALSE))
+	(return ?ins)
 )
 
-(defrule GENERATE_SESSIONS::all_processed
+(defrule GENERATE_SESSIONS::start
+	(declare (salience 99))
+	(not (start))
+	=>
+
+	(bind ?acts (create$ ))
+	; (make-instance Dia1 of SesionEjercicios (dia 1) (calentamientos (create$)) (ejercicios (create$)) (deportes (create$ )) (duracion 0))
+
+	(make-instance Dia1 of SesionEjercicios (dia 1) (actividades (create$)) (duracion 0))
+
+	(assert (start))
+)
+
+(defrule GENERATE_SESSIONS::generate
+	(declare (salience 50))
+	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
+	(not (created_sesion ?dia))
+	=>
+	(printout t "Dia" ?dia crlf)
+
+	(while (not (> (send ?se_ref get-duracion) 90)) do
+
+		(bind $?all_val_acts (find-all-instances ((?inst ValoracionActividades)) TRUE))
+		(bind ?max_val_act (maximum_slot ?all_val_acts get-puntuacion -99999))
+		(bind ?max_act (send ?max_val_act get-actividad))
+
+		(printout t "ACT: " (send ?max_act get-actividad) crlf)
+
+		(slot-insert$ ?se_ref actividades (+ (length$ (send ?se_ref get-actividades)) 1) ?max_act)
+
+		(send ?se_ref put-duracion (+ (send ?se_ref get-duracion) (send ?max_act get-duracion)))
+		(printout t "Length "(length$ (send ?se_ref get-actividades)) crlf)
+
+		(send ?max_val_act delete) ; eliminar la instancia con mas puntuacion despues de añadirla
+
+	)
+	(assert (created_sesion ?dia))
+)
+
+(defrule GENERATE_SESSIONS::all_generated
 	(declare (salience 1))
 	=>
 	(printout t crlf)
-	(printout t "                  <<    Sessiones generas correctamente   >> " crlf)
+	(printout t "                  <<    Sessiones generadas correctamente   >> " crlf)
 	(printout t crlf)
 	(focus PRINT_WORKOUT)
 )
@@ -581,13 +645,19 @@
 ;; anar sumant la duracio de ex_i i posarho a classe Sessio!
 ;; finally print_class_sessio
 
+(defrule PRINT_WORKOUT::print_SesionEjercicios
+	(declare (salience 99))
+	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
+	=>
+	(printout t crlf crlf "###### > Session Ejercicios" crlf)
+	(printout t crlf " > Dia:             " ?dia)
+	(printout t crlf " > Actividades:     ")
+	(progn$ (?act ?actividades)
+		  (printout t crlf "    + " (send ?act get-actividad) "_" (send ?act get-duracion) "min ")
+	)
+	(printout t crlf crlf " > Duracion:        " ?duracion " min")
+	(printout t crlf crlf "########################################" crlf)
 
-(defrule PRINT_WORKOUT::printPointsActivity
-	; no hace falta un loop ya que se ejecutara esta regla para cada valor de la classe ValoracionActividades
-  (declare (salience 1))
-  ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
-  =>
-  (printout t "  " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
 )
 
 ; end
