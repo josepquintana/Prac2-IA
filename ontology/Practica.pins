@@ -1,4 +1,4 @@
-; Mon Dec 10 01:42:47 CET 2018
+; Mon Dec 10 12:46:03 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -375,6 +375,44 @@
 	(intensidad baja)
 	(objetivo "Flexibilidad"))
 
+([Practica_Class20000] of  Ejercicio
+
+	(actividad "Saltar a la Cuerda")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class18]
+		[Practica_Class21])
+	(parte_trabajada piernas))
+
+([Practica_Class20001] of  Ejercicio
+
+	(actividad "Burpees")
+	(duracion 15)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class18]
+		[Practica_Class21])
+	(parte_trabajada pecho))
+
+([Practica_Class20002] of  Ejercicio
+
+	(actividad "Elevacion de Pelvis")
+	(duracion 15)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class18]
+		[Practica_Class21])
+	(parte_trabajada abdominales))
+
 ([Practica_Class21] of  Objetivo
 
 	(intensidad baja)
@@ -409,6 +447,144 @@
 
 	(intensidad alta)
 	(objetivo "Equilibrio"))
+
+([Practica_Class30000] of  Ejercicio
+
+	(actividad "Plancha boca arriba")
+	(duracion 10)
+	(material FALSE)
+	(orientado_a [Practica_Class21])
+	(parte_trabajada abdominales))
+
+([Practica_Class30001] of  Ejercicio
+
+	(actividad "Estocadas")
+	(duracion 15)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class21])
+	(parte_trabajada piernas))
+
+([Practica_Class30002] of  Ejercicio
+
+	(actividad "Dips")
+	(duracion 15)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class31]
+		[Practica_Class36])
+	(parte_trabajada pecho))
+
+([Practica_Class30003] of  Ejercicio
+
+	(actividad "Aperturas Inclinado")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class33])
+	(parte_trabajada pecho))
+
+([Practica_Class30004] of  Ejercicio
+
+	(actividad "Pullovers")
+	(duracion 10)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class20]
+		[Practica_Class33]
+		[Practica_Class35])
+	(parte_trabajada pecho))
+
+([Practica_Class30005] of  Ejercicio
+
+	(actividad "Aperturas Inclinado")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class33])
+	(parte_trabajada pecho))
+
+([Practica_Class30006] of  Ejercicio
+
+	(actividad "Remo Vertical")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class20]
+		[Practica_Class18]
+		[Practica_Class21])
+	(parte_trabajada hombro))
+
+([Practica_Class30007] of  Ejercicio
+
+	(actividad "Remo Vertical")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class20]
+		[Practica_Class35])
+	(parte_trabajada hombro))
+
+([Practica_Class30008] of  Ejercicio
+
+	(actividad "Remo Vertical")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class33])
+	(parte_trabajada hombro))
+
+([Practica_Class30009] of  Ejercicio
+
+	(actividad "Vuelos Laterales")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class21])
+	(parte_trabajada hombro))
+
+([Practica_Class30010] of  Ejercicio
+
+	(actividad "Encogimiento de Hombros")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class33])
+	(parte_trabajada hombro))
+
+([Practica_Class30011] of  Ejercicio
+
+	(actividad "Flexiones Martillo")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class33])
+	(parte_trabajada biceps))
+
+([Practica_Class30012] of  Ejercicio
+
+	(actividad "Peso Muerto")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class33])
+	(parte_trabajada espalda))
+
+([Practica_Class30013] of  Ejercicio
+
+	(actividad "Peso Muerto")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a [Practica_Class35])
+	(parte_trabajada espalda))
+
+([Practica_Class30014] of  Ejercicio
+
+	(actividad "Remo con Mancuernas")
+	(duracion 15)
+	(material TRUE)
+	(orientado_a
+		[Practica_Class33]
+		[Practica_Class35])
+	(parte_trabajada espalda))
 
 ([Practica_Class31] of  Objetivo
 
@@ -643,4 +819,4 @@
 	(orientado_a [Practica_Class36])
 	(parte_trabajada pecho))
 
-)
+	)

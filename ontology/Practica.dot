@@ -1,29 +1,28 @@
 digraph Practica {
 	node [label="\N"];
-	graph [bb="0,0,1052,494"];
-	Calentamiento [label=Calentamiento, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="47,61", width="1.3056", height="0.5"];
+	graph [bb="0,0,1095,464"];
+	Calentamiento [label=Calentamiento, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="47,109", width="1.3056", height="0.5"];
 	Actividad [label="{Actividad|{parte_trabajada|Symbol|{pecho|espalda|biceps|...}}|{duracion|Integer}|{actividad|String}|{orientado_a|Instance*|{Objetivo\
-}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="174,283", rects="63.5,355,284.5,379 63.5,259,165.5,355 165.5,259,225.5,355 225.5,331,284.5,355 225.5,307,284.5,331 225.5,283,284.5,307 225.5,259,\
-284.5,283 63.5,235,178.5,259 178.5,235,284.5,259 63.5,211,182.5,235 182.5,211,284.5,235 63.5,187,147.5,211 147.5,187,218.5,211 218.5\
-,187,284.5,211", width="3.0556", height="2.6806"];
-	Incapacidad [label="{Incapacidad|{recomendado|Instance*|{Objetivo}}|{no_recomendado|Instance*|{Objetivo}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="431,283", rects="306,295,556,319 306,271,406,295 406,271,483,295 483,271,556,295 306,247,421,271 421,247,491,271 491,247,556,271", width="3.4722", height="1.0139"];
-	Dolencia [label="{Dolencia|{dolencia|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="679,469", rects="622.5,469,735.5,493 622.5,445,685.5,469 685.5,445,735.5,469", width="1.5556", height="0.68056"];
-	Objetivo [label="{Objetivo|{intensidad|Symbol|{baja|media|alta}}|{objetivo|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="547,61", rects="455.5,97,638.5,121 455.5,25,528.5,97 528.5,25,588.5,97 588.5,73,638.5,97 588.5,49,638.5,73 588.5,25,638.5,49 455.5,1,552.5,25 552.5\
-,1,638.5,25", width="2.5278", height="1.6806"];
-	Ejercicio [label="{Ejercicio|{material|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="172,61", rects="111.5,61,232.5,85 111.5,37,170.5,61 170.5,37,232.5,61", width="1.6667", height="0.68056"];
-	Lesion [label="{Lesion|{tipo|Symbol|{Rotura|Esguince|Luxacion}}|{parte_cuerpo|Symbol|{pierna|brazo|espalda|...}}|{rehabilitacion|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="679,283", rects="574,367,784,391 574,295,626,367 626,295,701,367 701,343,784,367 701,319,784,343 701,295,784,319 574,199,665,295 665,199,725,295 \
-725,271,784,295 725,247,784,271 725,223,784,247 725,199,784,223 574,175,693,199 693,175,784,199", width="2.9167", height="3.0139"];
-	Deporte [label="{Deporte|{equipo|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="308,61", rects="249.5,61,366.5,85 249.5,37,304.5,61 304.5,37,366.5,61", width="1.6111", height="0.68056"];
-	Enfermedad [label="{Enfermedad|{recomendado|Instance*|{Objetivo}}|{no_recomendado|Instance*|{Objetivo}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="927,283", rects="802,295,1052,319 802,271,902,295 902,271,979,295 979,271,1052,295 802,247,917,271 917,247,987,271 987,247,1052,271", width="3.4722", height="1.0139"];
-	Actividad -> Calentamiento [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,119.03,186.92 113.85,177.86 92.228,140.06 70.088,101.36 57.492,79.34", lp="108,148"];
-	Dolencia -> Incapacidad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,641.46,444.85 633.01,439.28 611.97,425.35 586.91,408.26 565,392 533.57,368.68 499.37,340.81 473.38,319.09", lp="619,418"];
-	Incapacidad -> Objetivo [label="recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,455.48,119.69 425.55,246.9 422.74,216.51 423.04,172.87 441,140 443.35,135.69 446.05,131.56 449.02,127.59", lp="483,148"];
-	Incapacidad -> Objetivo [label="no_recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,537.03,121.03 463.98,246.97 484.38,222.85 509.54,189.5 525,156 528.66,148.07 531.74,139.48 534.32,130.81", lp="583,148"];
-	Actividad -> Ejercicio [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,173.13,186.92 173.04,176.77 172.73,142.39 172.42,107.4 172.22,85.022", lp="181,148"];
-	Dolencia -> Lesion [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,679,444.68 679,434.65 679,421.98 679,406.84 679,391.12", lp="687,418"];
-	Actividad -> Deporte [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,231.99,186.92 237.32,178.1 258.33,143.29 279.82,107.69 293.5,85.022", lp="265,148"];
-	Dolencia -> Enfermedad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,716.54,444.85 724.99,439.28 746.03,425.35 771.09,408.26 793,392 824.43,368.68 858.63,340.81 884.62,319.09", lp="773,418"];
-	Enfermedad -> Objetivo [label="recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,638.63,96.565 887.95,246.8 862.23,224.1 827.12,195.23 793,174 747.46,145.65 693.63,120.12 647.95,100.53", lp="803,148"];
-	Enfermedad -> Objetivo [label="no_recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,638.84,76.744 916.39,246.71 904.98,214.03 883.64,167.09 849,140 817.8,115.6 723.75,93.305 648.81,78.668", lp="918,148"];
-	Actividad -> Objetivo [label="orientado_a*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,455.46,92.548 279.5,186.99 285.33,182.49 291.18,178.13 297,174 342.44,141.78 398.54,115.41 446.07,96.278", lp="384.5,148"];
+}}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="240,367", rects="129.5,439,350.5,463 129.5,343,231.5,439 231.5,343,291.5,439 291.5,415,350.5,439 291.5,391,350.5,415 291.5,367,350.5,391 291.5,343\
+,350.5,367 129.5,319,244.5,343 244.5,319,350.5,343 129.5,295,248.5,319 248.5,295,350.5,319 129.5,271,213.5,295 213.5,271,284.5,\
+295 284.5,271,350.5,295", width="3.0556", height="2.6806"];
+	Incapacidad [label="{Incapacidad|{requiere_ayuda|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="684,109", rects="602.5,109,765.5,133 602.5,85,703.5,109 703.5,85,765.5,109", width="2.25", height="0.68056"];
+	Dolencia [label="{Dolencia|{recomendado|Instance*|{Objetivo}}|{no_recomendado|Instance*|{Objetivo}}|{dolencia|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="703,367", rects="578,391,828,415 578,367,678,391 678,367,755,391 755,367,828,391 578,343,693,367 693,343,763,367 763,343,828,367 578,319,709,343 \
+709,319,828,343", width="3.4722", height="1.3472"];
+	Objetivo [label="{Objetivo|{intensidad|Symbol|{baja|media|alta}}|{objetivo|String}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="475,109", rects="383.5,145,566.5,169 383.5,73,456.5,145 456.5,73,516.5,145 516.5,121,566.5,145 516.5,97,566.5,121 516.5,73,566.5,97 383.5,49,480.5\
+,73 480.5,49,566.5,73", width="2.5278", height="1.6806"];
+	Ejercicio [label="{Ejercicio|{material|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="172,109", rects="111.5,109,232.5,133 111.5,85,170.5,109 170.5,85,232.5,109", width="1.6667", height="0.68056"];
+	Lesion [label="{Lesion|{tipo|Symbol|{Rotura|Esguince|Luxacion}}|{parte_cuerpo|Symbol|{pierna|brazo|espalda|...}}|{rehabilitacion|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="888,109", rects="783,193,993,217 783,121,835,193 835,121,910,193 910,169,993,193 910,145,993,169 910,121,993,145 783,25,874,121 874,25,934,121 934\
+,97,993,121 934,73,993,97 934,49,993,73 934,25,993,49 783,1,902,25 902,1,993,25", width="2.9167", height="3.0139"];
+	Deporte [label="{Deporte|{equipo|Boolean}}", shape=record, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="308,109", rects="249.5,109,366.5,133 249.5,85,304.5,109 304.5,85,366.5,109", width="1.6111", height="0.68056"];
+	Enfermedad [label=Enfermedad, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="1053,109", width="1.1667", height="0.5"];
+	Actividad -> Calentamiento [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,144.69,270.77 138.14,263.16 125.68,248.5 113.61,233.22 103,218 82.188,188.16 64.193,149.55 54.538,127.2", lp="135,244"];
+	Dolencia -> Incapacidad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,699.45,318.77 698.71,308.76 694.64,253.48 688.72,173.1 685.79,133.26", lp="702,244"];
+	Actividad -> Ejercicio [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,214.68,270.93 212.13,261.24 199.68,214.01 186.1,162.49 178.36,133.12", lp="217,244"];
+	Dolencia -> Objetivo [label="recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,457.2,169.28 577.74,335.27 535.44,317.93 492.71,291.6 468,252 454.7,230.69 452.99,203.91 455.8,179.31", lp="510,244"];
+	Dolencia -> Objetivo [label="no_recomendado*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,517.1,169.12 649.22,318.93 627.84,298.95 603.52,275.07 583,252 562.2,228.6 541.06,201.51 523.07,177.23", lp="636,244"];
+	Dolencia -> Lesion [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,737.58,318.77 743.52,310.49 763.17,283.09 787.44,249.24 810.45,217.15", lp="803,244"];
+	Actividad -> Deporte [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,265.32,270.93 267.87,261.24 280.32,214.01 293.9,162.49 301.64,133.12", lp="282,244"];
+	Dolencia -> Enfermedad [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,828.32,326.49 837.66,322.6 893.99,298.69 956.73,264.4 1002,218 1027.4,191.98 1041.8,150.98 1048.5,127.38", lp="990,244"];
+	Actividad -> Objetivo [label="orientado_a*", color="0.6666667,1.0,1.0", fontcolor="0.6666667,1.0,1.0", style=filled, pos="e,420.17,169.19 327.51,270.93 356.02,239.63 387.05,205.56 413.26,176.78", lp="393.5,244"];
 }

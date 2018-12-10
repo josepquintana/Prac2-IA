@@ -17,8 +17,6 @@
 	(is-a USER) (role concrete)
 	(slot dia 								(type INTEGER)(create-accessor read-write))
 	(multislot actividades		(type INSTANCE)(create-accessor read-write))
-	; (multislot ejercicios 		(type INSTANCE)(create-accessor read-write))
-	; (multislot deportes				(type STRING)(create-accessor read-write))
 	(slot duracion 						(type INTEGER)(default 0)(create-accessor read-write))
 	; (slot final?)
 )
@@ -587,17 +585,79 @@
 	(return ?ins)
 )
 
-(defrule GENERATE_SESSIONS::start
+(deffunction GENERATE_SESSIONS::get_digit_lvl(?word)
+	(if (eq ?word "BASICO") 						then (bind ?digit 1))
+	(if (eq ?word "MEJORA") 						then (bind ?digit 2))
+	(if (eq ?word "MANTENIMIENTO") 			then (bind ?digit 3))
+	(return ?digit)
+)
+
+(deffunction GENERATE_SESSIONS::how_many_workout_days(?dias_act ?nc ?ne ?nx ?nf ?nr ?nsm)
+	; determina el numero de sesiones de actividades que vamos a recomendar en funcion de el nivel en cada objetivo y lo habitualmente que realiza ejercicio fisico
+	(bind ?dc (get_digit_lvl ?nc))
+	(bind ?de (get_digit_lvl ?ne))
+	(bind ?dx (get_digit_lvl ?nx))
+	(bind ?df (get_digit_lvl ?nf))
+	(bind ?dr (get_digit_lvl ?nr))
+	(bind ?dsm (get_digit_lvl ?nsm))
+
+	(bind ?sum1 (+ ?dc ?de))
+	(bind ?sum2 (+ ?dx ?df))
+	(bind ?sum3 (+ ?dr ?dsm))
+
+	(bind ?sum (+ ?sum1 ?sum2))
+	(bind ?sum (+ ?sum ?sum3))
+
+	(if (< ?sum 12) then
+		(if (< ?dias_act 5)
+			then (bind ?sesiones 3)
+			else (bind ?sesiones 4)
+		)
+	)
+	(if (and (>= ?sum 12) (< ?sum 18)) then
+		(if (= ?dias_act 5)
+			then (bind ?sesiones 5)
+			else
+				(if (< ?dias_act 5)
+					then (bind ?sesiones 4)
+					else (bind ?sesiones 6)
+				)
+		)
+	)
+	(if (>= ?sum 18) then
+		(if (< ?dias_act 6)
+			then (bind ?sesiones 6)
+			else (bind ?sesiones 7)
+		)
+	)
+
+	(return ?sesiones)
+)
+
+
+(defrule GENERATE_SESSIONS::determine_how_many_workout_days
 	(declare (salience 99))
-	(not (start))
+	(not (workout_days determined))
+	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	=>
+	(bind $?acts_validas (find-all-instances ((?inst ValoracionActividades)) (> (send ?inst get-puntuacion) 0)))
+	(bind ?duracion_total 0)
+	(progn$ (?i_act_valida ?acts_validas)
+		(bind ?act (send ?i_act_valida get-actividad))
+		(bind ?act_duracion (send ?act get-duracion))
+		(bind ?duracion_total (+ ?duracion_total ?act_duracion))
+	)
+	(printout t "DD " ?duracion_total crlf)
 
-	(bind ?acts (create$ ))
-	; (make-instance Dia1 of SesionEjercicios (dia 1) (calentamientos (create$)) (ejercicios (create$)) (deportes (create$ )) (duracion 0))
+	(bind ?sesiones (how_many_workout_days ?da ?nc ?ne ?nx ?nf ?nr ?nsm))
+	(printout t "n_sessiones " ?sesiones crlf )
 
-	(make-instance Dia1 of SesionEjercicios (dia 1) (actividades (create$)) (duracion 0))
+	(loop-for-count (?d 1 ?sesiones) do
+		(printout t ?d crlf)
+		(make-instance (gensym) of SesionEjercicios (dia ?d) (actividades (create$)) (duracion 0))
+	)
 
-	(assert (start))
+	(assert (workout_days determined))
 )
 
 (defrule GENERATE_SESSIONS::generate
@@ -605,7 +665,7 @@
 	?se_ref <- (object (is-a SesionEjercicios) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	(not (created_sesion ?dia))
 	=>
-	(printout t "Dia" ?dia crlf)
+	(printout t " > Sesion Ejes Dia " ?dia crlf)
 
 	(while (not (> (send ?se_ref get-duracion) 90)) do
 
