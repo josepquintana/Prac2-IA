@@ -9,7 +9,7 @@ Práctica de Sistemas Basados en el Conocimiento - IA
 		amb nom ?BD_'Classe' de cada pregunta i afegir els nous noms de instancia
 
 ## TO DO:
-- [ ] Relacio amb grupo_edad
+- [x] Relacio amb grupo_edad
 - [ ] Probar casos extrems (0 0 0 0 0) or (7 7 7 7 7)
 - [x] Tractat lesions::parte_cuerpo vs parte_trabajada incompatibles!
 - [ ] SesionEjercicios: ejercicios de un mismo tipo

@@ -35,7 +35,7 @@
 (deftemplate MAIN::Persona
 	(slot nombre							(type INTEGER)) ; nombre de la persona
 	(slot edad								(type INTEGER)) ; numerical edad
-	(slot grupo_edad					(type STRING))  ; OLD, VERY_OLD, SUPER_OLD, ULTRA_OLD
+	; (slot grupo_edad					(type STRING))  ; OLD, VERY_OLD, SUPER_OLD, ULTRA_OLD
 	(multislot dolencias			(type INSTANCE)) ; dolencias (enf,incp,lesn) que padece el individiu
 	(slot dias_actividad			(type INTEGER)) ; 0-> sedentaria, 1..7 -> dias que practica actividades
 	(slot nivel_cardio				(type STRING))  ; BASICO, MEJORA, MANTENIMIENTO
@@ -166,18 +166,15 @@
 (defrule ASK_QUESTIONS::ask_Edad
   (declare (salience 15))
 	(not (edad asked))
-	?pers <- (Persona (edad ?edad) (grupo_edad ?ge))
+	?pers <- (Persona (edad ?edad))
   =>
   (bind ?edad (ask_question_integer "Cuantos anos tiene?" 65 999))
   (bind ?ge null)
-
-	(if (and (>= ?edad 65) (< ?edad 75)) then (bind ?ge "OLD"))
-	(if (and (>= ?edad 75) (< ?edad 85)) then (bind ?ge "VERY_OLD"))
-  (if (and (>= ?edad 85) (< ?edad 95)) then (bind ?ge "SUPER_OLD"))
-	(if (>= ?edad 95) 									 then (bind ?ge "ULTRA_OLD"))
-	;comprobar edades incorrectas
-
-	(modify ?pers (edad ?edad) (grupo_edad ?ge))
+	; (if (and (>= ?edad 65) (< ?edad 75)) then (bind ?ge "OLD"))
+	; (if (and (>= ?edad 75) (< ?edad 85)) then (bind ?ge "VERY_OLD"))
+  ; (if (and (>= ?edad 85) (< ?edad 95)) then (bind ?ge "SUPER_OLD"))
+	; (if (>= ?edad 95) 									 then (bind ?ge "ULTRA_OLD"))
+	(modify ?pers (edad ?edad))
 	(assert (edad asked))
 )
 
@@ -288,7 +285,7 @@
 
 (defrule ASK_QUESTIONS::set_NivelesObjetivos
 	(declare (salience 5))
-	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
+	?pers <- (Persona (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	(not (niveles set))
 	(not (is_Sedentary))
 	=>
@@ -332,7 +329,7 @@
 
 (defrule ASK_QUESTIONS::printPerson
   (declare (salience 2))
-  ?ref <- (Persona (nombre ?nombre) (edad ?e) (grupo_edad ?ge) (dolencias $?dols) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
+  ?ref <- (Persona (nombre ?nombre) (edad ?e) (dolencias $?dols) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
   =>
   (printout t crlf crlf "###### > Datos Persona" crlf)
 	(printout t crlf " > Nombre:             " ?nombre)
@@ -370,7 +367,7 @@
 	(if (eq ?parte_cuerpo pierna) 	then (bind ?parte_trabajada piernas))
 	(if (eq ?parte_cuerpo brazo) 		then (bind ?parte_trabajada biceps))
 	(if (eq ?parte_cuerpo espalda) 	then (bind ?parte_trabajada espalda))
-	(if (eq ?parte_cuerpo cadera) 	then (bind ?parte_trabajada abdominales))
+	(if (eq ?parte_cuerpo cadera) 	then (bind ?parte_trabajada piernas))
 	(if (eq ?parte_cuerpo torso) 		then (bind ?parte_trabajada pecho))
 	(if (eq ?parte_cuerpo tobillo) 	then (bind ?parte_trabajada piernas))
 	(if (eq ?parte_cuerpo pie) 			then (bind ?parte_trabajada piernas))
@@ -641,28 +638,28 @@
 	(return ?sum)
 )
 
-(deffunction GENERATE_SESSIONS::how_many_workout_days(?dias_act ?nc ?ne ?nx ?nf ?nr ?nsm)
+(deffunction GENERATE_SESSIONS::how_many_workout_days(?edad ?nc ?ne ?nx ?nf ?nr ?nsm)
 	; determina el numero de sesiones de actividades que vamos a recomendar en funcion de el nivel en cada objetivo y lo habitualmente que realiza ejercicio fisico
 	(bind ?sum (get_nivel_average ?nc ?ne ?nx ?nf ?nr ?nsm))
 
 	(if (< ?sum 12) then
-		(if (< ?dias_act 5)
+		(if (>= ?edad 80)
 			then (bind ?sesiones 3)
 			else (bind ?sesiones 4)
 		)
 	)
 	(if (and (>= ?sum 12) (< ?sum 18)) then
-		(if (= ?dias_act 5)
+		(if (or (>= ?edad 75) (< ?edad 85))
 			then (bind ?sesiones 5)
 			else
-				(if (< ?dias_act 5)
+				(if (>= ?edad 85)
 					then (bind ?sesiones 4)
 					else (bind ?sesiones 6)
 				)
 		)
 	)
 	(if (>= ?sum 18) then
-		(if (< ?dias_act 6)
+		(if (>= ?edad 80)
 			then (bind ?sesiones 6)
 			else (bind ?sesiones 7)
 		)
@@ -695,9 +692,9 @@
 (defrule GENERATE_SESSIONS::determine_how_many_workout_days
 	(declare (salience 98))
 	(not (workout_days determined))
-	?pers <- (Persona (grupo_edad ?ge) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
+	?pers <- (Persona (edad ?edad) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
 	=>
-	(bind ?n_sesiones (how_many_workout_days ?da ?nc ?ne ?nx ?nf ?nr ?nsm))
+	(bind ?n_sesiones (how_many_workout_days ?edad ?nc ?ne ?nx ?nf ?nr ?nsm))
 	(loop-for-count (?d 1 ?n_sesiones) do
 		(make-instance (gensym) of SesionActividades (dia ?d) (actividades (create$)) (duracion 0))
 	)
@@ -763,7 +760,7 @@
 	(progn$ (?act ?actividades)
 	  (printout t crlf "    + " (send ?act get-actividad) " ")
 		(bind $?or_a (send ?act get-orientado_a))
-		(if (eq Calentamiento (class ?act)) then (printout t  (send (nth$ 1 ?or_a) get-intensidad)))
+		(if (eq Calentamiento (class ?act)) then (printout t "(" (send (nth$ 1 ?or_a) get-intensidad) ")"))
 		(printout t " [" (send ?act get-duracion) " min] ")
 
 	)
