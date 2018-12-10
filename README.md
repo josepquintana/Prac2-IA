@@ -1,12 +1,13 @@
 # Prac2-IA
-## Práctica de Sistemas Basados en el Conocimiento - IA
- 	*Quan es genera el .pins cal afegir (definstances instances ... ) i fer un load normal en comptes
+Práctica de Sistemas Basados en el Conocimiento - IA
+
+## INFO
+	* Quan es genera el .pins cal afegir (definstances instances ... ) i fer un load normal en comptes
 	 	de load-instances
- 	*Quan s'afegeixen noves instancies de Dolencia a la onto cal modificar les variables tipus llista
+ 	* Quan s'afegeixen noves instancies de Dolencia a la onto cal modificar les variables tipus llista
 		amb nom ?BD_'Classe' de cada pregunta i afegir els nous noms de instancia
 
-### TO DO:
-
+## TO DO:
 	* Relacio amb grupo_edad
 	* Probar casos extrems (0 0 0 0 0) or (7 7 7 7 7)
   * Tractat lesions::parte_cuerpo vs parte_trabajada incompatibles!
