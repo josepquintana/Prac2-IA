@@ -35,8 +35,9 @@
 (deftemplate MAIN::Persona
 	(slot nombre							(type INTEGER)) ; nombre de la persona
 	(slot edad								(type INTEGER)) ; numerical edad
-	; (slot grupo_edad					(type STRING))  ; OLD, VERY_OLD, SUPER_OLD, ULTRA_OLD
 	(multislot dolencias			(type INSTANCE)) ; dolencias (enf,incp,lesn) que padece el individiu
+	(slot material						(type INTEGER)) ; si le va bien ir al gym
+	(slot equipo							(type INTEGER)) ; si podria conseguir un equipo
 	(slot dias_actividad			(type INTEGER)) ; 0-> sedentaria, 1..7 -> dias que practica actividades
 	(slot nivel_cardio				(type STRING))  ; BASICO, MEJORA, MANTENIMIENTO
 	(slot nivel_equilibrio		(type STRING))  ; BASICO, MEJORA, MANTENIMIENTO
@@ -81,7 +82,7 @@
 )
 
 (deffunction ASK_QUESTIONS::ask_question_basic(?question)
-  ; Ask a question
+  ; Ask a basic question
   (printout t ?question " ")
   (bind ?answer (read))
   (return ?answer)
@@ -108,7 +109,7 @@
 )
 
 (deffunction ASK_QUESTIONS::ask_question_integer (?question ?min_value ?max_value)
- ; Escribe una pregunta y lee un entero (el 2nd parametro es el valor minimo de la respuesta)
+ ; Escribe una pregunta y lee un entero (entre min i max)
   (printout t ?question " ")
   ; (printout t " (NUM.): ")
   (bind ?answer (read))
@@ -132,6 +133,7 @@
 )
 
 (deffunction ASK_QUESTIONS::ask_question_multichoice (?question $?allowed-values)
+; Hace una pregunta con multirespuesta
 	(bind ?answers (format_answer_list TRUE ?question $?allowed-values))
 	(bind ?list_answers (create$ ))
   (progn$ (?var ?answers)
@@ -169,11 +171,6 @@
 	?pers <- (Persona (edad ?edad))
   =>
   (bind ?edad (ask_question_integer "Cuantos anos tiene?" 65 999))
-  (bind ?ge null)
-	; (if (and (>= ?edad 65) (< ?edad 75)) then (bind ?ge "OLD"))
-	; (if (and (>= ?edad 75) (< ?edad 85)) then (bind ?ge "VERY_OLD"))
-  ; (if (and (>= ?edad 85) (< ?edad 95)) then (bind ?ge "SUPER_OLD"))
-	; (if (>= ?edad 95) 									 then (bind ?ge "ULTRA_OLD"))
 	(modify ?pers (edad ?edad))
 	(assert (edad asked))
 )
@@ -189,20 +186,6 @@
   	(progn$ (?curr-answer ?list_answers)
 			(bind ?enf (nth$ ?curr-answer ?BD_enfermedades))
 			(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia (format nil "%s" ?enf)))))
-   		; (switch ?curr-answer
-    	; 	(case 1 then
-			; 		(bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Artrosis")))))
-	    ;   (case 2 then
-			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Cardiovascular")))))
-	    ;   (case 3 then
-			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Obesidad")))))
-	    ;   (case 4 then
-			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Osteoporosis")))))
-			; 	(case 5 then
-			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Diabetes")))))
-	    ;   (case 6 then
-			; 	  (bind $?dolencias (insert$ $?dolencias (+ (length$ $?dolencias) 1) (find-instance ((?inst Enfermedad)) (eq ?inst:dolencia "Respiratorios")))))
-	    ; )
   	)
   )
 	(modify ?ref (dolencias $?dolencias))
@@ -215,7 +198,7 @@
 	?ref <- (Persona (dolencias $?dolencias))
   =>
 	(if (ask_question_yes_no "Sufre alguna incapacidad?") then
-		(bind ?BD_incapacidades (create$ "Paraplegia Brazos" "Paraplegia Piernas" "Paralisis Cerebral" "Distrofia Muscular"))
+		(bind ?BD_incapacidades (create$ "Paraplegia Brazos" "Paraplegia Piernas" "Paralisis Cerebral" "Distrofia Muscular" "Paralisis Corporal Brazos"))
     (bind ?list_answers (ask_question_multichoice "Cuales?" ?BD_incapacidades))
     (progn$ (?curr-answer ?list_answers)
 			(bind ?inc (nth$ ?curr-answer ?BD_incapacidades))
@@ -276,7 +259,7 @@
 (defrule ASK_QUESTIONS::set_NivelesSedentario
 	(declare (salience 5))
 	(and (is_Sedentary) (not (niveles_sedentario set)))
-	?pers <- (Persona); (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
+	?pers <- (Persona)
 	=>
 	(bind ?basico "BASICO")
 	(modify ?pers (nivel_cardio ?basico) (nivel_equilibrio ?basico) (nivel_flexibilidad ?basico) (nivel_fuerza ?basico) (nivel_resistencia ?basico) (nivel_salud_mental ?basico))
@@ -327,11 +310,37 @@
 	(assert (niveles set))
 )
 
+(defrule ASK_QUESTIONS::ask_Material
+	(declare (salience 4))
+	?pers <- (Persona (material ?m))
+	(not (material asked))
+	=>
+	(if (ask_question_yes_no "Tiene la posibilidad de acudir a un gimnasio o centro que disponga de material adecuado?")
+		then (bind ?m 1)
+		else (bind ?m 0)
+	)
+	(modify ?pers (material ?m))
+	(assert (material asked))
+)
+
+(defrule ASK_QUESTIONS::ask_Equipo
+	(declare (salience 3))
+	?pers <- (Persona (equipo ?e))
+	(not (equipo asked))
+	=>
+	(if (ask_question_yes_no "Tiene la posibilidad de entrenar junto a otras personas?")
+		then (bind ?e 1)
+		else (bind ?e 0)
+	)
+	(modify ?pers (equipo ?e))
+	(assert (equipo asked))
+)
+
 (defrule ASK_QUESTIONS::printPerson
   (declare (salience 2))
   ?ref <- (Persona (nombre ?nombre) (edad ?e) (dolencias $?dols) (dias_actividad ?da) (nivel_cardio ?nc) (nivel_equilibrio ?ne) (nivel_flexibilidad ?nx) (nivel_fuerza ?nf) (nivel_resistencia ?nr) (nivel_salud_mental ?nsm))
   =>
-  (printout t crlf crlf "###### > Datos Persona" crlf)
+  (printout t crlf crlf "######   >>  Datos Persona  <<   ###### " crlf)
 	(printout t crlf " > Nombre:             " ?nombre)
   (printout t crlf " > Edad:               " ?e)
   (printout t crlf " > Dolencias:          " )
@@ -349,14 +358,14 @@
 	(printout t crlf " > Nivel_fuerza:       " ?nf)
 	(printout t crlf " > Nivel_resistencia:  " ?nr)
 	(printout t crlf " > Nivel_salud_mental: " ?nsm)
-  (printout t crlf crlf "########################################" crlf)
+  (printout t crlf crlf "########################################" crlf crlf)
 )
 
 (defrule ASK_QUESTIONS::dataReadCorrect
   (declare (salience 1))
   =>
   (printout t crlf)
-  (printout t "                  <<    Data Entered   >>" crlf)
+  (printout t " <<   Informacion leida correctamente  >>" crlf)
   (printout t crlf)
   (focus ASSESSMENT_ACTIVITIES)
 )
@@ -379,6 +388,10 @@
 	(return ?parte_trabajada)
 )
 
+(deffunction ASSESSMENT_ACTIVITIES::boolean_to_integer (?bool)
+   (if ?bool then 1 else 0)
+)
+
 (deffunction ASSESSMENT_ACTIVITIES::translate_nivel_to_digit(?nivel)
 	(if (eq ?nivel "BASICO") 				then (bind ?digit 1))
 	(if (eq ?nivel "MEJORA") 				then (bind ?digit 2))
@@ -399,7 +412,6 @@
   =>
   (bind $?actividades (find-all-instances ((?inst Actividad)) TRUE))
 	(progn$ (?act-i ?actividades)
-		; (printout t "Act_" ?act-i-index ": " (send ?act-i get-actividad) "_" (send ?act-i get-parte_trabajada) crlf)
 		(make-instance (gensym) of ValoracionActividades (actividad ?act-i) (puntuacion 0))
 	)
 	(assert (ObjetivosRecomendados))
@@ -407,24 +419,21 @@
 	(assert (puntuaciones inicializadas))
 )
 
-(defrule ASSESSMENT_ACTIVITIES::find_ObjectivosRecomendados ; de momento solo para enfermedades
+(defrule ASSESSMENT_ACTIVITIES::find_ObjectivosRecomendados
 	(declare (salience 95))
 	(not (objetivos_recomendados found))
 	(Persona (dolencias $?dolencias))
 	?obj_ref <- (ObjetivosRecomendados (objs $?objs))
-	;;; problema amb class i template per accedir al mateix temps a objetivos_recomendados y a les actividades
 	=>
 	(progn$ (?curr-dol ?dolencias)
-		; (if (or (eq (class ?curr-dol) Enfermedad) (eq (class ?curr-dol) Incapacidad)) then
-			(bind $?objRecomendadosEnf (send ?curr-dol get-recomendado))
-			(progn$ (?curr-objR ?objRecomendadosEnf)
-				(if (not (member$ ?curr-objR ?objs)) then
-					(bind ?obj_name (send ?curr-objR get-objetivo))
-					(bind ?obj_intensidad (send ?curr-objR get-intensidad))
-					(bind $?objs (insert$ $?objs (+ (length$ $?objs) 1) (find-instance ((?inst Objetivo)) (and (eq ?inst:objetivo ?obj_name) (eq ?inst:intensidad ?obj_intensidad)))))
-				)
+		(bind $?objRecomendadosEnf (send ?curr-dol get-recomendado))
+		(progn$ (?curr-objR ?objRecomendadosEnf)
+			(if (not (member$ ?curr-objR ?objs)) then
+				(bind ?obj_name (send ?curr-objR get-objetivo))
+				(bind ?obj_intensidad (send ?curr-objR get-intensidad))
+				(bind $?objs (insert$ $?objs (+ (length$ $?objs) 1) (find-instance ((?inst Objetivo)) (and (eq ?inst:objetivo ?obj_name) (eq ?inst:intensidad ?obj_intensidad)))))
 			)
-		; )
+		)
 	)
 
 	(modify ?obj_ref (objs $?objs))
@@ -453,7 +462,7 @@
 	(assert (objetivos_no_recomendados found))
 )
 
-(defrule ASSESSMENT_ACTIVITIES::printObjs
+(defrule ASSESSMENT_ACTIVITIES::printObjs 	; Activar per debugar
 	(declare (salience 90))
 	(ObjetivosRecomendados (objs $?objs_R))
 	(ObjetivosNoRecomendados (objs $?objs_NoR))
@@ -564,7 +573,7 @@
 		(if (= ?dn ?di) ; yo_nivel_X vs obj_X_intensidad
 			then (modify-instance ?va_ref (puntuacion (+ (send ?va_ref get-puntuacion) 150))) ; puntuar BIEN pq el objetivo_i de la Actividad act coincide con el nivel del usuario en este objetivo
 			else
-				(if (> ?dn ?di) ;;; could try --> (if (and (> ?dn ?di) (= (- ?dn ?di) 1)) ;;
+				(if (> ?dn ?di)
 					then (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 10)))
 					else (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 125)))
 				)
@@ -573,19 +582,47 @@
 	(assert (valorado_Intensidad ?act))
 )
 
-(defrule ASSESSMENT_ACTIVITIES::printPointsActivity
+(defrule ASSESSMENT_ACTIVITIES::evaluate_Material
+	(declare (salience 50))
+	(Persona (material ?m))
+	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(not (valorado_Material ?act))
+	=>
+	(if (eq (class ?act) Ejericio) then
+		(if (and (= ?m 0) (send ?act get-material))
+			then (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 350)))
+		)
+	)
+	(assert (valorado_Material ?act))
+)
+
+(defrule ASSESSMENT_ACTIVITIES::evaluate_Equipo
+	(declare (salience 50))
+	(Persona (equipo ?e))
+	?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos)) ; una execucio per cada instancia de Val_Act
+	(not (valorado_Equipo ?act))
+	=>
+	(if (eq (class ?act) Deporte) then
+		(if (and (= ?e 0) (send ?act get-equipo))
+			then (modify-instance ?va_ref (puntuacion (- (send ?va_ref get-puntuacion) 350)))
+		)
+	)
+	(assert (valorado_Equipo ?act))
+)
+
+(defrule ASSESSMENT_ACTIVITIES::printPointsActivity  ; Activar per debugar
 	; no hace falta un loop ya que se ejecutara esta regla para cada valor de la classe ValoracionActividades
   (declare (salience 2))
   ?va_ref <- (object (is-a ValoracionActividades) (actividad ?act) (puntuacion ?puntos))
   =>
-  (printout t "  " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
+  ; (printout t "  " (send ?act get-actividad) "_" (send ?act get-duracion) "min  >> " ?puntos " puntos" crlf)
 )
 
 (defrule ASSESSMENT_ACTIVITIES::all_processed
 	(declare (salience 2))
 	=>
 	(printout t crlf)
-	(printout t "                  <<    Actividades valoradas correctamente   >> " crlf )
+	(printout t " <<   Actividades valoradas correctamente   >> " crlf )
 	(printout t crlf)
 	(focus GENERATE_SESSIONS)
 )
@@ -706,7 +743,7 @@
 	?se_ref <- (object (is-a SesionActividades) (dia ?dia) (actividades $?actividades) (duracion ?duracion))
 	(not (created_sesion ?dia))
 	=>
-	(printout t " >>>> Generating Sesion Acts del dia " ?dia crlf)
+	; Generando la Sesion de dia ?dia
 	(bind ?it 1)
 
 	(while (not (> (send ?se_ref get-duracion) ?*max_duracion_sesion*))
@@ -734,7 +771,7 @@
 	(declare (salience 1))
 	=>
 	(printout t crlf)
-	(printout t "                  <<    Sessiones generadas correctamente   >> " crlf)
+	(printout t " <<   Sessiones generadas correctamente   >> " crlf)
 	(printout t crlf)
 	(focus SHOW_SOLUTION)
 )
@@ -745,7 +782,7 @@
 	(declare (salience 99))
 	(not (print_ini done))
 	=>
-	(printout t crlf crlf)
+	(printout t crlf)
 	(printout t crlf "#######   Sessiones de Actividades   ####### " crlf)
 	(assert (print_ini done))
 )
@@ -762,7 +799,6 @@
 		(bind $?or_a (send ?act get-orientado_a))
 		(if (eq Calentamiento (class ?act)) then (printout t "(" (send (nth$ 1 ?or_a) get-intensidad) ")"))
 		(printout t " [" (send ?act get-duracion) " min] ")
-
 	)
 	(printout t crlf crlf " > Duracion:        " ?duracion " min")
 	(printout t crlf crlf "____________________________________________" crlf)

@@ -1,4 +1,4 @@
-; Mon Dec 10 22:48:46 CET 2018
+; Tue Dec 11 00:35:25 CET 2018
 ;
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -877,6 +877,21 @@
 		[Practica_Class21]
 		[Practica_Class35]))
 
+([Practica_Class50000] of  Incapacidad
+
+	(dolencia "Paralisis Corporal Brazos")
+	(no_recomendado
+		[Practica_Class28]
+		[Practica_Class34]
+		[Practica_Class36])
+	(parte_afectada brazos)
+	(recomendado
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class20]
+		[Practica_Class21])
+	(requiere_ayuda FALSE))
+
 ([Practica_Class50001] of  Lesion
 
 	(dolencia "Esguince Pie")
@@ -904,6 +919,103 @@
 		[Practica_Class20]
 		[Practica_Class21])
 	(requiere_ayuda FALSE))
+
+([Practica_Class50003] of  Ejercicio
+
+	(actividad "Taichi")
+	(duracion 20)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class29]
+		[Practica_Class21]
+		[Practica_Class37])
+	(parte_trabajada piernas))
+
+([Practica_Class50004] of  Deporte
+
+	(actividad "Ciclismo")
+	(duracion 45)
+	(equipo TRUE)
+	(orientado_a
+		[Practica_Class27]
+		[Practica_Class35])
+	(parte_trabajada piernas))
+
+([Practica_Class50005] of  Ejercicio
+
+	(actividad "Baile")
+	(duracion 15)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class23]
+		[Practica_Class20]
+		[Practica_Class21]
+		[Practica_Class37])
+	(parte_trabajada piernas))
+
+([Practica_Class50006] of  Deporte
+
+	(actividad "Senderismo")
+	(duracion 60)
+	(equipo FALSE)
+	(orientado_a
+		[Practica_Class27]
+		[Practica_Class36])
+	(parte_trabajada piernas))
+
+([Practica_Class50007] of  Ejercicio
+
+	(actividad "StepUps")
+	(duracion 10)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class21])
+	(parte_trabajada piernas))
+
+([Practica_Class50008] of  Ejercicio
+
+	(actividad "GatoCamello")
+	(duracion 10)
+	(material FALSE)
+	(orientado_a [Practica_Class20])
+	(parte_trabajada espalda))
+
+([Practica_Class50010] of  Ejercicio
+
+	(actividad "Puente")
+	(duracion 10)
+	(material FALSE)
+	(orientado_a
+		[Practica_Class22]
+		[Practica_Class35]
+		[Practica_Class18])
+	(parte_trabajada espalda))
+
+([Practica_Class50011] of  Deporte
+
+	(actividad "AquaGym")
+	(duracion 45)
+	(equipo TRUE)
+	(orientado_a
+		[Practica_Class23]
+		[Practica_Class22]
+		[Practica_Class31]
+		[Practica_Class18]
+		[Practica_Class35])
+	(parte_trabajada biceps))
+
+([Practica_Class50012] of  Deporte
+
+	(actividad "TiroConArco")
+	(duracion 30)
+	(equipo TRUE)
+	(orientado_a
+		[Practica_Class18]
+		[Practica_Class21]
+		[Practica_Class20])
+	(parte_trabajada hombro))
 
 ([Practica_Class53] of  Deporte
 
@@ -956,4 +1068,5 @@
 	(material TRUE)
 	(orientado_a [Practica_Class36])
 	(parte_trabajada pecho))
+
 )
